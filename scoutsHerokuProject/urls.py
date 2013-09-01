@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, include, url
+from newsletter import *
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+   url(r'^newsletter/', include('newsletter.urls')),
     # Examples:
     # url(r'^$', 'scoutsHerokuProject.views.home', name='home'),
     # url(r'^scoutsHerokuProject/', include('scoutsHerokuProject.foo.urls')),
