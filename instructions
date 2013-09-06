@@ -1,0 +1,28 @@
+EDITING CODE
+1) Edit code here as per usual
+
+SETUP GIT 
+1) Add 2 remotes - 1 is upstream backup for us  https://github.com/sebastianSeed/blackMountainScouts
+the other is prod ie heroku
+
+
+
+
+2) Cd to directory -- run source venv/bin/activate to go into
+virtual env
+3) Run all commands to install things etc here
+To run -- foreman start
+To upload to heroku -- git push heroku master 
+
+
+DATBASE CREDENTIALS
+Sqlite db for local dev - username is admin pass is admin
+heroku uses postgres -- it's all setup so no need to check anything
+
+
+
+
+GIT HUB
+TTTEEST
+
+
