@@ -1,3 +1,8 @@
+1) FIX UP PROBLEM WITH STATIC FILES - LOOK INTO AMAZON S3
+AT THE MOMENT HEROKU WILL ONLY SERVE STATIC FILES WHILE DEBUG= TRUE
+
+
+
 Fix up crash on commenting 
 http://stackoverflow.com/questions/5802189/django-errno-111-connection-refused
 

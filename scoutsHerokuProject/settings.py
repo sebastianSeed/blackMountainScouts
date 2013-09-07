@@ -6,7 +6,6 @@ if 'ONHEROKU' in os.environ:
 else:
    DEBUG = True
 
-DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
