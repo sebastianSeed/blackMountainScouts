@@ -1,6 +1,12 @@
 # Django settings for scoutsHerokuProject project.
+import os 
 
-DEBUG = True
+if 'ONHEROKU' in os.environ:
+   DEBUG = False
+else:
+   DEBUG = True
+
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

@@ -21,8 +21,10 @@ heroku uses postgres -- it's all setup so no need to check anything
 
 
 
-
-GIT HUB
-TTTEEST
+HEROKU NOTES
+to run syncdb and other commands on server you need to
+run
+ heroku run python manage.py syncdb
+ https://devcenter.heroku.com/articles/getting-started-with-django
 
 
