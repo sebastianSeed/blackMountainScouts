@@ -1,4 +1,2 @@
-web: python manage.py collectstatic --noinput -v 0; gunicorn scoutsHerokuProject.wsgi
-
-
+web: python my_django_app/manage.py collectstatic --noinput; gunicorn scoutsHerokuProject.wsgi
 

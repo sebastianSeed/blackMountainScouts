@@ -21,7 +21,3 @@ url(r'^comments/', include('django.contrib.comments.urls')),
 )
 
 
-## HACKY FIX FOR PROBLEM WHERE WHEN DEBUG=FALSE
-## STATIC FILES WERE NOT BEING SERVED
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns 
-urlpatterns += staticfiles_urlpatterns() 
