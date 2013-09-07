@@ -7,6 +7,7 @@ else:
    DEBUG = True
 
 
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
