@@ -87,8 +87,8 @@ SECRET_KEY = 'gmn#gg)y!&u_je&$e#@sp&+ik!+v@+hwnv%wkoga^5^jw*&vlf'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -102,6 +102,8 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+
+
 ROOT_URLCONF = 'scoutsHerokuProject.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -112,6 +114,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -124,7 +127,34 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'eventsApp',
+    'membershipApp',
+    'notificationApp',
+    # APPS TO SUPPORT ZINNIA BLOG
+  'django.contrib.comments',
+  'tagging',
+  'mptt',
+  'zinnia',
 )
+
+#SETTINGS FOR ZINNIA BLOG
+TEMPLATE_CONTEXT_PROCESSORS = (
+  'django.contrib.auth.context_processors.auth',
+  'django.core.context_processors.i18n',
+  'django.core.context_processors.request',
+  'django.core.context_processors.media',
+  'django.core.context_processors.static',
+  'zinnia.context_processors.version',) # Optional
+
+# ZINNIA_ENTRY_BASE_MODEL = 'scoutsHerokuProject.zinniaBlogCustomisation.py'
+
+# Custom entry class for zinnia blogs allows us to call notification app
+#
+
+## IF DEBUG IS TRUE WRITE EMAILS TO STD OUT 
+if DEBUG == True:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

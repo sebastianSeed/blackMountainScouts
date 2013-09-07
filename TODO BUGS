@@ -1,0 +1,7 @@
+Fix up crash on commenting 
+http://stackoverflow.com/questions/5802189/django-errno-111-connection-refused
+
+Make posts default to only visible for logged in users
+rebrand forum
+
+FIX UP SETTING.PY TO NOT SET DEBUG=TRUE WHEN RUNNING ON HEROKu
