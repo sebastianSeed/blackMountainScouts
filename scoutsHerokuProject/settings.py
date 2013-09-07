@@ -6,6 +6,7 @@ if 'ONHEROKU' in os.environ:
 else:
    DEBUG = True
 
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -205,12 +206,10 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Directory static files are collecte to and served from in prod
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
-#Url used to refer to static files
 STATIC_URL = '/static/'
-#Places django should look to copy 
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(PROJECT_PATH, 'static'),
 )
