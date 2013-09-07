@@ -23,8 +23,5 @@ url(r'^comments/', include('django.contrib.comments.urls')),
 
 ## HACKY FIX FOR PROBLEM WHERE WHEN DEBUG=FALSE
 ## STATIC FILES WERE NOT BEING SERVED
-from django.conf import settings
-
-urlpatterns += patterns('',
-   url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-)
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns 
+urlpatterns += staticfiles_urlpatterns() 
