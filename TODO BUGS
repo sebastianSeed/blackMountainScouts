@@ -5,3 +5,5 @@ Make posts default to only visible for logged in users
 rebrand forum
 
 FIX UP SETTING.PY TO NOT SET DEBUG=TRUE WHEN RUNNING ON HEROKu
+
+FIND OUT WHERE FORUM IMAGES ARE BEING SAVED BY DEFAULT?
