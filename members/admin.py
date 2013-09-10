@@ -13,7 +13,7 @@ class scoutMemberInline(admin.StackedInline):
     verbose_name_plural = 'Scout troop members'
 
 admin.site.register(scoutMember)
-admin.site.register(guardians)
+admin.site.register(guardian)
 
 
 #TODO - can this be moved under project package?
