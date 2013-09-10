@@ -1,5 +1,23 @@
-1) FIX UP PROBLEM WITH STATIC FILES - LOOK INTO AMAZON S3
-AT THE MOMENT HEROKU WILL ONLY SERVE STATIC FILES WHILE DEBUG= TRUE
+
+
+TODO
+
+1) Setup amazon s3
+
+Rationale: 
+Heroku is now running ok with static files (uploading them
+to heroku git repository after running collect static here)
+- problem was that heroku was not getting the static
+folders for apps which are part of library eg forum
+--- when you run collect static it pulled them to a spot
+heroku can see and use
+BUT
+heroku loses all data every restart so if any data
+is added via website eg uploaded pictures etc
+it will be lost the second heroku goes down for some reason
+or you need to push out a change
+
+
 
 
 
@@ -9,6 +27,4 @@ http://stackoverflow.com/questions/5802189/django-errno-111-connection-refused
 Make posts default to only visible for logged in users
 rebrand forum
 
-FIX UP SETTING.PY TO NOT SET DEBUG=TRUE WHEN RUNNING ON HEROKu
 
-FIND OUT WHERE FORUM IMAGES ARE BEING SAVED BY DEFAULT?

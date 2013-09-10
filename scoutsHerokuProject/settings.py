@@ -2,12 +2,12 @@
 import os 
 
 if 'ONHEROKU' in os.environ:
-   DEBUG = False
+    DEBUG = False
 else:
-   DEBUG = True
+    DEBUG = True
 
 
-TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -115,11 +115,7 @@ ROOT_URLCONF = 'scoutsHerokuProject.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'scoutsHerokuProject.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+
 
 
 INSTALLED_APPS = (
@@ -133,8 +129,8 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'eventsApp',
-    'membershipApp',
+    'events',
+    'members',
     'notificationApp',
     # APPS TO SUPPORT ZINNIA BLOG
   'django.contrib.comments',
@@ -211,4 +207,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
+)
+
+TEMPLATE_DIRS = (
+                 os.path.join(PROJECT_PATH, 'templates')
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
 )

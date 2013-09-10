@@ -6,7 +6,7 @@ SETUP GIT
 the other is prod ie heroku
 
 
-
+DEPLOYING TO HEROKU
 
 2) Cd to directory -- run source venv/bin/activate to go into
 virtual env
@@ -22,6 +22,10 @@ heroku uses postgres -- it's all setup so no need to check anything
 
 
 HEROKU NOTES
+TO FIX PROBLEM WITH STATIC FILES NOT BEING SERVED ON HEROKU WHEN DEPLOYING
+(THEY WORK FINE LOCALLY BUT FAIL ON PROD)
+just run collect static before PUSHING to heroku 
+
 to run syncdb and other commands on server you need to
 run
  heroku run python manage.py syncdb
