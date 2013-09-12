@@ -28,7 +28,7 @@ from django.contrib.auth.models import Group, User
 #Note to get a list of all models known to ORM run 
 # from django.db import models
 # models.get_models()
-#admin.site.unregister(User)
+admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.unregister(Site)
 
