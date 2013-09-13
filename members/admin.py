@@ -12,6 +12,8 @@ class scoutMemberInline(admin.StackedInline):
     model = scoutMember
     verbose_name_plural = 'Scout troop members'
 
+
+
 admin.site.register(scoutMember)
 admin.site.register(guardian) 
 #TEST
