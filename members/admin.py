@@ -8,9 +8,14 @@ from members.models import *
 
 # Add the employee details to the create user form in
 #the framework provided admin page eg mywebsite/admin. 
-class scoutMemberInline(admin.StackedInline):
+class scoutMemberInline(admin.TabularInline):
     model = scoutMember
     verbose_name_plural = 'Scout troop members'
+
+class guardianAdmin(admin.ModelAdmin):
+     inlines = [
+        scoutMemberInline,
+    ]
 
 
 
