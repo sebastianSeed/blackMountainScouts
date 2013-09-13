@@ -2,7 +2,7 @@
 import os 
 
 if 'ONHEROKU' in os.environ:
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
