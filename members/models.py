@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator, validate_email
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 #TODO MODEL FOR ADMINS? Extend users + give them rights to edit everything -- eg forum newsletters etc
@@ -26,36 +26,84 @@ class guardian(models.Model):
                                                                     'Phone numbers must be 8-12 digits.',
                                                                     'Invalid Number'),
                                                        ],) 
-    kids = models.ManyToManyField('scoutMember')
-#    kids  = models.ForeignKey('scoutMember')
-    email = models.CharField(max_length=100, validators = [validate_email], blank = True)
-    
-    #Note this should be called on edit as well as 
-    #TODO cater for existing usern accoutns ie parent edit
+    kids        = models.ManyToManyField('scoutMember')
+    email       = models.CharField(max_length=100, validators = [validate_email], blank = True)
+    userAccount = models.ForeignKey('User')
+    #Note this is called for record updates and new records inserts
     def save(self, *args, **kwargs):
-        super(guardian, self).save(*args, **kwargs) # Call the "real" save() method.
-        #Create account login based on firstname_lastname
+        
+        #If the obect primary keys is not null then we are updating an existing record
+        #Check if we need to update sit logon details
+        updateUserAccount = False
+        if self.pk is not None:
+            originalObject = guardian.objects.get(pk = self.pk)
+            #Change account details if we have changed firstname and lastname
+            if self.firstname != originalObject.firstname or self.lastname != originalObject.lastname:
+                updateUserAccount = True   
+                      
+        
+        
+        # Set email text
+        body = """
+        Hello {name},
+        Your user account has been updated or created,
+        Username:{username}
+        Password:{password} 
+        You can use these details to logon onto the scout's website  at http://blackmountainscouts.herokuapp.com
+        Please do not reply to this email as this inbox is not monitored.
+        Thank you 
+        
+        """
+        #Generate username and password for email and account update/creation
         username = self.firstname +'_'+self.lastname
         password = User.objects.make_random_password(length=8)
-        user = User.objects.create_user(username, '', password)
+        body = body.format(name = self.firstname, username = username, password = password)     
+        
+        
+        if self.email:        
+            #If we are creating a new user send email with 
+            if  updateUserAccount == False:        
+                user = User.objects.create_user(username, '', password) 
+                # Call original save() method to do DB updates/inserts
+                super(guardian, self).save(*args, **kwargs) 
+                send_mail('Account Created', body, 'admin@BlackMountainScouts.com', [self.email])
+
+            # If we are updating old account
+            elif updateUserAccount == True:
+                user             = originalObject.userAccount
+                user.username    = username
+                user.set_password (password)
+                user.save()
+                # Call original save() method to do DB updates/inserts
+                super(guardian, self).save(*args, **kwargs) 
+                send_mail('Account Updated', body, 'admin@BlackMountainScouts.com', [self.email])
                 
-        #If an email exists for user send account confirmation email
-        if self.email:
-            self.password = 'dummyPassword'
-            body = """
-            Your user account has been updated or created,
-            Username:{username}
-            Password:{password} 
-            You can use these details to logon onto the scout's website (http://blackmountainscouts.herokuapp.com/)
-            Please do not reply to this email as this in
-            Thank you 
+        #If no email - do not try to send update/add email and change password to username         
+        elif not self.email:
+            #If we don't have an email change password from random generated to username
+            password = username
+            #If we are creating a new user send email with 
+            if  updateUserAccount == False:       
+                user = User.objects.create_user(username, '', password) 
+                # Call original save() method to do DB updates/inserts
+                super(guardian, self).save(*args, **kwargs) 
+            # If we are updating old account
+            elif updateUserAccount == True:
+                user             = originalObject.userAccount
+                user.username    = username
+                user.set_password (password)
+                user.save()
+                # Call original save() method to do DB updates/inserts
+                super(guardian, self).save(*args, **kwargs) 
             
-            """
-            body = body.format(username = username, password = password)
-            send_mail('Account Updated or Added', body, 'admin@BlackMountainScouts.com', [self.email])
+
+
+           
+            
 
             
-            
+                        
+                
     
     def __unicode__(self):
         return u'%s %s' % (self.firstname, self.lastname)

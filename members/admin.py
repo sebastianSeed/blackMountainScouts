@@ -16,12 +16,7 @@ class scoutMemberInline(admin.TabularInline):
     verbose_name_plural = 'Scout troop members'
 
 
-class HideFromAdminPage(admin.ModelAdmin):
-    def get_model_perms(self, request):
-        """
-        Return empty perms dict thus hiding the model from admin index.
-        """
-        return {}
+
 
 #simplify user form by removing fields
 
@@ -36,8 +31,12 @@ class UserAdmin(admin.ModelAdmin):
         (None, {'fields': ('username', 'password1','password2')}),
         (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser')}),
     )
-    
 
+class GuardianAdmin(admin.ModelAdmin):
+    #Hide user account field as this is set by system   
+    exclude = 'userAccount' 
+    
+    
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
@@ -47,7 +46,7 @@ admin.site.register(User, UserAdmin)
 
 
 admin.site.register(scoutMember)
-admin.site.register(guardian) 
+admin.site.register(guardian,GuardianAdmin) 
 #TEST
 
 
