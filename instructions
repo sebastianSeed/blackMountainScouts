@@ -11,3 +11,6 @@ when you have stable ready code you want to backup / commit
 
 3) Heroku db does not auto update - so if you make 
 schema changes (likely) then you need to run 
+
+heroku pg:reset postgres --confirm blackmountainscouts
+heroku run python manage.py syncdb

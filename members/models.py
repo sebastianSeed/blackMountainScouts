@@ -31,6 +31,7 @@ class guardian(models.Model):
     
     def save(self, *args, **kwargs):
         super(guardian, self).save(*args, **kwargs) # Call the "real" save() method.
+        #Create account login based on firstname_lastname
         username = self.firstname +'_'+self.lastname
         password = User.objects.make_random_password(length=8)
         user = User.objects.create_user(username, '', password)
@@ -45,7 +46,7 @@ class guardian(models.Model):
             You can use these details to logon onto the scout's website.
             Thank you 
             """
-            body.format((self.user.username), password)
+            body.format(username, password)
             send_mail('Account Updated or Added', body, 'admin@BlackMountainScouts.com', [self.email])
 
             
