@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import RegexValidator, validate_email
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
 # Create your models here.
 
 #TODO MODEL FOR ADMINS? Extend users + give them rights to edit everything -- eg forum newsletters etc
@@ -28,7 +27,7 @@ class guardian(models.Model):
                                                        ],) 
     kids        = models.ManyToManyField('scoutMember')
     email       = models.CharField(max_length=100, validators = [validate_email], blank = True)
-    userAccount = models.ForeignKey('User')
+    userAccount = models.OneToOneField(User)
     #Note this is called for record updates and new records inserts
     def save(self, *args, **kwargs):
         
@@ -63,7 +62,8 @@ class guardian(models.Model):
         if self.email:        
             #If we are creating a new user send email with 
             if  updateUserAccount == False:        
-                user = User.objects.create_user(username, '', password) 
+                user              = User.objects.create_user(username, '', password) 
+                self.userAccount  = user 
                 # Call original save() method to do DB updates/inserts
                 super(guardian, self).save(*args, **kwargs) 
                 send_mail('Account Created', body, 'admin@BlackMountainScouts.com', [self.email])
