@@ -44,12 +44,14 @@ class guardian(models.Model):
             self.password = 'dummyPassword'
             body = """
             Your user account has been updated or created,
-            Username:%(0)s
-            Password:%(1)s 
+            Username:{username}
+            Password:{password} 
             You can use these details to logon onto the scout's website (http://blackmountainscouts.herokuapp.com/)
+            Please do not reply to this email as this in
             Thank you 
+            
             """
-            body = body.format(username, password)
+            body = body.format(username = username, password = password)
             send_mail('Account Updated or Added', body, 'admin@BlackMountainScouts.com', [self.email])
 
             
