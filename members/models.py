@@ -14,7 +14,7 @@ class scoutMember(models.Model):
         return u'%s %s' % (self.firstname, self.lastname)
 
 
-class admin(models.Model):
+
     
 
 class guardian(models.Model):
@@ -46,7 +46,7 @@ class guardian(models.Model):
             Your user account has been updated or created,
             Username:%(username)s
             Password:%(password)s 
-            You can use these details to logon onto the scout's website.
+            You can use these details to logon onto the scout's website (http://blackmountainscouts.herokuapp.com/)
             Thank you 
             """
             body = body.format(username, password)
