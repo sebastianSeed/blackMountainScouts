@@ -34,7 +34,7 @@ class UserAdmin(admin.ModelAdmin):
 
 class GuardianAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
-    exclude = 'userAccount' 
+    exclude = ('userAccount' ,)
     
     
 admin.site.unregister(User)
