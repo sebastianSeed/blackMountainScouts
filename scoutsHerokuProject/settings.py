@@ -3,6 +3,12 @@ import os
 
 if 'ONHEROKU' in os.environ:
     DEBUG = True
+    ##Setup SENDGRID email add on for heroku
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST= 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 else:
     DEBUG = True
 
@@ -150,12 +156,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 # ZINNIA_ENTRY_BASE_MODEL = 'scoutsHerokuProject.zinniaBlogCustomisation.py'
 
-# Custom entry class for zinnia blogs allows us to call notification app
-#
 
-## IF DEBUG IS TRUE WRITE EMAILS TO STD OUT 
-if DEBUG == True:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # A sample logging configuration. The only tangible logging
@@ -200,7 +201,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-import os
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'

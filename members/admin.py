@@ -5,6 +5,9 @@ Created on 07/09/2013
 '''
 from django.contrib import admin
 from members.models import *
+from django.contrib import admin
+from django.contrib.sites.models import Site
+from django.contrib.auth.models import Group, User
 
 # Add the employee details to the create user form in
 #the framework provided admin page eg mywebsite/admin. 
@@ -12,10 +15,34 @@ class scoutMemberInline(admin.TabularInline):
     model = scoutMember
     verbose_name_plural = 'Scout troop members'
 
-class guardianAdmin(admin.ModelAdmin):
-     inlines = [
-        scoutMemberInline,
-    ]
+
+class HideFromAdminPage(admin.ModelAdmin):
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
+
+#simplify user form by removing fields
+
+class UserAdmin(admin.ModelAdmin):
+        #Override the field set options     
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+
+    )
+    add_fieldsets = (
+        (None, {'fields': ('username', 'password1','password2')}),
+        (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+    )
+    
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+
+
+
 
 
 
@@ -24,11 +51,16 @@ admin.site.register(guardian)
 #TEST
 
 
+
 #TODO - can this be moved under project package?
 ### Hide all unwanted admin fields here by unregistering the groups
-from django.contrib import admin
-from django.contrib.sites.models import Site
-from django.contrib.auth.models import Group, User
+
+
+
+
+
+
+
 
 
 #Unregister fields we want to hide from admin here
