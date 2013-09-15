@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator, validate_email
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from  django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 #TODO MODEL FOR ADMINS? Extend users + give them rights to edit everything -- eg forum newsletters etc
@@ -11,6 +12,15 @@ class scoutMember(models.Model):
     dob       = models.DateField(verbose_name='birthday')
     def __unicode__(self):
         return u'%s %s' % (self.firstname, self.lastname)
+
+
+#Proxy class for user 
+class CustomUser(User):
+    #Override create user with create superuser
+    def create_user (self , *args , **kwargs):
+        super(User, self).create_superuser(*args, **kwargs)
+
+
 
 
 
