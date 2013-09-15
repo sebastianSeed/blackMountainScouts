@@ -14,7 +14,8 @@ class scoutMember(models.Model):
         return u'%s %s' % (self.firstname, self.lastname)
 
 
-
+class admin(models.Model):
+    
 
 class guardian(models.Model):
     firstname = models.CharField(max_length=30)
@@ -29,6 +30,8 @@ class guardian(models.Model):
 #    kids  = models.ForeignKey('scoutMember')
     email = models.CharField(max_length=100, validators = [validate_email], blank = True)
     
+    #Note this should be called on edit as well as 
+    #TODO cater for existing usern accoutns ie parent edit
     def save(self, *args, **kwargs):
         super(guardian, self).save(*args, **kwargs) # Call the "real" save() method.
         #Create account login based on firstname_lastname
@@ -46,7 +49,7 @@ class guardian(models.Model):
             You can use these details to logon onto the scout's website.
             Thank you 
             """
-            body.format(username, password)
+            body = body.format(username, password)
             send_mail('Account Updated or Added', body, 'admin@BlackMountainScouts.com', [self.email])
 
             
