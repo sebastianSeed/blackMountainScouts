@@ -44,8 +44,8 @@ class guardian(models.Model):
             self.password = 'dummyPassword'
             body = """
             Your user account has been updated or created,
-            Username:%(username)s
-            Password:%(password)s 
+            Username:%(0)s
+            Password:%(1)s 
             You can use these details to logon onto the scout's website (http://blackmountainscouts.herokuapp.com/)
             Thank you 
             """
