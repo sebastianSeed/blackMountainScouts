@@ -85,6 +85,7 @@ class guardian(models.Model):
             #If we are creating a new user send email with 
             if  updateUserAccount == False:       
                 user = User.objects.create_user(username, '', password) 
+                self.userAccount  = user 
                 # Call original save() method to do DB updates/inserts
                 super(guardian, self).save(*args, **kwargs) 
             # If we are updating old account
