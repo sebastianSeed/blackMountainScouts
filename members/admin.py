@@ -14,7 +14,38 @@ from django.contrib.auth.models import Group, User
 class GuardianAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
     exclude = ('userAccount' ,)
+    #Create a read only field to display enrolled children
+    #Do no allow children adding here to prevent loop (to add a child they must have parent)
+#    readonly_fields = ('Enrolled_Children',)
+    
+#     def getRelatedChildren(self):
+#         resultQuerySet =  scoutMember.objects.prefetch_related('parent').filter(parents = self)
+#         resultsString  = ''
+#         if resultQuerySet.exists():
+#             for e in resultQuerySet:
+#                 resultsString += e.firstname + ' ' + e.lastname +', '
+#             return resultsString
+#         else:
+#             return "TODO DEBUG ME"
+#         
+#     def Enrolled_Children(self, instance):
+#         querySet = scoutMember.objects.filter(parents = self.pk)
+#         childList = ""
+#         for obj in querySet:
+#             childList += obj.firstname + ' ' + obj.lastname
+#         return childList
+#     
+#     Enrolled_Children.short_description ="Enrolled Chidren"
 
+
+    
+    
+
+
+
+class scoutAdmin(admin.ModelAdmin):
+    #Set filter horizontal for searchable list of parents in admin 
+    filter_horizontal = ('parents' ,)
 
 #simplify user form by removing fields
 
@@ -38,7 +69,7 @@ admin.site.unregister(Group)
 admin.site.unregister(Site)
 
 #Register custom models
-admin.site.register(scoutMember)
+admin.site.register(scoutMember,scoutAdmin)
 admin.site.register(guardian,GuardianAdmin) 
 #TEST
 

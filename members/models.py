@@ -10,13 +10,14 @@ class scoutMember(models.Model):
     firstname = models.CharField(max_length=30)
     lastname  = models.CharField(max_length=100)
     dob       = models.DateField(verbose_name='birthday')
+    parents   = models.ManyToManyField('guardian', related_name = 'guardiansRel')
+    
     def __unicode__(self):
         return u'%s %s' % (self.firstname, self.lastname)
 
     class meta:
       unique_together = ("firstname", "lastname")
       
-
 
 
 
@@ -33,7 +34,7 @@ class guardian(models.Model):
                                                                     'Phone numbers must be 8-12 digits.',
                                                                     'Invalid Number'),
                                                        ],) 
-    kids        = models.ManyToManyField('scoutMember')
+   # kids        = models.ManyToManyField('scoutMember', through=scoutMember.parents.through)
     email       = models.CharField(max_length=100, validators = [validate_email], blank = True)
     userAccount = models.OneToOneField(User)
     #Note this is called for record updates and new records inserts
