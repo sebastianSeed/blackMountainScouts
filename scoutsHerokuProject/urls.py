@@ -8,6 +8,10 @@ urlpatterns = patterns('',
    url(r'^$', 'scoutsHerokuProject.views.home'),                   
    url(r'^weblog/', include('zinnia.urls')),
    url(r'^comments/', include('django.contrib.comments.urls')),
+   #Urls for login
+   url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'scoutsHerokuProject/login.html'}),
+   url(r'^accounts/logout/$', 'scoutsHerokuProject.views.logoutView'),
+
     # Examples:
     # url(r'^$', 'scoutsHerokuProject.views.home', name='home'),
     # url(r'^scoutsHerokuProject/', include('scoutsHerokuProject.foo.urls')),

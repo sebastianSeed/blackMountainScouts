@@ -7,8 +7,25 @@
     <body>
         <h1> DEV HOME PAGE </h1>
 
-        <a href='admin'> Admin </a><br>
-        <a href='weblog/view'> Blog </a><br>
+        <a href='weblog/'> Blog </a><br>
+
+        {% if user.is_authenticated %}
+          <p> Welcome {{request.user}}! <a href="accounts/logout/">Log out</a><br>
+          </p>
+
+        {% else %}
+            <a href='accounts/login/'> User Login </a><br>
+        {% endif %}
+        <p> Note - atm both login and logout always redirect to home page after success - is that right?</p>
+        
+        
+        {% if request.user.is_superuser %}
+        <a href='admin'> Admin Link </a><br>
+        {% else %}
+        <p> You are not logged in as superuser so hiding admin link - go to user login and login as admin to see it</p>
+        {% endif %}
+        
+
 
    
     </body>

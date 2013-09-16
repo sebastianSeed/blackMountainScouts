@@ -13,12 +13,10 @@ class scoutMember(models.Model):
     def __unicode__(self):
         return u'%s %s' % (self.firstname, self.lastname)
 
+    class meta:
+      unique_together = ("firstname", "lastname")
+      
 
-#Proxy class for user 
-class CustomUser(User):
-    #Override create user with create superuser
-    def create_user (self , *args , **kwargs):
-        super(User, self).create_superuser(*args, **kwargs)
 
 
 
@@ -73,6 +71,8 @@ class guardian(models.Model):
             #If we are creating a new user send email with 
             if  updateUserAccount == False:        
                 user              = User.objects.create_user(username, '', password) 
+                user.is_staff = True
+                user.save()
                 self.userAccount  = user 
                 # Call original save() method to do DB updates/inserts
                 super(guardian, self).save(*args, **kwargs) 
@@ -82,6 +82,8 @@ class guardian(models.Model):
             elif updateUserAccount == True:
                 user             = originalObject.userAccount
                 user.username    = username
+                user.is_staff = True
+                user.save()
                 user.set_password (password)
                 user.save()
                 # Call original save() method to do DB updates/inserts
@@ -95,6 +97,8 @@ class guardian(models.Model):
             #If we are creating a new user send email with 
             if  updateUserAccount == False:       
                 user = User.objects.create_user(username, '', password) 
+                user.is_staff = True
+                user.save()
                 self.userAccount  = user 
                 # Call original save() method to do DB updates/inserts
                 super(guardian, self).save(*args, **kwargs) 
@@ -103,6 +107,7 @@ class guardian(models.Model):
                 user             = originalObject.userAccount
                 user.username    = username
                 user.set_password (password)
+                user.is_staff = True
                 user.save()
                 # Call original save() method to do DB updates/inserts
                 super(guardian, self).save(*args, **kwargs) 

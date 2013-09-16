@@ -1,5 +1,7 @@
 # Django settings for scoutsHerokuProject project.
 import os 
+from django.core.urlresolvers import reverse
+
 
 if 'ONHEROKU' in os.environ:
     DEBUG = True
@@ -21,6 +23,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+
+##DB FOR LOCAL USE ONLY
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -32,6 +36,14 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
+
+
+#Redirect to home page / Index page after login
+LOGIN_REDIRECT_URL = '/'
+#Note you can't use reverse url lookup here as settings is loaded before URLs
+
+
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
