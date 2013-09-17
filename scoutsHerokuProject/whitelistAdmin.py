@@ -9,7 +9,7 @@ def custom_discover(whitelist):
     from django.utils.importlib import import_module
     from django.utils.module_loading import module_has_submodule
     from django.contrib.admin.sites import AdminSite, site
-    for app in whitelisted_apps:
+    for app in whitelist:
         mod = import_module(app)
         # Attempt to import the app's admin module.
         try:

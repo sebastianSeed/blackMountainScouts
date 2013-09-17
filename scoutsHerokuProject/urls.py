@@ -15,9 +15,6 @@ whitelisted_apps = (
 custom_discover (whitelisted_apps)
 
 
-
-
-
 urlpatterns = patterns('',
    url(r'^$', 'scoutsHerokuProject.views.home'),                   
    url(r'^weblog/', include('zinnia.urls')),
@@ -31,7 +28,7 @@ urlpatterns = patterns('',
     # url(r'^scoutsHerokuProject/', include('scoutsHerokuProject.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
