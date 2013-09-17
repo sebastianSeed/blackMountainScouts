@@ -8,12 +8,21 @@ from members.models import  scoutMember,guardian
 from django.contrib import admin
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import Group, User
+from django.contrib import messages
 
 
 
 class GuardianAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
     exclude = ('userAccount' ,)
+
+    def delete_view(self, request, object_id, extra_context=None): 
+        messages.add_message(request, messages.ERROR, 'INSERTING A MESSAGE EXAMPLE.')
+
+        return super(GuardianAdmin, self).delete_view(request, object_id, extra_context)
+    
+    
+    
     #Create a read only field to display enrolled children
     #Do no allow children adding here to prevent loop (to add a child they must have parent)
 #    readonly_fields = ('Enrolled_Children',)
@@ -65,8 +74,8 @@ class customUser(admin.ModelAdmin):
 
 
 #Unregister to hide
-admin.site.unregister(Group)
-admin.site.unregister(Site)
+# admin.site.unregister(Group)
+# admin.site.unregister(Site)
 
 #Register custom models
 admin.site.register(scoutMember,scoutAdmin)
@@ -77,14 +86,6 @@ admin.site.register(guardian,GuardianAdmin)
 
 #TODO - can this be moved under project package?
 ### Hide all unwanted admin fields here by unregistering the groups
-
-
-
-
-
-
-
-
 
 #Unregister fields we want to hide from admin here
 #Note to get a list of all models known to ORM run 

@@ -2,7 +2,21 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-admin.autodiscover()
+# admin.autodiscover()
+from scoutsHerokuProject.whitelistAdmin import custom_discover
+
+#List of apps to add to admin
+whitelisted_apps = (
+        'events',
+        'members',
+        'notificationApp',
+    )
+#Custom discovery function registers only selected apps in admin 
+custom_discover (whitelisted_apps)
+
+
+
+
 
 urlpatterns = patterns('',
    url(r'^$', 'scoutsHerokuProject.views.home'),                   
