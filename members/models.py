@@ -56,20 +56,20 @@ class guardian(models.Model):
     def save(self, *args, **kwargs):
         # Set notification email text
         bodyText = """
-        Hello {name},
-        Your user account has been updated or created,
-        Username:{username}
-        Password:{password} 
-        You can use these details to logon onto the scout's website  at http://blackmountainscouts.herokuapp.com
-        Please do not reply to this email as this inbox is not monitored.
-        Thank you 
+       Hello , CIT project group - this is a reminder TODO -- emailAddMember.html and emailAddMember.txt
+       are what create this email and they need to be updated to be pretty.
+       Some tips - 1st scoutsHerokuProject/members/models in the save function has the context variable
+       set - as per normal django templates this decides what gets passed to the template - so if 
+       you want to add something like {{username}} put it in the context 1st. Otherwise have
+       fun. --- Please note we do the emailAddMember.txt for people whose email client does 
+       not support html - it is purely plain text - you will get no styles etc.
         
         """
         #Generate username and password for email and account update/creation
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
-        bodyText = bodyText.format(name = self.firstname, username = username, password = password)
+        #bodyText = bodyText.format(name = self.firstname, username = username, password = password)
         #This is where you add all elements you want to dynamically put in html template
         emailContext = Context({'body':bodyText})
             
