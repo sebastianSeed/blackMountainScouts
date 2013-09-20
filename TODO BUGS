@@ -1,8 +1,16 @@
 
+SHOULD ALL USER FIELDS FOR KID BE MANDATORY?
 
-TODO
 
-HIDE ALL THE NON NEEDED MODELS IN ADMIN USING TEMPLATE OR UNREGISTER
+BUILT BUT NEED CONFIRM
+
+Should all kids have a logon account?
+Should kids get emails for events and newsletters?
+
+
+
+Reset passwords on first login see here:
+http://stackoverflow.com/questions/2093593/is-it-possible-to-implement-a-change-password-at-next-logon-type-feature-in-th
 
 
 1) Setup amazon s3

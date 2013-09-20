@@ -149,7 +149,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'events',
     'members',
-    'notificationApp',
     # APPS TO SUPPORT ZINNIA BLOG
   'django.contrib.comments',
   'tagging',
