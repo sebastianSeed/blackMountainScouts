@@ -55,7 +55,7 @@ class guardian(models.Model):
    #Note this is called for record updates and new records inserts 
     def save(self, *args, **kwargs):
         # Set notification email text
-        body = """
+        bodyText = """
         Hello {name},
         Your user account has been updated or created,
         Username:{username}
@@ -68,9 +68,9 @@ class guardian(models.Model):
         #Generate username and password for email and account update/creation
         username = self.firstname +'_'+self.lastname
         password = username.lower()
-        body = body.format(name = self.firstname, username = username, password = password)
+        bodyText = bodyText.format(name = self.firstname, username = username, password = password)
         #This is where you add all elements you want to dynamically put in html template
-        emailContext = Context({body:body })
+        emailContext = Context({body:bodyText})
             
         subject = 'Account Created or Updated'
         from_email = 'donotreply@BlackMountainScouts.com'
@@ -97,8 +97,9 @@ class guardian(models.Model):
                 #Send confirmation email if customer has email
                 if self.email:
 #                     send_mail(subject , body, from_email, [self.email])  
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, [self.email])
-                    msg.attach_alternative(html_content, "text/html")
+                    msg = EmailMultiAlternatives(subject, html_content, from_email, [self.email])
+                    msg.content_subtype = "html"
+                    msg.attach_alternative(text_content, "text/plain")
                     msg.send()
             # Call original save() method to do DB updates/inserts
             super(guardian, self).save(*args, **kwargs) 
@@ -110,8 +111,9 @@ class guardian(models.Model):
             super(guardian, self).save(*args, **kwargs) 
             if self.email:
                 #                     send_mail(subject , body, from_email, [self.email])  
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, [self.email])
-                    msg.attach_alternative(html_content, "text/html")
+                    msg = EmailMultiAlternatives(subject, html_content, from_email, [self.email])
+                    msg.content_subtype = "html"
+                    msg.attach_alternative(text_content, "text/plain")
                     msg.send()
                 
         
