@@ -10,7 +10,6 @@ whitelisted_apps = (
         'events',
         'members',
         'notificationApp',
-        'post_office',
     )
 #Custom discovery function registers only selected apps in admin 
 custom_discover (whitelisted_apps)
