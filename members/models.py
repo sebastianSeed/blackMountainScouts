@@ -98,7 +98,7 @@ class guardian(models.Model):
                 #Send confirmation email if customer has email
                 if self.email:
 #                     send_mail(subject , body, from_email, [self.email])  
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, self.email)
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [self.email])
                     msg.attach_alternative(html_content,"text/html")
                     msg.send()
             # Call original save() method to do DB updates/inserts
@@ -111,7 +111,7 @@ class guardian(models.Model):
             super(guardian, self).save(*args, **kwargs) 
             if self.email:
                 #                     send_mail(subject , body, from_email, [self.email])  
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, self.email)
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [self.email])
                     msg.attach_alternative(html_content,"text/html")
                     msg.send()
         
