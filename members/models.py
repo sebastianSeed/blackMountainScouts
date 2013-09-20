@@ -67,6 +67,7 @@ class guardian(models.Model):
         """
         #Generate username and password for email and account update/creation
         username = self.firstname +'_'+self.lastname
+        username = username.lower()
         password = username.lower()
         bodyText = bodyText.format(name = self.firstname, username = username, password = password)
         #This is where you add all elements you want to dynamically put in html template
