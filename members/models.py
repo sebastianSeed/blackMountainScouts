@@ -70,7 +70,7 @@ class guardian(models.Model):
         password = username.lower()
         bodyText = bodyText.format(name = self.firstname, username = username, password = password)
         #This is where you add all elements you want to dynamically put in html template
-        emailContext = Context({body:bodyText})
+        emailContext = Context({'body':bodyText})
             
         subject = 'Account Created or Updated'
         from_email = 'donotreply@BlackMountainScouts.com'
