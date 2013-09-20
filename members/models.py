@@ -3,6 +3,11 @@ from django.core.validators import RegexValidator, validate_email
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from  django.contrib.auth.models import AbstractUser
+
+#Includes for email format and send
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
 # Create your models here.
 
 #TODO MODEL FOR ADMINS? Extend users + give them rights to edit everything -- eg forum newsletters etc
@@ -62,10 +67,21 @@ class guardian(models.Model):
         """
         #Generate username and password for email and account update/creation
         username = self.firstname +'_'+self.lastname
-        password = username
-        body = body.format(name = self.firstname, username = username, password = password)    
+        password = username.lower()
+        body = body.format(name = self.firstname, username = username, password = password)
+        #This is where you add all elements you want to dynamically put in html template
+        emailContext = Context({body:body })
+            
+        subject = 'Account Created or Updated'
+        from_email = 'donotreply@BlackMountainScouts.com'
+        plaintextTemplate =  get_template('members/AddMemberEmail.html')
+        htmlTemplate      =  get_template('members/addMemberEmail.txt') 
         
-
+        #Render templates
+        text_content = plaintextTemplate.render(emailContext)
+        html_content = htmlTemplate.render(emailContext)
+        
+        
         #If the obect primary keys is not null then we are updating an existing record
         #Check if we need to update sit logon details
         if self.pk is not None:
@@ -73,16 +89,19 @@ class guardian(models.Model):
             #Change account details if we have changed firstname and lastname
             if self.firstname != originalObject.firstname or self.lastname != originalObject.lastname:
                 user             = originalObject.userAccount
-                user.username    = username
+                user.username    = username.lower()
 #                 user.is_staff = True
                 user.save()
                 user.set_password (password)
                 user.save()
-                # Call original save() method to do DB updates/inserts
-                super(guardian, self).save(*args, **kwargs) 
                 #Send confirmation email if customer has email
                 if self.email:
-                    send_mail('Account Updated', body, 'admin@BlackMountainScouts.com', [self.email])   
+#                     send_mail(subject , body, from_email, [self.email])  
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [self.email])
+                    msg.attach_alternative(html_content, "text/html")
+                    msg.send()
+            # Call original save() method to do DB updates/inserts
+            super(guardian, self).save(*args, **kwargs) 
         #If not self.pk - we are creating new entry
         else:
             user = User.objects.create_user(username, '', password) 
@@ -90,7 +109,11 @@ class guardian(models.Model):
             self.userAccount  = user 
             super(guardian, self).save(*args, **kwargs) 
             if self.email:
-                send_mail('Account Created', body, 'admin@BlackMountainScouts.com', [self.email])
+                #                     send_mail(subject , body, from_email, [self.email])  
+                    msg = EmailMultiAlternatives(subject, text_content, from_email, [self.email])
+                    msg.attach_alternative(html_content, "text/html")
+                    msg.send()
+                
         
       
             
