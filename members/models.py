@@ -9,6 +9,11 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 
+#Includes to get admin url for specific object
+from django.core.urlresolvers import reverse
+
+
+
 #Scout groups class and db table to allow users to set events per scout group
 class scoutGroups(models.Model):
     name        = models.CharField(max_length=15,unique = True)
@@ -73,7 +78,8 @@ class  allScoutUsers(models.Model):
     def editUserLogin(self):
         user = self.userAccount
         #if user's first or last name has changed then we need to rename account
-        if self.firstname != user.firstname or self.lastname != user.lastname:
+        newUserName  = self.firstname +'_'+self.lastname
+        if newUserName != user.username:
             username = self.firstname +'_'+self.lastname
             username = username.lower()
             password = username.lower()
@@ -104,6 +110,11 @@ class  allScoutUsers(models.Model):
    #Function that defines how object shows up in admin ie the name 
     def __unicode__(self):
         return u'%s %s' % (self.firstname, self.lastname)
+    
+    def getAdminUrl(self):        
+        info = (self._meta.app_label, self._meta.module_name)
+        admin_url = reverse('admin:%s_%s_change' % info, args=(self.pk,))
+        return admin_url
 
 class scoutMember(allScoutUsers):
     preferredName = models.CharField(max_length=15)    
@@ -146,7 +157,8 @@ class scoutMember(allScoutUsers):
         # Call original save() method to do DB updates/inserts
         super(scoutMember, self).save(*args, **kwargs) 
         
-    
+
+        
 class scoutLeader(allScoutUsers):
 
    #Note this is called for record updates and new records inserts 
@@ -162,6 +174,8 @@ class scoutLeader(allScoutUsers):
                    
         # Call original save() method to do DB updates/inserts
         super(scoutLeader, self).save(*args, **kwargs) 
+        
+        
 
 
 class guardian(allScoutUsers):
@@ -210,6 +224,19 @@ class guardian(allScoutUsers):
 
     #TODO If parent is last guardian for a scout then raise message and delete scout if confirmed
     ## CHECK OUT http://stackoverflow.com/questions/1471909/django-model-delete-not-triggered       
+         
+    def deleteWillOrphanChild(self):
+        if self.pk:   
+            relatedScouts          = self.scoutmember_guardians.all()      
+            for scout in relatedScouts:
+                #Scout has more then one guardian on system - delete will not orphan them, continue
+                if scout.parents.count() >  1:
+                    return False
+                else:
+                    return True
+                   #TODO put some kind of message here - DO NOT CALL DELETE            
+                 
+                 
                  
    #Note this is called for record updates and new records inserts 
     def save(self, *args, **kwargs):        
@@ -223,6 +250,20 @@ class guardian(allScoutUsers):
                    
         # Call original save() method to do DB updates/inserts
         super(guardian, self).save(*args, **kwargs) 
+
+    
+        
+    def delete(self, *args, **kwargs):
+        if self.pk:   
+            bDeleteWillOrphanChild = self.deleteWillOrphanChild() 
+            #If deleting will orphan child do not delete
+            if bDeleteWillOrphanChild:
+                pass
+            else:
+                super(guardian, self).delete(*args, **kwargs) 
+
+                
+                
 
 
 

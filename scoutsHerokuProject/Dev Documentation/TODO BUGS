@@ -3,19 +3,18 @@ ADD LICENSING TXT FOR 3RD PARTY APPS IF NEEDED
      
 TODO:
 
-1) Prevent admin from deleting parent if they are only guardian for a scout member
+TO FINISH BACKEND:
+2) Find a way to send mail notification for new commne
+3) Set up amazon S3 for file storage
 
-2) see list filter here: https://docs.djangoproject.com/en/dev/intro/tutorial02/#customize-the-admin-look-and-feel
- and use it to put some filters on the different models 
-
-
-
-
+KEY POINTS TO TEST
+-Can not delete parent if there are scout member records where they are LAST guardian
 
 
-Reset passwords on first login see here:
-http://stackoverflow.com/questions/2093593/is-it-possible-to-implement-a-change-password-at-next-logon-type-feature-in-th
-
+SUGGESTIONS:
+Contact us page
+Gallery page (we need to allow them to upload photos anyway - for that slideshow on home page - 
+if we still want that?)
 
 
 
