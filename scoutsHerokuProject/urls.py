@@ -4,12 +4,18 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 # admin.autodiscover()
 from scoutsHerokuProject.whitelistAdmin import custom_discover
+from adminplus.sites import AdminSitePlus
 
+
+
+admin.site = AdminSitePlus()
 #List of apps to add to admin
 whitelisted_apps = (
         'events',
         'members',
         'easy_maps',
+        'adminplus',
+
     )
 #Custom discovery function registers only selected apps in admin 
 custom_discover (whitelisted_apps)

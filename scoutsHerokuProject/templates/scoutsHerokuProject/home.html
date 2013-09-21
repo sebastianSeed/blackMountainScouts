@@ -36,8 +36,13 @@
 to overwrite delete_view like so: http://stackoverflow.com/questions/1015072/is-it-possible-to-override-the-method-used-to-call-djangos-admin-delete-confirm
 to do the warning message </p>
 
+<h3> DUMP OF EVENTS - I SUGGEST WE PUT THESE IN LEFT HAND SIDE COLUMN W/O MAP JUST NAME + DATE 
+THEN HAVE A MORE... LINK NEXT TO IT --> WHEN THEY CLICK MORE GENERATE PAGE WITH ALL DETAILS </h3>
 
 {% for event in events %}
+    <h3>Name: {{event.title}} </h3>
+    <h3>Description {{event.description}}</h3>
+    <h3> Location below</h3>
     {% easy_map event.address 300 400 %}
 {% endfor %}
 

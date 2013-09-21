@@ -11,13 +11,17 @@ from django.template import Context
 
 #Scout groups class and db table to allow users to set events per scout group
 class scoutGroups(models.Model):
-    name        = models.CharField(max_length=15)
+    name        = models.CharField(max_length=15,unique = True)
     description = models.CharField(max_length=150)
    
    #Function that defines how object shows up in admin ie the name 
     def __unicode__(self):
         return u'%s' % (self.name)
-    
+    class Meta:
+        verbose_name ="Scout Group"
+
+        
+
 ## Abstract base clase for scouts - holds utility functions for logins and email creation
 ## Also holds common fields - DO NOT REMOVE fields as functions depend on these
 class  allScoutUsers(models.Model):
@@ -43,15 +47,13 @@ class  allScoutUsers(models.Model):
     addTxtTemplate     =  'members/addMemberEmail.txt'
     context         =  Context({'body':"Hey! You need to go into the allScoutUser model in members/models and make sure each child class overwrites this context variable!"})   
 
-    #Meta attributes for django
     class Meta:
         abstract = True
         #Records must have unique firstname and last name combo so we get unique usernames
         unique_together = ("firstname", "lastname")
     
-    #Create user login - split out as used by scout admin , parents and children
     def createUserLogin(self,superUserFlag = False ):
-        #Generate username and password for email and account update/creation
+        #Generate username and password from firstname_lastname
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
@@ -69,7 +71,6 @@ class  allScoutUsers(models.Model):
         return user                  
 
     def editUserLogin(self):
-        #User account is not updated until save completes - need to call this function before saving to db
         user = self.userAccount
         #if user's first or last name has changed then we need to rename account
         if self.firstname != user.firstname or self.lastname != user.lastname:
@@ -116,7 +117,7 @@ class scoutMember(allScoutUsers):
     postCodeHome = models.IntegerField(
                                             validators=[RegexValidator(
                                                                     r'^[0-9]{4}',
-                                                                    'Post code must be 4 digits.',
+                                                                    'Post code must be 4 digits and can not start with 0.',
                                                                     'Invalid post code'),
                                                        ], 
                                            verbose_name='Post code',
@@ -131,22 +132,20 @@ class scoutMember(allScoutUsers):
     parents       = models.ManyToManyField('guardian', related_name = 'scoutmember_guardians')
     scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group") 
     
-
     class meta:
         unique_together = ("firstname", "lastname")
       
    #Note this is called for record updates and new records inserts 
-    def save(self, *args, **kwargs):        
-         
+    def save(self, *args, **kwargs):                
         #If the obect primary keys is not null then we are updating an existing record
         if self.pk is not None:
             self.userAccount = self.editUserLogin()
         #If not self.pk - we are creating new entry
         else:
-            self.userAccount = self.createUserLogin(False)
-                   
+            self.userAccount = self.createUserLogin(False)                   
         # Call original save() method to do DB updates/inserts
         super(scoutMember, self).save(*args, **kwargs) 
+        
     
 class scoutLeader(allScoutUsers):
 
@@ -170,7 +169,7 @@ class guardian(allScoutUsers):
     postCodeHome = models.IntegerField(
                                         validators=[RegexValidator(
                                                                 r'^[0-9]{4}',
-                                                                'Post code must be 4 digits.',
+                                                                            'Post code must be 4 digits and can not start with 0.'
                                                                 'Invalid post code'),
                                                    ], 
                                        verbose_name='Post code',
@@ -179,7 +178,7 @@ class guardian(allScoutUsers):
     postCodePostal  = models.IntegerField(
                                             validators=[RegexValidator(
                                                                     r'^[0-9]{4}',
-                                                                    'Post code must be 4 digits.',
+                                                                     'Post code must be 4 digits and can not start with 0.',
                                                                     'Invalid post code'),
                                                        ], 
                                            verbose_name='Post code',

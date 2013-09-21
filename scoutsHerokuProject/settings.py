@@ -152,12 +152,13 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'events',
     'members',
-    # APPS TO SUPPORT ZINNIA BLOG
+    # Dependencies for events , members and newsletters
   'django.contrib.comments',
   'tagging',
   'mptt',
   'zinnia',
   'easy_maps',
+  'adminplus',
 )
 
 #SETTINGS FOR ZINNIA BLOG
