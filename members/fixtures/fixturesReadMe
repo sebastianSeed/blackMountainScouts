@@ -1,0 +1,2 @@
+All items in the fixtures file are automatically added on syncdb run -
+added scout group all here as system depends on it.
