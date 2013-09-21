@@ -10,3 +10,4 @@ pyparsing==1.5.7
 Pillow-PIL
 geopy >= 0.95
 django-easy-maps
+-e git://github.com/jsocol/django-adminplus#egg=django_adminplus-dev
