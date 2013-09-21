@@ -208,6 +208,10 @@ LOGGING = {
     }
 }
 
+
+ZINNIA_ENTRY_BASE_MODEL = 'scoutsHerokuProject.zinniaCustomisation.EntryNotification'
+
+
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIRS = (
                  os.path.join(PROJECT_PATH, 'templates')

@@ -1,6 +1,6 @@
 from django.db import models
 #Includes for email format and send
-from django.core.mail import send_mass_mail,send_mail,EmailMultiAlternatives, get_connection
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 # Import member and user models to get email for notifications
