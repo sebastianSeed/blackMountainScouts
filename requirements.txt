@@ -8,3 +8,5 @@ django-toolbelt==0.0.1
 psycopg2==2.5.1
 pyparsing==1.5.7
 Pillow-PIL
+geopy >= 0.95
+django-easy-maps
