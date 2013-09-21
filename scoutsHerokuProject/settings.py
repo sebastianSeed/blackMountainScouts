@@ -11,10 +11,11 @@ if 'ONHEROKU' in os.environ:
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    
 else:
     DEBUG = True
 
-
+DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
 
 
 ADMINS = (
@@ -134,7 +135,7 @@ ROOT_URLCONF = 'scoutsHerokuProject.urls'
 WSGI_APPLICATION = 'scoutsHerokuProject.wsgi.application'
 
 
-
+EASY_MAPS_CENTER = (-41.3, 32)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -154,6 +155,7 @@ INSTALLED_APPS = (
   'tagging',
   'mptt',
   'zinnia',
+  'easy_maps',
 )
 
 #SETTINGS FOR ZINNIA BLOG

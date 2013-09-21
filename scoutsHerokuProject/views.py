@@ -10,12 +10,14 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout,authenticate, login, logout
 from django.shortcuts import render_to_response,redirect
+from events.models import Event
 
 
 def home(request):
     template     = loader.get_template('scoutsHerokuProject/home.html') 
     #empty context placeholder
-    context = RequestContext(request, {})
+    events = Event.objects.all()    
+    context = RequestContext(request, {'events':events})
     return HttpResponse(template.render(context))
 
 #when user logs out redirect them to home page

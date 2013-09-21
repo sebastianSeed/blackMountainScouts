@@ -9,6 +9,7 @@ from scoutsHerokuProject.whitelistAdmin import custom_discover
 whitelisted_apps = (
         'events',
         'members',
+        'easy_maps',
     )
 #Custom discovery function registers only selected apps in admin 
 custom_discover (whitelisted_apps)

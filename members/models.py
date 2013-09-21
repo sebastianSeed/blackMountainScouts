@@ -9,7 +9,15 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 
-
+#Scout groups class and db table to allow users to set events per scout group
+class scoutGroups(models.Model):
+    name        = models.CharField(max_length=15)
+    description = models.CharField(max_length=150)
+   
+   #Function that defines how object shows up in admin ie the name 
+    def __unicode__(self):
+        return u'%s' % (self.name)
+    
 ## Abstract base clase for scouts - holds utility functions for logins and email creation
 ## Also holds common fields - DO NOT REMOVE fields as functions depend on these
 class  allScoutUsers(models.Model):
@@ -121,7 +129,7 @@ class scoutMember(allScoutUsers):
     
     
     parents       = models.ManyToManyField('guardian', related_name = 'scoutmember_guardians')
-   
+    scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group") 
     
 
     class meta:

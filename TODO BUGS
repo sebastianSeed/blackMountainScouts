@@ -1,41 +1,52 @@
 
-SHOULD ALL USER FIELDS FOR KID BE MANDATORY?
-
-
-BUILT BUT NEED CONFIRM
-
-Should all kids have a logon account?
-Should kids get emails for events and newsletters?
-
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ADD LICENSING TXT!!!!!!!!!!!!!!!!!!!!!!!!!
+##############################################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ADD LICENSING TXT!!!!!!!!!!!!!!!!!!!!!!!!!
+##############################################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     
+TODO:
+Get events emails working for add / edit / delete
+Creat place holder page for people to 
 
 Reset passwords on first login see here:
 http://stackoverflow.com/questions/2093593/is-it-possible-to-implement-a-change-password-at-next-logon-type-feature-in-th
 
 
-1) Setup amazon s3
-
-Rationale: 
-Heroku is now running ok with static files (uploading them
-to heroku git repository after running collect static here)
-- problem was that heroku was not getting the static
-folders for apps which are part of library eg forum
---- when you run collect static it pulled them to a spot
-heroku can see and use
-BUT
-heroku loses all data every restart so if any data
-is added via website eg uploaded pictures etc
-it will be lost the second heroku goes down for some reason
-or you need to push out a change
-
-
-
-
-
 Fix up crash on commenting 
 http://stackoverflow.com/questions/5802189/django-errno-111-connection-refused
 
-Make posts default to only visible for logged in users
 rebrand forum
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ADD LICENSING TXT!!!!!!!!!!!!!!!!!!!!!!!!!
+##############################################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+QUESTIONS FOR OTHERS OR BUSINESS:
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SHOULD ALL USER FIELDS FOR KID BE MANDATORY?
+
+SHOULD EVENTS AND NEWS LETTERS BE PUBLIC?
+
+
+BUILT BUT NEED CONFIRM
+
+
+Should all kids have a logon account?
+Should kids get emails for events and newsletters?
+
+
+=========================================================================
+IDEAS TO ADD MAYBE AFTER EVERYTHING ELSE IS DONE
+    -- Unsubscribe in emails we send out for events and newsletter? Could just send a link with unique id 
+       of some type - if they click it then set a flag on their record to not email them
+          (Don't need that option on member updates)
+      Flag field in db would be hidden from admin ? Or displayed
+      
+    -- Reporting - can get add on to try https://www.djangopackages.com/packages/p/django-model-report/
+    looks like you define your own reports though -- demos
+    http://django-model-report.herokuapp.com/population-report/
+    http://chartit.shutupandship.com/demo/pivot/simple/
+
+
 
 
