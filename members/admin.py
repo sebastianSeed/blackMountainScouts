@@ -5,20 +5,17 @@ Created on 07/09/2013
 '''
 from django.contrib import admin
 from members.models import  scoutMember,guardian,scoutLeader,scoutGroups
-from django.contrib import admin
-from django.contrib.sites.models import Site
-from django.contrib.auth.models import Group, User
-from django.contrib import messages
-
-
 
 class GuardianAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
     exclude = ('userAccount' ,)
+    list_display = ('firstname','lastname',)
+    
  
 class scoutLeaderAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
     exclude = ('userAccount' ,) 
+    list_display = ('firstname','lastname',)
 
 #Override permissios so they can NOT delete scout groups - this is to prevent two problems
 # 1) They delete a group and this delets all scouts belonging to group
@@ -27,12 +24,14 @@ class scoutLeaderAdmin(admin.ModelAdmin):
 class scoutGroupAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
+    list_display = ('name','description',)
 
-class scoutAdmin(admin.ModelAdmin):
+
+class scoutMemberAdmin(admin.ModelAdmin):
     #Set filter horizontal for searchable list of parents in admin 
     filter_horizontal = ('parents' ,)
     exclude = ('userAccount' ,) 
-    
+    list_display = ('firstname','lastname',)
 
 
 
@@ -42,7 +41,7 @@ class scoutAdmin(admin.ModelAdmin):
 # admin.site.unregister(Site)
 
 #Register custom models
-admin.site.register(scoutMember,scoutAdmin)
+admin.site.register(scoutMember,scoutMemberAdmin)
 admin.site.register(guardian,GuardianAdmin) 
 admin.site.register(scoutLeader,scoutLeaderAdmin)
 admin.site.register(scoutGroups,scoutGroupAdmin) 

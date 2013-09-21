@@ -1,0 +1,21 @@
+
+ADD LICENSING TXT FOR 3RD PARTY APPS IF NEEDED
+     
+TODO:
+
+1) Prevent admin from deleting parent if they are only guardian for a scout member
+
+2) see list filter here: https://docs.djangoproject.com/en/dev/intro/tutorial02/#customize-the-admin-look-and-feel
+ and use it to put some filters on the different models 
+
+
+
+
+
+
+Reset passwords on first login see here:
+http://stackoverflow.com/questions/2093593/is-it-possible-to-implement-a-change-password-at-next-logon-type-feature-in-th
+
+
+
+

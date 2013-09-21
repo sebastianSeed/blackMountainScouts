@@ -27,7 +27,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-##DB FOR LOCAL USE ONLY
+# Place holder for local DB to keep django happy
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -40,6 +40,11 @@ DATABASES = {
     }
 }
 
+# If we are on heroku then this url will reflect path to heroku db 
+#Otherwise it will default to local system - will need to change per dev enviroment - path must exist
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config(default='sqlite:////home/sebastian/workspace/scoutsHerokuProject/scouts.db')
+
 
 #Redirect to home page / Index page after login
 LOGIN_REDIRECT_URL = '/'
@@ -48,9 +53,7 @@ LOGIN_REDIRECT_URL = '/'
 
 
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -161,7 +164,7 @@ INSTALLED_APPS = (
   'adminplus',
 )
 
-#SETTINGS FOR ZINNIA BLOG
+
 TEMPLATE_CONTEXT_PROCESSORS = (
   'django.contrib.auth.context_processors.auth',
   'django.core.context_processors.i18n',
@@ -170,7 +173,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   'django.core.context_processors.static',
   'zinnia.context_processors.version',) # Optional
 
-# ZINNIA_ENTRY_BASE_MODEL = 'scoutsHerokuProject.zinniaBlogCustomisation.py'
 
 
 
@@ -204,20 +206,28 @@ LOGGING = {
     }
 }
 
-## HEROKU SETTINGS
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_DIRS = (
+                 os.path.join(PROJECT_PATH, 'templates')
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='sqlite:////home/sebastian/workspace/scoutsHerokuProject/scouts.db')
+##HEROKU SPECIFIC CONFIG ##
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
@@ -225,9 +235,3 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
 )
 
-TEMPLATE_DIRS = (
-                 os.path.join(PROJECT_PATH, 'templates')
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)

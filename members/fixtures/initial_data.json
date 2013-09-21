@@ -1,1 +1,2 @@
-[{"pk": 1, "model": "members.scoutgroups", "fields": {"name": "All", "description": "Includes all scout groups (Note:Created by system on syncdb)"}}]
+[{"pk": 1, "model": "members.scoutgroups", "fields": {"name": "All", "description": "Includes all scout groups (Note:Created by system on syncdb)"}},
+{"pk": 1, "model": "sites.site", "fields": {"domain": "blackmountainscouts.herokuapp.com", "name": "Black Mountain Scouts"}}, {"pk": 2, "model": "sites.site", "fields": {"domain": "127.0.0.1:8000", "name": "development"}}]
