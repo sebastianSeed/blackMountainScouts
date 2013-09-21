@@ -42,9 +42,10 @@ class Event(models.Model):
                 #Note we check parent and child email seperately as  both may or may not exist
                 if selectedScoutMember.email:
                     email_destination += selectedScoutMember.email        
-                parent  = selectedScoutMember.guardian            
-                if parent.email:
-                    email_destination += parent.email
+                parents  = selectedScoutMember.parents.all()
+                for parent in parents:            
+                    if parent.email:
+                        email_destination += parent.email
         #Add all scout leaders to event emails
         for leader in scoutLeaders:
             if leader.email:

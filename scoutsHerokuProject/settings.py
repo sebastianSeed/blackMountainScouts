@@ -11,11 +11,13 @@ if 'ONHEROKU' in os.environ:
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
+
     
 else:
     DEBUG = True
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
 
 
 ADMINS = (
