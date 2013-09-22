@@ -71,7 +71,7 @@ class  allScoutUsers(models.Model):
 
         #If we have an email send update
         if self.email:
-            msg = self.createEmailMsg("User Account Created", self.addHtmlTemplate, self.addTxtTemplate, [ self.email], self.context)
+            msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
             msg.send()
         return user                  
 
@@ -89,7 +89,7 @@ class  allScoutUsers(models.Model):
             user.save()
             #If we have an email send update
             if self.email:
-                msg = self.createEmailMsg("User Account Updated", self.txtTemplate, self.htmlTemplate, [ self.email], self.context)
+                msg = self.createEmailMsg("User Account Updated", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
                 msg.send()
             return user
 

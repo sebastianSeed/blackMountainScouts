@@ -18,26 +18,30 @@ class EntryNotification(EntryAbstractClass):
     def save(self, *args, **kwargs):
         # Set up variables for email that are common to all emails 
 
-        subject               = 'Event Updated or Created'
         from_email            = 'donotreply@BlackMountainScouts.com'      
-        htmlTemplate          =  get_template('events/EventEmail.html')
-        plaintextTemplate     =  get_template('events/EventEmail.txt')     
+        htmlTemplate          =  get_template('zinnia/zinniaEmail.html')
+        plaintextTemplate     =  get_template('zinnia/zinniaEmail.html')     
         email_destination     =  self.getEmailDestination()       
        
         
         #If the obect primary keys is  null then this is a new post
-        if self.pk is  None:    
-             
+        if self.status == "published":                 
             for destination in email_destination:
-                emailContext = Context({'body':'UPDATING AN EVENT CONTEXT'})
+                if self.pk:
+                    subject               = 'Newsletter updated'
+                    emailContext = Context({'body':'UPDATED Newsletter '})
+                else:
+                    subject               = 'New newsletter'
+                    emailContext = Context({'body':'NEW Newsletter '})
+
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
                 #Create and send msg
-                msg = EmailMultiAlternatives(subject, html_content , from_email, [destination,])
+                msg = EmailMultiAlternatives(subject, text_content , from_email, [destination,])
                 msg.attach_alternative(html_content,"text/html")
                 msg.send()
-                print "SENT MESSAGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!1"
+
 
            
         #Call parent function to fo actual saving/update
