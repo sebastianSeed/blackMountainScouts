@@ -194,7 +194,7 @@ class scoutLeader(allScoutUsers):
 
 class guardian(allScoutUsers):
     addressHome     = models.CharField(max_length=100,verbose_name='Home Address') 
-    postCodeHome = models.IntegerField(
+    postCodeHome    = models.IntegerField(
                                         validators=[RegexValidator(
                                                                 r'^[0-9]{4}',
                                                                             'Post code must be 4 digits and can not start with 0.'
@@ -202,7 +202,7 @@ class guardian(allScoutUsers):
                                                    ], 
                                        verbose_name='Post code',
                                    ) 
-    addressPostal   = models.CharField(max_length=100,verbose_name='Postal Address') 
+    addressPostal   = models.CharField(max_length=100,verbose_name='Postal Address', blank = True, ) 
     postCodePostal  = models.IntegerField(
                                             validators=[RegexValidator(
                                                                     r'^[0-9]{4}',
@@ -210,6 +210,7 @@ class guardian(allScoutUsers):
                                                                     'Invalid post code'),
                                                        ], 
                                            verbose_name='Post code',
+                                            blank = True,
                                          ) 
     homePhone = models.IntegerField(
                                             validators=[RegexValidator(
@@ -224,14 +225,16 @@ class guardian(allScoutUsers):
                                                                 'Phone numbers must be 8-12 digits.',
                                                                 'Invalid Number'),
                                                    ],
-                                                   verbose_name = "Work phone", ) 
+                                                   verbose_name = "Work phone", 
+                                                    blank = True,) 
     mobilePhone = models.IntegerField(
                                         validators=[RegexValidator(
                                                                 r'^[0-9]{8,12}',
                                                                 'Phone numbers must be 8-12 digits.',
                                                                 'Invalid Number'),
                                                    ],
-                                                   verbose_name = "Mobile", ) 
+                                                   verbose_name = "Mobile", 
+                                                    blank = True,) 
     
     
     
