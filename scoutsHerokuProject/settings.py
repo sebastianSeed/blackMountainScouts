@@ -1,6 +1,7 @@
 # Django settings for scoutsHerokuProject project.
 import os 
 from django.core.urlresolvers import reverse
+from django.contrib.messages import constants as message_constants
 
 
 if 'ONHEROKU' in os.environ:
@@ -135,6 +136,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 
+MESSAGE_LEVEL = message_constants.DEBUG
 
 ROOT_URLCONF = 'scoutsHerokuProject.urls'
 

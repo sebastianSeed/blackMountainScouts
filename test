@@ -1,0 +1,297 @@
+CREATE TABLE "auth_permission" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(50) NOT NULL,
+    "content_type_id" integer NOT NULL,
+    "codename" varchar(100) NOT NULL,
+    UNIQUE ("content_type_id", "codename")
+);
+;
+CREATE TABLE "auth_group_permissions" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "group_id" integer NOT NULL,
+    "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"),
+    UNIQUE ("group_id", "permission_id")
+);
+;
+CREATE TABLE "auth_group" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(80) NOT NULL UNIQUE
+);
+;
+CREATE TABLE "auth_user_groups" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "user_id" integer NOT NULL,
+    "group_id" integer NOT NULL REFERENCES "auth_group" ("id"),
+    UNIQUE ("user_id", "group_id")
+);
+;
+CREATE TABLE "auth_user_user_permissions" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "user_id" integer NOT NULL,
+    "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"),
+    UNIQUE ("user_id", "permission_id")
+);
+;
+CREATE TABLE "auth_user" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "password" varchar(128) NOT NULL,
+    "last_login" datetime NOT NULL,
+    "is_superuser" bool NOT NULL,
+    "username" varchar(30) NOT NULL UNIQUE,
+    "first_name" varchar(30) NOT NULL,
+    "last_name" varchar(30) NOT NULL,
+    "email" varchar(75) NOT NULL,
+    "is_staff" bool NOT NULL,
+    "is_active" bool NOT NULL,
+    "date_joined" datetime NOT NULL
+);
+;
+CREATE TABLE "django_content_type" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(100) NOT NULL,
+    "app_label" varchar(100) NOT NULL,
+    "model" varchar(100) NOT NULL,
+    UNIQUE ("app_label", "model")
+);
+;
+CREATE TABLE "django_session" (
+    "session_key" varchar(40) NOT NULL PRIMARY KEY,
+    "session_data" text NOT NULL,
+    "expire_date" datetime NOT NULL
+);
+;
+CREATE TABLE "django_site" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "domain" varchar(100) NOT NULL,
+    "name" varchar(50) NOT NULL
+);
+CREATE TABLE "django_admin_log" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "action_time" datetime NOT NULL,
+    "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "content_type_id" integer REFERENCES "django_content_type" ("id"),
+    "object_id" text,
+    "object_repr" varchar(200) NOT NULL,
+    "action_flag" smallint unsigned NOT NULL,
+    "change_message" text NOT NULL
+);
+CREATE TABLE "events_event" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "title" varchar(30) NOT NULL,
+    "description" varchar(100) NOT NULL,
+    "start" datetime NOT NULL,
+    "end" datetime NOT NULL,
+    "address" varchar(100) NOT NULL,
+    "scoutGroup_id" integer NOT NULL
+);
+CREATE TABLE "members_scoutgroups" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(15) NOT NULL UNIQUE,
+    "description" varchar(150) NOT NULL
+);
+;
+CREATE TABLE "members_scoutmember_parents" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "scoutmember_id" integer NOT NULL,
+    "guardian_id" integer NOT NULL,
+    UNIQUE ("scoutmember_id", "guardian_id")
+);
+;
+CREATE TABLE "members_scoutmember" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "firstname" varchar(15) NOT NULL,
+    "lastname" varchar(15) NOT NULL,
+    "email" varchar(100) NOT NULL,
+    "phone" integer NOT NULL,
+    "userAccount_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"),
+    "preferredName" varchar(15) NOT NULL,
+    "dob" date NOT NULL,
+    "birthCountry" varchar(15) NOT NULL,
+    "nationality" varchar(15) NOT NULL,
+    "religion" varchar(15) NOT NULL,
+    "lote" varchar(15) NOT NULL,
+    "addressHome" varchar(100) NOT NULL,
+    "postCodeHome" integer NOT NULL,
+    "indigenous" bool NOT NULL,
+    "scoutGroup_id" integer NOT NULL REFERENCES "members_scoutgroups" ("id"),
+    UNIQUE ("firstname", "lastname")
+);
+;
+;
+CREATE TABLE "members_scoutleader" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "firstname" varchar(15) NOT NULL,
+    "lastname" varchar(15) NOT NULL,
+    "email" varchar(100) NOT NULL,
+    "phone" integer NOT NULL,
+    "userAccount_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"),
+    UNIQUE ("firstname", "lastname")
+);
+;
+;
+CREATE TABLE "members_guardian" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "firstname" varchar(15) NOT NULL,
+    "lastname" varchar(15) NOT NULL,
+    "email" varchar(100) NOT NULL,
+    "phone" integer NOT NULL,
+    "userAccount_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"),
+    "addressHome" varchar(100) NOT NULL,
+    "postCodeHome" integer NOT NULL,
+    "addressPostal" varchar(100) NOT NULL,
+    "postCodePostal" integer NOT NULL,
+    "homePhone" integer NOT NULL,
+    "workPhone" integer NOT NULL,
+    "mobilePhone" integer NOT NULL,
+    UNIQUE ("firstname", "lastname")
+);
+;
+;
+CREATE TABLE "django_comments" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
+    "object_pk" text NOT NULL,
+    "site_id" integer NOT NULL REFERENCES "django_site" ("id"),
+    "user_id" integer REFERENCES "auth_user" ("id"),
+    "user_name" varchar(50) NOT NULL,
+    "user_email" varchar(75) NOT NULL,
+    "user_url" varchar(200) NOT NULL,
+    "comment" text NOT NULL,
+    "submit_date" datetime NOT NULL,
+    "ip_address" char(15),
+    "is_public" bool NOT NULL,
+    "is_removed" bool NOT NULL
+);
+CREATE TABLE "django_comment_flags" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "comment_id" integer NOT NULL REFERENCES "django_comments" ("id"),
+    "flag" varchar(30) NOT NULL,
+    "flag_date" datetime NOT NULL,
+    UNIQUE ("user_id", "comment_id", "flag")
+);
+;
+CREATE TABLE "tagging_tag" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(50) NOT NULL UNIQUE
+);
+;
+CREATE TABLE "tagging_taggeditem" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "tag_id" integer NOT NULL REFERENCES "tagging_tag" ("id"),
+    "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"),
+    "object_id" integer unsigned NOT NULL,
+    UNIQUE ("tag_id", "content_type_id", "object_id")
+);
+;
+CREATE TABLE "zinnia_category" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "slug" varchar(255) NOT NULL UNIQUE,
+    "description" text NOT NULL,
+    "parent_id" integer,
+    "lft" integer unsigned NOT NULL,
+    "rght" integer unsigned NOT NULL,
+    "tree_id" integer unsigned NOT NULL,
+    "level" integer unsigned NOT NULL
+);
+;
+CREATE TABLE "zinnia_entry_sites" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "entry_id" integer NOT NULL,
+    "site_id" integer NOT NULL REFERENCES "django_site" ("id"),
+    UNIQUE ("entry_id", "site_id")
+);
+;
+CREATE TABLE "zinnia_entry_related" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "from_entry_id" integer NOT NULL,
+    "to_entry_id" integer NOT NULL,
+    UNIQUE ("from_entry_id", "to_entry_id")
+);
+;
+CREATE TABLE "zinnia_entry_authors" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "entry_id" integer NOT NULL,
+    "author_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    UNIQUE ("entry_id", "author_id")
+);
+;
+CREATE TABLE "zinnia_entry_categories" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "entry_id" integer NOT NULL,
+    "category_id" integer NOT NULL REFERENCES "zinnia_category" ("id"),
+    UNIQUE ("entry_id", "category_id")
+);
+;
+CREATE TABLE "zinnia_entry" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "title" varchar(255) NOT NULL,
+    "slug" varchar(255) NOT NULL,
+    "status" integer NOT NULL,
+    "start_publication" datetime,
+    "end_publication" datetime,
+    "creation_date" datetime NOT NULL,
+    "last_update" datetime NOT NULL,
+    "content" text NOT NULL,
+    "comment_enabled" bool NOT NULL,
+    "pingback_enabled" bool NOT NULL,
+    "trackback_enabled" bool NOT NULL,
+    "comment_count" integer NOT NULL,
+    "pingback_count" integer NOT NULL,
+    "trackback_count" integer NOT NULL,
+    "excerpt" text NOT NULL,
+    "image" varchar(100) NOT NULL,
+    "featured" bool NOT NULL,
+    "tags" varchar(255) NOT NULL,
+    "login_required" bool NOT NULL,
+    "password" varchar(50) NOT NULL,
+    "content_template" varchar(250) NOT NULL,
+    "detail_template" varchar(250) NOT NULL
+);
+CREATE TABLE "easy_maps_address" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "address" varchar(255) NOT NULL UNIQUE,
+    "computed_address" varchar(255),
+    "latitude" real,
+    "longitude" real,
+    "geocode_error" bool NOT NULL
+);
+;
+CREATE INDEX "auth_permission_37ef4eb4" ON "auth_permission" ("content_type_id");
+CREATE INDEX "auth_group_permissions_5f412f9a" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "auth_group_permissions_83d7f98b" ON "auth_group_permissions" ("permission_id");
+CREATE INDEX "auth_user_groups_6340c63c" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_5f412f9a" ON "auth_user_groups" ("group_id");
+CREATE INDEX "auth_user_user_permissions_6340c63c" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_83d7f98b" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX "django_session_b7b81f0c" ON "django_session" ("expire_date");
+CREATE INDEX "django_admin_log_6340c63c" ON "django_admin_log" ("user_id");
+CREATE INDEX "django_admin_log_37ef4eb4" ON "django_admin_log" ("content_type_id");
+CREATE INDEX "events_event_7750bd83" ON "events_event" ("scoutGroup_id");
+CREATE INDEX "members_scoutmember_parents_bc59b510" ON "members_scoutmember_parents" ("scoutmember_id");
+CREATE INDEX "members_scoutmember_parents_715b4d22" ON "members_scoutmember_parents" ("guardian_id");
+CREATE INDEX "members_scoutmember_7750bd83" ON "members_scoutmember" ("scoutGroup_id");
+CREATE INDEX "django_comments_37ef4eb4" ON "django_comments" ("content_type_id");
+CREATE INDEX "django_comments_99732b5c" ON "django_comments" ("site_id");
+CREATE INDEX "django_comments_6340c63c" ON "django_comments" ("user_id");
+CREATE INDEX "django_comment_flags_6340c63c" ON "django_comment_flags" ("user_id");
+CREATE INDEX "django_comment_flags_3925f323" ON "django_comment_flags" ("comment_id");
+CREATE INDEX "django_comment_flags_9f00eb17" ON "django_comment_flags" ("flag");
+CREATE INDEX "tagging_taggeditem_5659cca2" ON "tagging_taggeditem" ("tag_id");
+CREATE INDEX "tagging_taggeditem_37ef4eb4" ON "tagging_taggeditem" ("content_type_id");
+CREATE INDEX "tagging_taggeditem_846f0221" ON "tagging_taggeditem" ("object_id");
+CREATE INDEX "zinnia_category_410d0aac" ON "zinnia_category" ("parent_id");
+CREATE INDEX "zinnia_category_f777e2bb" ON "zinnia_category" ("lft");
+CREATE INDEX "zinnia_category_76886718" ON "zinnia_category" ("rght");
+CREATE INDEX "zinnia_category_f391089a" ON "zinnia_category" ("tree_id");
+CREATE INDEX "zinnia_category_b8f3f94a" ON "zinnia_category" ("level");
+CREATE INDEX "zinnia_entry_sites_e8d920b6" ON "zinnia_entry_sites" ("entry_id");
+CREATE INDEX "zinnia_entry_sites_99732b5c" ON "zinnia_entry_sites" ("site_id");
+CREATE INDEX "zinnia_entry_related_3cca3dc1" ON "zinnia_entry_related" ("from_entry_id");
+CREATE INDEX "zinnia_entry_related_0771b390" ON "zinnia_entry_related" ("to_entry_id");
+CREATE INDEX "zinnia_entry_authors_e8d920b6" ON "zinnia_entry_authors" ("entry_id");
+CREATE INDEX "zinnia_entry_authors_e969df21" ON "zinnia_entry_authors" ("author_id");
+CREATE INDEX "zinnia_entry_categories_e8d920b6" ON "zinnia_entry_categories" ("entry_id");
+CREATE INDEX "zinnia_entry_categories_6f33f001" ON "zinnia_entry_categories" ("category_id");
+CREATE INDEX "zinnia_entry_f52cfca0" ON "zinnia_entry" ("slug");

@@ -8,6 +8,7 @@ from  django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
+from  django.core.exceptions import ObjectDoesNotExist 
 
 #Includes to get admin url for specific object
 from django.core.urlresolvers import reverse
@@ -33,7 +34,7 @@ class  allScoutUsers(models.Model):
 
     firstname = models.CharField(max_length=15)
     lastname  = models.CharField(max_length=15)
-    email      = models.CharField(max_length=100, validators = [validate_email], blank = True)
+    email     = models.CharField(max_length=100, validators = [validate_email], blank = True)
     #TODO should phone be mandatory? I think so - users can also just enter 00000000
     phone = models.IntegerField(
                                     validators=[RegexValidator(
@@ -62,7 +63,14 @@ class  allScoutUsers(models.Model):
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
-        user = User.objects.create_user(username, '', password)     
+        ''' If user account already exists assume it's the same person and relink the account
+        to guardian/ scout members/ scout leaders  account. We can safely assume this as database forces
+        all firstname and lastname combination to be unique together'''
+        try:
+            user = User.objects.get(username = username )
+        except  ObjectDoesNotExist:
+            user = User.objects.create_user(username, '', password)
+                 
         if superUserFlag == True:
             user.is_superuser = True
             user.is_staff     = True
@@ -116,6 +124,13 @@ class  allScoutUsers(models.Model):
         admin_url = reverse('admin:%s_%s_change' % info, args=(self.pk,))
         return admin_url
 
+    '''Clean up - remove user account when deleting a scout member / leader or guardian'''
+    def delete(self, *args, **kwargs):
+        if self.pk:   
+            self.userAccount.delete()
+            super(allScoutUsers, self).delete(*args, **kwargs)  
+        
+
 class scoutMember(allScoutUsers):
     preferredName = models.CharField(max_length=15)    
     dob           = models.DateField(verbose_name='Date of Birth')
@@ -125,7 +140,7 @@ class scoutMember(allScoutUsers):
     lote          = models.CharField(max_length=15,verbose_name='Languages other then English spoken at home?') 
     indigenous    = models.BooleanField(verbose_name='Of Aboriginal or Torres Strait Island descent?')
     addressHome   = models.CharField(max_length=100,verbose_name='Home Address') 
-    postCodeHome = models.IntegerField(
+    postCodeHome  = models.IntegerField(
                                             validators=[RegexValidator(
                                                                     r'^[0-9]{4}',
                                                                     'Post code must be 4 digits and can not start with 0.',
@@ -143,8 +158,7 @@ class scoutMember(allScoutUsers):
     parents       = models.ManyToManyField('guardian', related_name = 'scoutmember_guardians')
     scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group") 
     
-    class meta:
-        unique_together = ("firstname", "lastname")
+
       
    #Note this is called for record updates and new records inserts 
     def save(self, *args, **kwargs):                

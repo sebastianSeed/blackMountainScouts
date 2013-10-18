@@ -7,6 +7,12 @@ from django.contrib import admin
 from members.models import  scoutMember,guardian,scoutLeader,scoutGroups
 from django.contrib import messages
 from django.utils.safestring import mark_safe
+from django.contrib import messages
+
+
+
+
+
 
 class GuardianAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
@@ -41,6 +47,10 @@ class scoutLeaderAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
     exclude = ('userAccount' ,) 
     list_display = ('firstname','lastname',)
+    def save_model(self, request, obj, form, change):
+        self.message_user(request, "TESTING MESSAGES .")
+        super(scoutLeaderAdmin, self).save_model(request, obj, form, change)
+
 
 #Override permissios so they can NOT delete scout groups - this is to prevent two problems
 # 1) They delete a group and this delets all scouts belonging to group
@@ -50,6 +60,11 @@ class scoutGroupAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
     list_display = ('name','description',)
+
+    def save_model(self, request, obj, form, change):
+        print "ENTERING SAVE MODEL ==========="
+        self.message_user(request, "successfully marked as published.")
+        super(scoutGroupAdmin,self).save_model(request, obj, form, change)
 
 
 class scoutMemberAdmin(admin.ModelAdmin):
