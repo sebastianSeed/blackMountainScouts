@@ -16,8 +16,7 @@ if 'ONHEROKU' in os.environ:
 
     
 else:
-#TODO CHANGE TO TRUE
-    DEBUG = False
+    DEBUG = True
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
@@ -176,13 +175,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 
 #AMAZON S3 SETTINGS
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
 if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL
+
 
 # Static asset configuration
 #STATIC_ROOT = 'staticfiles'
