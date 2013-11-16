@@ -3,12 +3,10 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from scoutsHerokuProject.whitelistAdmin import custom_discover
-#from adminplus.sites import AdminSitePlus
 
 
 
-#admin.site = AdminSitePlus()
-# admin.autodiscover()
+
 
 #List of apps to add to admin
 whitelisted_apps = (
@@ -28,7 +26,7 @@ urlpatterns = patterns('',
    #Urls for login
    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'scoutsHerokuProject/login.html'}),
    url(r'^accounts/logout/$', 'scoutsHerokuProject.views.logoutView'),
-   #url(r'^contact/', include('envelope.urls')),
+   url(r'^contactForm/',    include('envelope.urls')),
     # Examples:
     # url(r'^$', 'scoutsHerokuProject.views.home', name='home'),
     # url(r'^scoutsHerokuProject/', include('scoutsHerokuProject.foo.urls')),

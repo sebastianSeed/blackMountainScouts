@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-{% extends "admin/base.html" %}
+{% extends "main/base.html" %}
 {% load staticfiles %}
 {% load envelope_tags %}
+{% block content %}
 <html lang="en">
     <head>
         <link rel="stylesheet" type="text/css" href={%static "home/css/stylesheet.css" %}/>
@@ -11,5 +12,6 @@
 
     {% render_contact_form %}
 
+{% endblock %}
     </body>
 </html>
