@@ -134,8 +134,7 @@ class Event(models.Model):
         #so type cast to set to remove duplicates - and then back to list 
         email_destination = list(set(email_destination))     
         return email_destination           
-                
-                
+
                 
                 
                 

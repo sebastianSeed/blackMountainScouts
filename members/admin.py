@@ -48,7 +48,7 @@ class scoutLeaderAdmin(admin.ModelAdmin):
     exclude = ('userAccount' ,) 
     list_display = ('firstname','lastname',)
     def save_model(self, request, obj, form, change):
-        self.message_user(request, "TESTING MESSAGES .")
+        messages.add_message(request, messages.ERROR, 'Hello world.')
         super(scoutLeaderAdmin, self).save_model(request, obj, form, change)
 
 

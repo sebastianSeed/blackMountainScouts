@@ -3,6 +3,9 @@ Created on 17/09/2013
 
 @author: sebastian
 '''
+
+from members.models import scoutLeader
+
 def custom_discover(whitelist):
     import copy
     from django.conf import settings
@@ -27,3 +30,12 @@ def custom_discover(whitelist):
             # attempting to import it, otherwise we want it to bubble up.
             if module_has_submodule(mod, 'admin'):
                 raise
+            
+def getScoutLeaders():
+    scoutLeaders          = scoutLeader.objects.all()
+    email_destination    = []
+    #Add all scout leaders to event emails
+    for leader in scoutLeaders:
+        if leader.email:
+            email_destination.append(leader.email)
+    return email_destination

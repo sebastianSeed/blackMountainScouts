@@ -13,8 +13,8 @@ if 'ONHEROKU' in os.environ:
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
     DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
-
     
+   
 else:
     DEBUG = True
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -141,6 +141,8 @@ EASY_MAPS_CENTER = (-41.3, 32)
 
 
 INSTALLED_APPS = (
+#Suit is modern admin theme
+    'suit',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -167,14 +169,16 @@ INSTALLED_APPS = (
  
 )
 
+# 1st entry is Suit admin theme config
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.core.context_processors.request',
   'django.contrib.auth.context_processors.auth',
   'django.core.context_processors.i18n',
   'django.core.context_processors.request',
   'django.core.context_processors.media',
   'django.core.context_processors.static',
-  'zinnia.context_processors.version',) # Optional
+  ) # Optional
 
 
 #AMAZON S3 SETTINGS
@@ -262,3 +266,5 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+from SettingUtils import getScoutLeaders
+ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()

@@ -2,9 +2,7 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from scoutsHerokuProject.whitelistAdmin import custom_discover
-
-
+from scoutsHerokuProject.SettingUtils import custom_discover
 
 
 
@@ -13,7 +11,6 @@ whitelisted_apps = (
         'events',
         'members',
         'easy_maps',
-        'adminplus',
         'scoutsHerokuProject',
         'newsletter',
     )
