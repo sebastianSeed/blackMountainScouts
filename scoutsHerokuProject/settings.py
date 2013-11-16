@@ -89,9 +89,6 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 STATIC_ROOT = ''
 
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -183,9 +180,17 @@ if not DEBUG:
     STATIC_URL = S3_URL
     AWS_ACCESS_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+else:
     
+    # URL prefix for static files.
+    # Example: "http://example.com/static/", "http://static.example.com/"
+    STATIC_URL = '/static/'    
+
 # Static asset configuration
 #STATIC_ROOT = 'staticfiles'
+
+
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
