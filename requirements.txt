@@ -3,14 +3,17 @@ Django==1.5.1
 Pillow==2.1.0
 Pillow-PIL==0.1dev
 argparse==1.2.1
-boto
+boto==2.17.0
 dj-database-url==0.2.2
 dj-static==0.0.5
+django-admin-tools==0.5.1
+-e git://github.com/jsocol/django-adminplus@ec6f94b8ea98646453527dba7932809cb4612fee#egg=django_adminplus-dev
 django-blog-zinnia==0.12.3
 django-easy-maps==0.8.4
 django-jsonfield==0.9.10
 django-mptt==0.5.5
-django-storages
+django-s3-folder-storage==0.1
+django-storages==1.1.8
 django-tagging==0.3.1
 django-toolbelt==0.0.1
 django-xmlrpc==0.1.5
