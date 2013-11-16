@@ -10,6 +10,7 @@ django-admin-tools==0.5.1
 -e git://github.com/jsocol/django-adminplus@ec6f94b8ea98646453527dba7932809cb4612fee#egg=django_adminplus-dev
 django-blog-zinnia==0.12.3
 django-easy-maps==0.8.4
+django-envelope==0.7
 django-jsonfield==0.9.10
 django-mptt==0.5.5
 django-s3-folder-storage==0.1
