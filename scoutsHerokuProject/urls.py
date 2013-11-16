@@ -17,7 +17,8 @@ whitelisted_apps = (
         'easy_maps',
         'adminplus',
         'zinnia', 
-        'scoutsHerokuProject'
+        'scoutsHerokuProject',
+        'newsletter',
     )
 # #Custom discovery function registers only selected apps in admin 
 custom_discover (whitelisted_apps)

@@ -51,11 +51,6 @@ DATABASES['default'] =  dj_database_url.config(default='sqlite:////home/sebastia
 LOGIN_REDIRECT_URL = '/'
 #Note you can't use reverse url lookup here as settings is loaded before URLs
 
-
-
-
-
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -159,13 +154,14 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'events',
     'members',
+    'newsletter',
     # Dependencies for events , members and newsletters
   'django.contrib.comments',
   'tagging',
   'mptt',
-  'zinnia',
   'easy_maps',
-  'adminplus',
+  #Amazon S3 File storage backend for storing newsletters and photos
+  'storages',
 )
 
 
@@ -178,7 +174,23 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   'zinnia.context_processors.version',) # Optional
 
 
+#AMAZON S3 SETTINGS
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 
+if not DEBUG:
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+    STATIC_URL = S3_URL
+
+# Static asset configuration
+#STATIC_ROOT = 'staticfiles'
+
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, 'static'),
+)
 
 
 # A sample logging configuration. The only tangible logging
@@ -211,10 +223,8 @@ LOGGING = {
 }
 
 
-ZINNIA_ENTRY_BASE_MODEL = 'scoutsHerokuProject.zinniaCustomisation.EntryNotification'
 
 
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIRS = (
                  os.path.join(PROJECT_PATH, 'templates')
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -234,12 +244,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-# Static asset configuration
-
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static'),
-)
 
