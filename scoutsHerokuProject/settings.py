@@ -5,7 +5,7 @@ from django.contrib.messages import constants as message_constants
 
 
 if 'ONHEROKU' in os.environ:
-    DEBUG = True
+    DEBUG = False
     ##Setup SENDGRID email add on for heroku
     EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
     EMAIL_HOST= 'smtp.sendgrid.net'
@@ -16,7 +16,8 @@ if 'ONHEROKU' in os.environ:
 
     
 else:
-    DEBUG = True
+#TODO CHANGE TO TRUE
+    DEBUG = False
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
