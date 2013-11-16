@@ -76,7 +76,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -87,7 +87,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = '/static/'
+STATIC_ROOT = ''
 
 
 # Additional locations of static files
@@ -159,6 +159,9 @@ INSTALLED_APPS = (
   'easy_maps',
   #Amazon S3 File storage backend for storing newsletters and photos
   'storages',
+  #Amazon S3 plugin to support seperate media and static folders
+ 's3_folder_storage',
+
 )
 
 
@@ -173,24 +176,26 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 #AMAZON S3 SETTINGS
 
-
-
 if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-    DEFAULT_FILE_STORAGE = 'scoutsHerokuProject.s3utils.MediaRootS3BotoStorage'
-    STATICFILES_STORAGE = 'scoutsHerokuProject.StaticRootS3BotoStorage'
-    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-    STATIC_URL = S3_URL + STATIC_ROOT + '/'
-    MEDIA_URL = S3_URL + MEDIA_ROOT +'/'
     AWS_ACCESS_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
+    DEFAULT_S3_PATH = "media"
+    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+    STATIC_S3_PATH = "static"
+
+    MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+    MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
+    STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+    STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 else:
     
     # URL prefix for static files.
     # Example: "http://example.com/static/", "http://static.example.com/"
     STATIC_URL = '/static/'    
-
 # Static asset configuration
 #STATIC_ROOT = 'staticfiles'
 
