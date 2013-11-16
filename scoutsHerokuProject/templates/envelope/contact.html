@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% load envelope_tags %}
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href={%static "home/css/stylesheet.css" %}/>
+        <title> Development - home page</title>
+        <link rel="stylesheet" type="text/css" href={% static "main/main.css" %}>
+    </head>
+
+    {% render_contact_form %}
+
+    </body>
+</html>
