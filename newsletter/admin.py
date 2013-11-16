@@ -11,5 +11,5 @@ from newsletter.models import *
 
 
 #Register custom models
-admin.site.register(gallery)
-admin.site.register(newsletter)
+admin.site.register(Gallery)
+admin.site.register(Newsletter)

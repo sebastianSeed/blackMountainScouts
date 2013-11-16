@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load easy_maps_tags %}
+{% load staticfiles %}
+
+{% block content %}
+        <h1> DEV HOME PAGE - TERRIBLE NAME </h1>
+
+
+        {% if user.is_authenticated %}
+          <p> Welcome {{request.user}}! <a href="accounts/logout/">Log out</a><br>
+          </p>
+
+        {% else %}
+            <a href='accounts/login/'> User Login </a><br>
+        {% endif %}
+        
+        
+        {% if request.user.is_superuser %}
+        <a href='admin'> Admin Link </a><br>
+        {% else %}
+        <p> You are not logged in as superuser so hiding admin link - go to user login and login as admin to see it</p>
+        {% endif %}
+{% for event in events %}
+    <h3>Name: {{event.title}} </h3>
+    <h3>Description {{event.description}}</h3>
+    <h3> Location: {{event.address}}</h3>
+    {% easy_map event.address 300 400 %}
+{% endfor %}
+
+
+{% endblock %}
+
+
+
+   
+    </body>
+</html>

@@ -138,6 +138,8 @@ WSGI_APPLICATION = 'scoutsHerokuProject.wsgi.application'
 
 EASY_MAPS_CENTER = (-41.3, 32)
 
+
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -161,7 +163,8 @@ INSTALLED_APPS = (
   'storages',
   #Amazon S3 plugin to support seperate media and static folders
  's3_folder_storage',
-
+ 'envelope',
+ 
 )
 
 
@@ -258,5 +261,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
-
 
