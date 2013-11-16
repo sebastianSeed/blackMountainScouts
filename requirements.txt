@@ -21,3 +21,9 @@ pyparsing==1.5.7
 pytz==2013d
 static==0.4
 wsgiref==0.1.2
+
+
+Access Key ID:
+AKIAIVLGP6V4RPNCJDVQ
+Secret Access Key:
+q+O3UjTYsGPR0E+1F36FIXjiAIKId1ubN4NvB7tj
