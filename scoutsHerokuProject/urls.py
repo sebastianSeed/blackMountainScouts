@@ -21,15 +21,12 @@ custom_discover (whitelisted_apps)
 urlpatterns = patterns('',
    url(r'^$', 'scoutsHerokuProject.views.home'),                   
    #Urls for login
-   url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'scoutsHerokuProject/login.html'}),
+   url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'main/login.html'}),
    url(r'^accounts/logout/$', 'scoutsHerokuProject.views.logoutView'),
    url(r'^contactForm/',    include('envelope.urls')),
     # Examples:
     # url(r'^$', 'scoutsHerokuProject.views.home', name='home'),
     # url(r'^scoutsHerokuProject/', include('scoutsHerokuProject.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),

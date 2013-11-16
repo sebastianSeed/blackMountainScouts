@@ -5,9 +5,9 @@ Created on 07/09/2013
 '''
 from django.contrib import admin
 from members.models import  scoutMember,guardian,scoutLeader,scoutGroups
-from django.contrib import messages
 from django.utils.safestring import mark_safe
-from django.contrib import messages
+from django.contrib.admin import ModelAdmin, SimpleListFilter
+
 
 
 
@@ -43,13 +43,15 @@ class GuardianAdmin(admin.ModelAdmin):
              extra_context)
     
  
-class scoutLeaderAdmin(admin.ModelAdmin):
+class scoutLeaderAdmin(ModelAdmin):
     #Hide user account field as this is set by system   
+    search_fields = ('firstname',)
     exclude = ('userAccount' ,) 
     list_display = ('firstname','lastname',)
-    def save_model(self, request, obj, form, change):
-        messages.add_message(request, messages.ERROR, 'Hello world.')
-        super(scoutLeaderAdmin, self).save_model(request, obj, form, change)
+    sortable ='order'
+#     def save_model(self, request, obj, form, change):
+#         messages.add_message(request, messages.ERROR, 'Hello world.')
+#         super(scoutLeaderAdmin, self).save_model(request, obj, form, change)
 
 
 #Override permissios so they can NOT delete scout groups - this is to prevent two problems

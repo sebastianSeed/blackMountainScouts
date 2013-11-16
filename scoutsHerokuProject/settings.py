@@ -19,7 +19,11 @@ else:
     DEBUG = True
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
+#DJANGO Suit Admin theme configuration
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Black Mountain Scouts',
+       'SEARCH_URL': ''
+}
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
