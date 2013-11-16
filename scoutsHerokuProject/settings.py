@@ -128,7 +128,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-MESSAGE_LEVEL = message_constants.DEBUG
 
 ROOT_URLCONF = 'scoutsHerokuProject.urls'
 
@@ -266,5 +265,5 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-from SettingUtils import getScoutLeaders
+#from SettingUtils import getScoutLeaders
 #ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
