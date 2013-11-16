@@ -16,7 +16,6 @@ whitelisted_apps = (
         'members',
         'easy_maps',
         'adminplus',
-        'zinnia', 
         'scoutsHerokuProject',
         'newsletter',
     )
