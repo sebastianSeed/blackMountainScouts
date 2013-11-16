@@ -1,13 +1,25 @@
+BeautifulSoup==3.2.1
 Django==1.5.1
-#Blog
-django-blog-zinnia==0.12.3
-#Dependencies to keep heroku happy
+Pillow==2.1.0
+Pillow-PIL==0.1dev
+argparse==1.2.1
+boto==2.17.0
 dj-database-url==0.2.2
 dj-static==0.0.5
+django-admin-tools==0.5.1
+-e git://github.com/jsocol/django-adminplus@ec6f94b8ea98646453527dba7932809cb4612fee#egg=django_adminplus-dev
+django-blog-zinnia==0.12.3
+django-easy-maps==0.8.4
+django-jsonfield==0.9.10
+django-mptt==0.5.5
+django-storages==1.1.8
+django-tagging==0.3.1
 django-toolbelt==0.0.1
+django-xmlrpc==0.1.5
+geopy==0.95.1
+gunicorn==18.0
 psycopg2==2.5.1
 pyparsing==1.5.7
-Pillow-PIL
-geopy >= 0.95
-django-easy-maps
--e git://github.com/jsocol/django-adminplus#egg=django_adminplus-dev
+pytz==2013d
+static==0.4
+wsgiref==0.1.2
