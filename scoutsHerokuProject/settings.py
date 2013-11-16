@@ -179,7 +179,9 @@ if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     DEFAULT_FILE_STORAGE = 'scoutsHerokuProject.s3utils.MediaRootS3BotoStorage'
     STATICFILES_STORAGE = 'scoutsHerokuProject.StaticRootS3BotoStorage'
-#    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+    STATIC_URL = S3_URL + STATIC_ROOT
+    MEDIA_URL = S3_URL + MEDIA_ROOT
     AWS_ACCESS_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
