@@ -20,7 +20,7 @@ custom_discover (whitelisted_apps)
 urlpatterns = patterns('',
    url(r'^$', 'scoutsHerokuProject.views.home'),                   
    #Urls for login
-   url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'main/login.html'}),
+   url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'}),
    url(r'^accounts/logout/$', 'scoutsHerokuProject.views.logoutView'),
    url(r'^contactForm/',    include('envelope.urls')),
    url(r'^events/$',  'events.views.eventList'  ),
