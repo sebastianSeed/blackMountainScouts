@@ -1,11 +1,9 @@
 # Django settings for scoutsHerokuProject project.
 import os 
-from django.core.urlresolvers import reverse
-from django.contrib.messages import constants as message_constants
 
 
 if 'ONHEROKU' in os.environ:
-    DEBUG = False
+    DEBUG = True
     ##Setup SENDGRID email add on for heroku
     EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
     EMAIL_HOST= 'smtp.sendgrid.net'
@@ -110,12 +108,6 @@ MEDIA_URL = ''
 STATIC_ROOT = ''
 
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -250,7 +242,6 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-##HEROKU SPECIFIC CONFIG ##
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
