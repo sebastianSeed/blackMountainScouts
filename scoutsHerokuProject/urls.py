@@ -24,6 +24,7 @@ urlpatterns = patterns('',
    url(r'^contactForm/',    include('envelope.urls')),
    url(r'^events/$',  'events.views.eventList'  ),
    url(r'^newsletters/$',  'newsletter.views.newsletterList'  ),
+   url(r'^about/$',  'scoutsHerokuProject.views.aboutView' ),
 
    # Uncomment the next line to enable the admin:
    url(r'^admin/', include(admin.site.urls)),

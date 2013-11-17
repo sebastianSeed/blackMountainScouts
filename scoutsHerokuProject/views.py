@@ -34,4 +34,11 @@ def logoutView(request):
     logout(request)
     return redirect('scoutsHerokuProject.views.home')
 
+def aboutView(request):
+    template     = loader.get_template('main/about.html') 
+    #empty context placeholder
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
+
+
 
