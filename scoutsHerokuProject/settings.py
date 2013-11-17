@@ -13,11 +13,27 @@ if 'ONHEROKU' in os.environ:
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
     DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
-    
-   
+    #AMAZON S3 SETTINGS
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_ACCESS_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
+    DEFAULT_S3_PATH = "media"
+    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+    STATIC_S3_PATH = "static"
+
+    MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+    MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
+    STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+    STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+#Local development settings  
 else:
-    DEBUG = False
+    DEBUG = True
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    STATIC_URL = '/static/'    
+
 
 #DJANGO Suit Admin theme configuration
 SUIT_CONFIG = {
@@ -184,30 +200,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   ) # Optional
 
 
-#AMAZON S3 SETTINGS
 
-if not DEBUG:
-    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-    AWS_ACCESS_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-    DEFAULT_S3_PATH = "media"
-    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-    STATIC_S3_PATH = "static"
-
-    MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
-    MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
-    STATIC_ROOT = "/%s/" % STATIC_S3_PATH
-    STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
-    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
-else:
-    
-    # URL prefix for static files.
-    # Example: "http://example.com/static/", "http://static.example.com/"
-    STATIC_URL = '/static/'    
-# Static asset configuration
-#STATIC_ROOT = 'staticfiles'
 
 
 
