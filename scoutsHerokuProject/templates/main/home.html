@@ -3,7 +3,13 @@
 {% load staticfiles %}
 
 {% block content %}
-        <h1> DEV HOME PAGE - TERRIBLE NAME </h1>
+            <div id="slides">
+            {% for image in publicImages %}
+                <img src = "media/{{image.image}}" height="400px" width="600px">
+            {% endfor %}
+            <!--<a href="#" class="slidesjs-previous slidesjs-navigation">Back</a>
+            <a href="#" class="slidesjs-next slidesjs-navigation">Next</a>-->
+            </div>
 
 
         {% if user.is_authenticated %}
