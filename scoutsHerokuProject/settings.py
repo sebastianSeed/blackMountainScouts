@@ -16,7 +16,7 @@ if 'ONHEROKU' in os.environ:
     
    
 else:
-    DEBUG = True
+    DEBUG = False
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #DJANGO Suit Admin theme configuration

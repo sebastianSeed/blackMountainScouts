@@ -7,6 +7,7 @@ from django.contrib import admin
 from members.models import  scoutMember,guardian,scoutLeader,scoutGroups
 from django.utils.safestring import mark_safe
 from django.contrib.admin import ModelAdmin, SimpleListFilter
+from django.contrib import messages
 
 
 
@@ -64,8 +65,7 @@ class scoutGroupAdmin(admin.ModelAdmin):
     list_display = ('name','description',)
 
     def save_model(self, request, obj, form, change):
-        print "ENTERING SAVE MODEL ==========="
-        self.message_user(request, "successfully marked as published.")
+        messages.add_message(request, messages.INFO, 'Hello world.')
         super(scoutGroupAdmin,self).save_model(request, obj, form, change)
 
 
