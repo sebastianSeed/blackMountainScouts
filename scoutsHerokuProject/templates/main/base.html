@@ -1,15 +1,90 @@
-<!DOCTYPE html>
 {% load staticfiles %}
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href={%static "home/css/stylesheet.css" %}/>
-        <title> Development - home page</title>
-        <link rel="stylesheet" type="text/css" href={% static "main/main.css" %}>
+        <title>Black Mountain Girl Guides - Home</title>
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+        <script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
+        <script src="{%static 'main/js/jquery.slides.min.js' %}"></script>
+        
+        <script>
+        $(function(){
+              $("#slides").slidesjs({
+                width: 600,
+                height: 300
+            });
+        });
+          </script>
+          <style>
+            .slidesjs-pagination {
+                margin: 6px 0 0;
+                float: right;
+                list-style: none;
+                display:none;
+            }
+            #slides .slidesjs-navigation {
+                margin-top:3px;
+            }
+            
+            #slides .slidesjs-previous {
+                margin-right: 5px;
+                float: left;
+            }
+            
+            #slides .slidesjs-next {
+                margin-right: 5px;
+                float: left;
+            }
+              #slides {
+                width: 600;
+                height: 300;
+                margin: 7px 8px 8px 8px;
+                display:none;
+            }
+          </style>
     </head>
-    <body>
-        {% block content %}
 
-        {% endblock %}
- 
+    <body>
+        <div id="siteBody">
+        
+            <div id = 'header'>
+                <div id ='logo'>
+                    <img src='img/logo.gif' />
+                </div>
+                
+                <h1>Black Mountain Girl Guides</h1>
+                <div id = 'navbar'>
+                    <ul>
+                        <li>|</li>
+                        <li><a href="#"><b>Home</b></a></li>
+                        <li>|</li>
+                        <li><a href="#"><b>Events</b></a></li>
+                        <li>|</li>
+                        <li><a href="#"><b>What we Offer</b></a></li>
+                        <li>|</li>
+                        <li><a href="#"><b>About Us</b></a></li>
+                        <li>|</li>
+                    </ul>
+                
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div id = 'sidebar'>
+                <form method="post">
+                    Username: <input type="text" name='username' />
+                    Password: <input type="password" name='password' />
+                    <input type="submit" />
+                </form>
+            </div>
+            <div id = 'mainContent'>
+                {% block content %}
+            
+                {% endblock content %}        
+           <div id = 'footer'>
+                   <a href="#">Contact Us</a>
+                   <p>Black Mountain Girl Guides</p>
+               </div>
+           </div>    
     </body>
 </html>

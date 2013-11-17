@@ -25,12 +25,7 @@
         {% else %}
         <p> You are not logged in as superuser so hiding admin link - go to user login and login as admin to see it</p>
         {% endif %}
-{% for event in events %}
-    <h3>Name: {{event.title}} </h3>
-    <h3>Description {{event.description}}</h3>
-    <h3> Location: {{event.address}}</h3>
-    {% easy_map event.address 300 400 %}
-{% endfor %}
+
 
 
 {% endblock %}
