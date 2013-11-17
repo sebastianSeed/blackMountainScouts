@@ -5,7 +5,6 @@ from django.contrib import admin
 from scoutsHerokuProject.SettingUtils import custom_discover
 
 
-
 #List of apps to add to admin
 whitelisted_apps = (
         'events',
@@ -24,12 +23,11 @@ urlpatterns = patterns('',
    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'main/login.html'}),
    url(r'^accounts/logout/$', 'scoutsHerokuProject.views.logoutView'),
    url(r'^contactForm/',    include('envelope.urls')),
-    # Examples:
-    # url(r'^$', 'scoutsHerokuProject.views.home', name='home'),
-    # url(r'^scoutsHerokuProject/', include('scoutsHerokuProject.foo.urls')),
+   url(r'^events/$',  'events.views.eventList'  ),
+   url(r'^newsletters/$',  'newsletter.views.newsletterList'  ),
 
-    # Uncomment the next line to enable the admin:
-     url(r'^admin/', include(admin.site.urls)),
+   # Uncomment the next line to enable the admin:
+   url(r'^admin/', include(admin.site.urls)),
 )
 
 
