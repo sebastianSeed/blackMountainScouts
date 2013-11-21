@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from events.models import Event
-from newsletter.models import Gallery 
+from gallery.models import Gallery 
 
 
 
