@@ -3,7 +3,7 @@ import os
 
 
 if 'ONHEROKU' in os.environ:
-    DEBUG = False
+    DEBUG = True
     ##Setup SENDGRID email add on for heroku
     EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
     EMAIL_HOST= 'smtp.sendgrid.net'
@@ -167,16 +167,17 @@ INSTALLED_APPS = (
     'events',
     'members',
     'newsletter',
-    # Dependencies for events , members and newsletters
-  'django.contrib.comments',
-  'tagging',
-  'mptt',
-  'easy_maps',
-  #Amazon S3 File storage backend for storing newsletters and photos
-  'storages',
-  #Amazon S3 plugin to support seperate media and static folders
- 's3_folder_storage',
- 'envelope',
+      # Dependencies for events , members and newsletters
+      'django.contrib.comments',
+      'tagging',
+      'mptt',
+      'easy_maps',
+      #Amazon S3 File storage backend for storing newsletters and photos
+      'storages',
+      #Amazon S3 plugin to support seperate media and static folders
+     's3_folder_storage',
+     'envelope',
+     'gallery',
 
  
 )
