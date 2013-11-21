@@ -1,6 +1,37 @@
 {% extends "main/base.html" %}
-
 {% block content %}
 
-<h1> Place holder -events page </h1>
-{% endblock content %}
+    
+    <table class="table">
+        <tr>
+            <th>Event Name</th>
+            <th>Start Date</th>
+            <th>Start Time</th>
+            <th>End Date</th>
+            <th>End Time</th>
+            <th> </th>
+        </tr>
+        <!--Loop this for each event-->
+        {% for event in events %}
+            <tr>            
+                <td>{{event.title}}</td>
+                <td>{{event.start | date:"DATE_FORMAT"}}</td>
+                <td>{{event.start |time:"TIME_FORMAT"}}</td>
+                <td>{{event.end | date:"DATE_FORMAT"}}</td>
+                <td>{{event.end |time:"TIME_FORMAT"}}</td>
+                <td><a href='/events/id={{event.id}}'>More Info</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <h1> No current events , please check back soon! </h1>        
+            <tr>
+        {% endfor %}
+        
+    </table>
+
+
+{% endblock %}			
+
+	   	</div>	
+    </body>
+</html>

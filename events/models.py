@@ -9,9 +9,6 @@ from django.contrib.auth.models import User
 from django.utils import formats
 
 
-
-
-
 class Event(models.Model):
     title        = models.CharField(max_length=30)
     description  = models.CharField(max_length=100)
@@ -126,7 +123,7 @@ class Event(models.Model):
         #Add all scout leaders to event emails
         for leader in scoutLeaders:
             if leader.email:
-                email_destination.appent(leader.email)
+                email_destination.append(leader.email)
                 
         #Ensure no duplicate emails - sets are guaranteed to have no duplicates
         #so type cast to set to remove duplicates - and then back to list 

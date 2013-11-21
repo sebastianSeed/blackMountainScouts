@@ -14,12 +14,6 @@ from events.models import Event
 from newsletter.models import Gallery 
 
 
-# from envelope.views import ContactView
-# 
-# class CustomContactForm(ContactView):
-#     subject_intro = "URGENT: "
-#     template_name = "contact_email.html"
-
 
 def home(request):
     template     = loader.get_template('main/home.html') 
