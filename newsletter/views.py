@@ -8,6 +8,17 @@ from django.contrib.auth.decorators import login_required
 def newsletterList(request):
     template     = loader.get_template('newsletter/newsletter.html') 
     #empty context placeholder
-    newsletter = Newsletter.objects.all()    
-    context = RequestContext(request, {'newsletter':newsletter })
+    newsletters  = Newsletter.objects.all()    
+    context      = RequestContext(request, {'newsletters':newsletters })
+    return HttpResponse(template.render(context))
+
+@login_required
+def newsletterDetail(request , id = 1):
+    template     = loader.get_template('events/newsletterDetail.html') 
+    try:
+        event   = Newsletter.objects.get(id = id)    
+        context = RequestContext(request, {'event':event, })
+    except():
+        context = RequestContext(request,{'noResults':True})
+        
     return HttpResponse(template.render(context))
