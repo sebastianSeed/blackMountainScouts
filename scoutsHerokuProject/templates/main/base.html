@@ -71,11 +71,14 @@
             </div>
             <div style="clear:both"></div>
             <div id = 'sidebar'>
+                {% if not user.is_authenticated %}
+
                 <form method="post">
                     Username: <input type="text" name='username' />
                     Password: <input type="password" name='password' />
                     <input type="submit" />
                 </form>
+                {% endif %}
             </div>
             <div id = 'mainContent'>
                 {% block content %}

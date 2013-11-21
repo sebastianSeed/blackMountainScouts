@@ -44,7 +44,6 @@ class  allScoutUsers(models.Model):
                                                ],) 
     
     
-    #Everyone gets a login on website - we simply hide this field in admin and generate it here
     userAccount  = models.OneToOneField(User)
 
     #Email parameters - these need to be overwritten in each class 
@@ -58,8 +57,9 @@ class  allScoutUsers(models.Model):
         #Records must have unique firstname and last name combo so we get unique usernames
         unique_together = ("firstname", "lastname")
     
-    def createUserLogin(self,superUserFlag = False ):
         #Generate username and password from firstname_lastname
+        # combination
+    def createUserLogin(self,superUserFlag = False , accountActive = True):
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
@@ -70,15 +70,20 @@ class  allScoutUsers(models.Model):
             user = User.objects.get(username = username )
         except  ObjectDoesNotExist:
             user = User.objects.create_user(username, '', password)
+            
                  
         if superUserFlag == True:
             user.is_superuser = True
             user.is_staff     = True
 
         user.save()
+        # If account is disabled then don't send an email.
+        if accountActive == False:
+            user.is_active = False
+            return
 
         #If we have an email send update
-        if self.email:
+        if self.email and accountActive:
             msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
             msg.send()
         return user                  
@@ -102,7 +107,6 @@ class  allScoutUsers(models.Model):
             return user
 
     # destination must be a tuple or list eg [myDestination@test.com , ]   or   [myDestination2@test.com , ]  
-    # Context must be Context object 
     def createEmailMsg(self,subject,txtTemplate,htmlTemplate,destination,context):
         htmlTemplate           =  get_template(htmlTemplate)
         plaintextTemplate      =  get_template(txtTemplate) 
@@ -115,7 +119,6 @@ class  allScoutUsers(models.Model):
         msg.attach_alternative(html_content,"text/html")
         return msg
    
-   #Function that defines how object shows up in admin ie the name 
     def __unicode__(self):
         return u'%s %s' % (self.firstname, self.lastname)
     
@@ -158,34 +161,25 @@ class scoutMember(allScoutUsers):
     parents       = models.ManyToManyField('guardian', related_name = 'scoutmember_guardians')
     scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group") 
     
-
-      
-   #Note this is called for record updates and new records inserts 
+     
     def save(self, *args, **kwargs):                
-        #If the obect primary keys is not null then we are updating an existing record
-        if self.pk is not None:
-            self.userAccount = self.editUserLogin()
-        #If not self.pk - we are creating new entry
-        else:
-            self.userAccount = self.createUserLogin(False)                   
-        # Call original save() method to do DB updates/inserts
+        #Create disabled accoutn for each scout member, leaving this here until client confirms if members should have logons.
+        if self.pk is  None:
+           self.userAccount = self.createUserLogin(False, False)
         super(scoutMember, self).save(*args, **kwargs) 
         
 
         
 class scoutLeader(allScoutUsers):
-
-   #Note this is called for record updates and new records inserts 
     def save(self, *args, **kwargs):        
          
-        #If the obect primary keys is not null then we are updating an existing record
+        #updating an existing record
         if self.pk is not None:
             self.userAccount = self.editUserLogin()
-
-        #If not self.pk - we are creating new entry
+        #creating new record
         else:
             self.userAccount = self.createUserLogin(True)
-                   
+                             
         # Call original save() method to do DB updates/inserts
         super(scoutLeader, self).save(*args, **kwargs) 
         
@@ -239,9 +233,8 @@ class guardian(allScoutUsers):
     
     
 
-    #TODO If parent is last guardian for a scout then raise message and delete scout if confirmed
-    ## CHECK OUT http://stackoverflow.com/questions/1471909/django-model-delete-not-triggered       
-         
+
+    #Function to determine if deleting parent would result in scout member on system without any parent     
     def deleteWillOrphanChild(self):
         if self.pk:   
             relatedScouts          = self.scoutmember_guardians.all()      
@@ -251,17 +244,15 @@ class guardian(allScoutUsers):
                     return False
                 else:
                     return True
-                   #TODO put some kind of message here - DO NOT CALL DELETE            
                  
                  
-                 
-   #Note this is called for record updates and new records inserts 
+                
     def save(self, *args, **kwargs):        
-         
-        #If the obect primary keys is not null then we are updating an existing record
+        
+        #updating an existing record
         if self.pk is not None:
             self.userAccount = self.editUserLogin()
-        #If not self.pk - we are creating new entry
+        #creating new entry
         else:
             self.userAccount = self.createUserLogin(False)
                    

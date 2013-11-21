@@ -65,7 +65,6 @@ class Event(models.Model):
             text_content = plaintextTemplate.render(emailContext)
             html_content = htmlTemplate.render(emailContext)
             #Build up list of emails to send
-            msgList = []
             #Loop through sending email
             #Note - send mass email is far more efficient but does seem to support html with txt
             # fall back + implementing it was problematic 
@@ -115,16 +114,15 @@ class Event(models.Model):
         for selectedScoutMember in scoutMembersList:             
             eventScoutGroup = self.scoutGroup
             if   eventScoutGroup.name == selectedScoutMember.scoutGroup.name or eventScoutGroup.name == 'All':
-                #Note we check parent and child email seperately as  both may or may not exist
-                if selectedScoutMember.email:
-                    email_destination.append(selectedScoutMember.email) 
-                    print email_destination
-       
+                # scout member emails and accounts disabled until client confirmation
+#                 if selectedScoutMember.email:
+#                     email_destination.append(selectedScoutMember.email) 
+#                     print email_destination
+       #Get all parents for selected scout member and append to email list
                 parents  = selectedScoutMember.parents.all()
                 for parent in parents:            
                     if parent.email:
                         email_destination.append(parent.email)
-                        print email_destination 
         #Add all scout leaders to event emails
         for leader in scoutLeaders:
             if leader.email:

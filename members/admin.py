@@ -20,11 +20,10 @@ class GuardianAdmin(admin.ModelAdmin):
     exclude = ('userAccount' ,)
     list_display = ('firstname','lastname',)
     readonly_fields = ('enrolled_scouts',)
-    
+    #Read only field with names of enrolled scouts for a parent 
     def enrolled_scouts(self,instance):
         linkedScoutMembers = instance.scoutmember_guardians.all()  
         displayString      = ''
-
         for scout in linkedScoutMembers:
             fullname           = scout.firstname + ' ' + scout.lastname
             displayString +=  "<a href= " + scout.getAdminUrl() + ">" + fullname + "</a> ,"
@@ -50,12 +49,10 @@ class scoutLeaderAdmin(ModelAdmin):
     exclude = ('userAccount' ,) 
     list_display = ('firstname','lastname',)
     sortable ='order'
-#     def save_model(self, request, obj, form, change):
-#         messages.add_message(request, messages.ERROR, 'Hello world.')
-#         super(scoutLeaderAdmin, self).save_model(request, obj, form, change)
 
 
-#Override permissios so they can NOT delete scout groups - this is to prevent two problems
+
+#Override permissions so they can NOT delete scout groups - this is to prevent two problems
 # 1) They delete a group and this delets all scouts belonging to group
 # 2) Removing the 'All" scouts group which system uses to send notifications for events
 #to all memebers 
@@ -77,29 +74,11 @@ class scoutMemberAdmin(admin.ModelAdmin):
 
     
 
-
-
-
-#Unregister to hide
-# admin.site.unregister(Group)
-# admin.site.unregister(Site)
-
 #Register custom models
 admin.site.register(scoutMember,scoutMemberAdmin)
 admin.site.register(guardian,GuardianAdmin) 
 admin.site.register(scoutLeader,scoutLeaderAdmin)
 admin.site.register(scoutGroups,scoutGroupAdmin) 
 
-#TEST
-
-
-
-#TODO - can this be moved under project package?
-### Hide all unwanted admin fields here by unregistering the groups
-
-#Unregister fields we want to hide from admin here
-#Note to get a list of all models known to ORM run 
-# from django.db import models
-# models.get_models()
 
 
