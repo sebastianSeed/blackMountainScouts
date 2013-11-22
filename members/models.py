@@ -69,18 +69,19 @@ class  allScoutUsers(models.Model):
         try:
             user = User.objects.get(username = username )
         except  ObjectDoesNotExist:
-            user = User.objects.create_user(username, '', password)
-            
+            user = User.objects.create_user(username, '', password)          
                  
         if superUserFlag == True:
             user.is_superuser = True
             user.is_staff     = True
+            user.save()
 
-        user.save()
         # If account is disabled then don't send an email.
-        if accountActive == False:
+        if accountActive   == False:
             user.is_active = False
-            return
+            user.save()
+            return user
+
 
         #If we have an email send update
         if self.email and accountActive:
@@ -164,8 +165,10 @@ class scoutMember(allScoutUsers):
      
     def save(self, *args, **kwargs):                
         #Create disabled accoutn for each scout member, leaving this here until client confirms if members should have logons.
-        if self.pk is  None:
-           self.userAccount = self.createUserLogin(False, False)
+        if self.pk:
+            self.userAccount = self.editUserLogin()
+        else:
+            self.userAccount = self.createUserLogin()
         super(scoutMember, self).save(*args, **kwargs) 
         
 
