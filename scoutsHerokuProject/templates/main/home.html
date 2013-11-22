@@ -1,8 +1,46 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 
+{% block head %} <!-- Head -->
+	<script>
+		$(function(){
+		      $("#slides").slidesjs({
+		        width: 600,
+		        height: 300
+		    });
+		});
+	</script>
+	<style>
+	    .slidesjs-pagination {
+	        margin: 6px 0 0;
+	        float: right;
+	        list-style: none;
+	        display:none;
+	    }
+	    #slides .slidesjs-navigation {
+	        margin-top:3px;
+	    }
+	    
+	    #slides .slidesjs-previous {
+	        margin-right: 5px;
+	        float: left;
+	    }
+	    
+	    #slides .slidesjs-next {
+	        margin-right: 5px;
+	        float: left;
+	    }
+	      #slides {
+	        width: 600;
+	        height: 300;
+	        margin: 7px 8px 8px 8px;
+	        display:none;
+	    }
+	</style>
+{% endblock head %} <!-- Head -->
+
 {% block content %}
-            <div id="slides">
+            <div id="slides" class="grid_13">
             {% for image in publicImages %}
                 <img src = "{{MEDIA_URL}}{{image.image}}" height="400px" width="600px">
             {% endfor %}
@@ -10,22 +48,21 @@
             <a href="#" class="slidesjs-next slidesjs-navigation">Next</a>-->
             </div>
 
-
     <div id="firstBlock">
-                    <h2>Latest News</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus ultricies velit faucibus imperdiet. 
-                        Duis felis libero, pharetra id vulputate vel, ullamcorper sit amet turpis. Integer quis massa mauris. Cras 
-                        vitae rutrum risus. In nisl eros, sodales ut lacinia sed, commodo sit amet metus. Donec ut velit at felis 
-                        mollis malesuada. Etiam congue gravida orci vitae convallis. Donec suscipit nisl ornare ipsum facilisis 
-                        adipiscing. Phasellus velit dolor, tempus et vehicula quis, scelerisque non velit. Sed quis massa luctus 
-                        purus consectetur suscipit. Curabitur aliquet laoreet libero, nec fringilla purus feugiat non. 
-                        
-                        Mauris quam velit, commodo ut auctor nec, blandit ut ante. Pellentesque sit amet justo ac nibh molestie feugiat.
-                        Integer vulputate purus eros, id congue dolor lobortis eu. Integer at urna placerat ligula fringilla porta 
-                        et et augue. Vivamus eu viverra enim. Curabitur vel risus fringilla, gravida risus sit amet, rhoncus sapien. 
-                        Maecenas ultricies pretium libero eu pretium. Integer ac luctus justo. Fusce ultrices interdum convallis. 
-                        Ut ultrices interdum ullamcorper. In condimentum tristique tortor, eget porta diam luctus vel.</p>
-                </div>
+        <h2>Latest News</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus ultricies velit faucibus imperdiet. 
+            Duis felis libero, pharetra id vulputate vel, ullamcorper sit amet turpis. Integer quis massa mauris. Cras 
+            vitae rutrum risus. In nisl eros, sodales ut lacinia sed, commodo sit amet metus. Donec ut velit at felis 
+            mollis malesuada. Etiam congue gravida orci vitae convallis. Donec suscipit nisl ornare ipsum facilisis 
+            adipiscing. Phasellus velit dolor, tempus et vehicula quis, scelerisque non velit. Sed quis massa luctus 
+            purus consectetur suscipit. Curabitur aliquet laoreet libero, nec fringilla purus feugiat non. 
+            
+            Mauris quam velit, commodo ut auctor nec, blandit ut ante. Pellentesque sit amet justo ac nibh molestie feugiat.
+            Integer vulputate purus eros, id congue dolor lobortis eu. Integer at urna placerat ligula fringilla porta 
+            et et augue. Vivamus eu viverra enim. Curabitur vel risus fringilla, gravida risus sit amet, rhoncus sapien. 
+            Maecenas ultricies pretium libero eu pretium. Integer ac luctus justo. Fusce ultrices interdum convallis. 
+            Ut ultrices interdum ullamcorper. In condimentum tristique tortor, eget porta diam luctus vel.</p>
+    </div>
 
         {% if user.is_authenticated %}
           <p> Welcome {{request.user}}! <a href="accounts/logout/">Log out</a><br>
@@ -44,12 +81,7 @@
         <p> You are not logged in as superuser so hiding admin link - go to user login and login as admin to see it</p>
         {% endif %}
 
-
-
 {% endblock %}
-
-
-
    
     </body>
 </html>
