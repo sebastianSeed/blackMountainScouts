@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <body >
 
-{{body}}
 <h2> HEY DEVS ! EVENT EMAIL TEMPALTE NEEDS TO BE CUSTOMISED STILL! </h2>
-{{body}} 
- HEY DEVS ! EVENT EMAIL TEMPALTES NEEDS TO BE CUSTOMISED STILL! SAME TEMPLATE FOR ADD/EDIT.DELETE
- USE DJANGO TEMPLATE LANGUAGE TO CHANGE TEXT WITH SOME IF STATEMENTS
-TXT VERSION
+{% if delete %}
+	 The following event has been cancelled:
+	 Event Name: {{event.title}}
+	 Location: {{event.address}}
+	 Start Date: {{event.start | date:"DATE_FORMAT"}}
+	 Start Time: {{event.start |time:"TIME_FORMAT"}}
+	 End Date: {{event.end | date:"DATE_FORMAT"}}
+	 End Time: {{event.end |time:"TIME_FORMAT"}}
+	{% elif edit %}
+	 The event, {{Event Name}} has been changed:
+	 Details are as follows:
+	 Event Name: {{event.title}}
+	 Location: {{event.address}}
+	 Start Date: {{event.start | date:"DATE_FORMAT"}}
+	 Start Time: {{event.start |time:"TIME_FORMAT"}}
+	 End Date: {{event.end | date:"DATE_FORMAT"}}
+	 End Time: {{event.end |time:"TIME_FORMAT"}} 
+	{{% elif create %}}
+	 The following event has been cancelled:
+	 Event Name: {{event.title}}
+	 Location: {{event.address}}
+	 Start Date: {{event.start | date:"DATE_FORMAT"}}
+	 Start Time: {{event.start |time:"TIME_FORMAT"}}
+	 End Date: {{event.end | date:"DATE_FORMAT"}}
+	 End Time: {{event.end |time:"TIME_FORMAT"}}
+{% endif %}
 </body>
 </html>

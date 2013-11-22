@@ -1,23 +1,23 @@
 body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px; } 
 
-body {
-		height: 100%;
-}
-
 #siteBody {
-	width:960px;
 	margin: 0 auto;
 /*	margin-left: auto;
 	margin-right: auto;*/
 	font-family: Arial, Helvetica, sans-serif;
-	box-shadow: 3px 3px 5px #000000;
 	background-color: #ffffff;
+}
+
+.logout {
+	
+}
+
+h1 {
+	padding: 25px 25px 25px 5px;
 }
 
 #navbar { 
 	height: 50px;
-	margin: 0; 
-	padding: 5px; 
 	list-style-type: none; 
 	text-align: center; 
 	background-color: #12a0ed; 
@@ -36,9 +36,9 @@ body {
  
 #navbar ul li {  
 	display: inline; 
-	margin: 5px 5px;
+	margin: 15px 15px;
 	color: #fff; 
-	}
+	} 
  
 #navbar ul li a { 
 	text-decoration: none; 
@@ -58,7 +58,6 @@ body {
 	margin-top: 5px;
 	margin-right: 5px;
 	width:200px;
-	float: left;	
 }	
 
 #sidebar form {
@@ -70,63 +69,22 @@ body {
 }
 
 #logo {
-	width:200px;
-	height:150px;
+	width:150px;
+	height:100px;
 	background-color:#FFFFFF;
-	padding: 2px 8px 2px 2px;
-	float:left;
 }
 
 #header {
-	margin-top:2px;
+	margin-top:5px;
 	height:150px;
 }
 
-#header h1 {
-	padding:27px;
-}
-
-
-#mainContent {
-	margin:5px 5px 5px 5px;
-}
-
 #footer {
+	margin-top:10px;
 	height:50px;
 	text-align: center;
 	font-size: 12px;
 }
-
-table {
-	text-align: center;
-	margin-left: auto;
-	margin-right:auto;
-	border: 1px solid #FFFFFF;
-	border-collapse: collapse;
-}
-
-td {
-	padding: 20px;
-	padding-left:30px;
-	padding-right:30px;
-	border: 1px solid #FFFFFF;
-	border-left: 0px;
-	border-right: 0px;
-	background: #ffdf73;
-		color: #000000;
-}
-
-.table tr:hover {
-  cursor: pointer;
-  background-color: #ccc;
-  }
-
-th {
-	padding: 10px;
-	background: #f9c618;
-	color: #000000;
-}
-
 /*#firstBlock{
 	margin-left:200px;
 	float:left;
