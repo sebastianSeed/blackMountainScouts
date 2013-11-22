@@ -9,7 +9,6 @@ class EventsTable(tables.Table):
 
 
 class NewsletterTable(tables.Table):
-    Download  = tables.TemplateColumn("<a href='/events/id={{Newsletter.ID}}'>Download</a>")
     class Meta:
         model = Newsletter
         

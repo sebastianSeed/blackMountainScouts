@@ -174,7 +174,7 @@ class scoutLeader(allScoutUsers):
     def save(self, *args, **kwargs):        
          
         #updating an existing record
-        if self.pk is not None:
+        if self.pk:
             self.userAccount = self.editUserLogin()
         #creating new record
         else:
@@ -250,7 +250,7 @@ class guardian(allScoutUsers):
     def save(self, *args, **kwargs):        
         
         #updating an existing record
-        if self.pk is not None:
+        if self.pk:
             self.userAccount = self.editUserLogin()
         #creating new entry
         else:

@@ -3,7 +3,6 @@
 {% load staticfiles %}
 {% load envelope_tags %}
 {% block extraHead %}
-<link rel="stylesheet" type="text/css" href="style2.css">
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script>
       function initialize() {
@@ -20,12 +19,7 @@
 </head>
 {% endblock %}
 {% block content %}
-<html lang="en">
-    <head>
-        <link rel="stylesheet" type="text/css" href={%static "home/css/stylesheet.css" %}/>
-        <title> Development - home page</title>
-        <link rel="stylesheet" type="text/css" href={% static "main/main.css" %}>
-    </head>
+
 
     {% render_contact_form %}
     
@@ -35,12 +29,12 @@
             in Clianthus Street O'Connor<p/>
         </div>
         <br><br>
+
         <div id="image">
-            <img src="hall.jpg"/>
+
+            <img src="{% static 'main/img/hall.jpg' %}"/>
         </div>
 
 <div id="map_canvas"></div>
 
 {% endblock %}
-    </body>
-</html>
