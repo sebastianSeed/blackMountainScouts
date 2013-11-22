@@ -65,7 +65,7 @@ class Newsletter(models.Model):
         
     #Retrieve parent and scout member emails if they one and the event is for them
     #Add all scout leaders to email list            
-    def getParentEmailDestination(self):
+    def getEmailDestination(self):
         scoutMembersList      = scoutMember.objects.all()
         scoutLeaders          = scoutLeader.objects.all()
         email_destination     = []
