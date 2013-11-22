@@ -30,7 +30,6 @@ class Event(models.Model):
     def save(self, *args, **kwargs):
         # Set up variables for email that are common to all emails 
 
-        subject               = 'Event Updated or Created'
         from_email            = 'donotreply@BlackMountainScouts.com'      
         htmlTemplate          =  get_template('events/EventEmail.html')
         plaintextTemplate     =  get_template('events/EventEmail.txt')     
@@ -47,6 +46,7 @@ class Event(models.Model):
             
             for destination in email_destination:
                 emailContext = Context({'event':self })
+                subject      =  "Event details changed"
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
@@ -61,6 +61,7 @@ class Event(models.Model):
             #Render templates
             text_content = plaintextTemplate.render(emailContext)
             html_content = htmlTemplate.render(emailContext)
+            subject      = "New event created"
             #Build up list of emails to send
             #Loop through sending email
             #Note - send mass email is far more efficient but does seem to support html with txt
