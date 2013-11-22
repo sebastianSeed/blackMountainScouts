@@ -7,7 +7,7 @@
 	 End Date: {{event.end | date:"DATE_FORMAT"}}
 	 End Time: {{event.end |time:"TIME_FORMAT"}}
 	{% elif edit %}
-	 The event, {{Event Name}} has been changed:
+	 The event, {{event.title}} has been changed:
 	 Details are as follows:
 	 Event Name: {{event.title}}
 	 Location: {{event.address}}
