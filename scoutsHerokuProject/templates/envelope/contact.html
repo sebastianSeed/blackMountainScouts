@@ -2,6 +2,23 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
 {% load envelope_tags %}
+{% block extraHead %}
+<link rel="stylesheet" type="text/css" href="style2.css">
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+      function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(-35.251874,149.118173),
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+{% endblock %}
 {% block content %}
 <html lang="en">
     <head>
@@ -11,6 +28,18 @@
     </head>
 
     {% render_contact_form %}
+    
+    <div id="address">
+            <h3>Address</h3>
+            <p>Black Mountain Girl Guide Hall, located
+            in Clianthus Street O'Connor<p/>
+        </div>
+        <br><br>
+        <div id="image">
+            <img src="hall.jpg"/>
+        </div>
+
+<div id="map_canvas"></div>
 
 {% endblock %}
     </body>
