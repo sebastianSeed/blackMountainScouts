@@ -71,7 +71,7 @@ class  allScoutUsers(models.Model):
         except  ObjectDoesNotExist:
             user = User.objects.create_user(username, '', password)          
                  
-        if superUserFlag == True:
+        if superUserFlag      == True:
             user.is_superuser = True
             user.is_staff     = True
             user.save()
