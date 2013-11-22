@@ -29,23 +29,16 @@ class Event(models.Model):
    #Note this is called for record updates and new records inserts 
     def save(self, *args, **kwargs):
         # Set up variables for email that are common to all emails 
-
         from_email            = 'donotreply@BlackMountainScouts.com'      
         htmlTemplate          =  get_template('events/EventEmail.html')
         plaintextTemplate     =  get_template('events/EventEmail.txt')     
-        email_destination     =  self.getEmailDestination()       
-       
+        email_destination     =  self.getEmailDestination()              
         
         #If the obect primary keys is not null then we are updating an existing record
-        if self.pk is not None:                        
-
-            #Loop through sending email
-            #Note - send mass email is far more efficient but does seem to support html with txt
-            # fall back + implementing it was problematic 
-            # Note all emails need context set here
-            
+        if self.pk:                      
+          
             for destination in email_destination:
-                emailContext = Context({'event':self })
+                emailContext = Context({'event':self, 'update':True})
                 subject      =  "Event details changed"
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
@@ -54,10 +47,9 @@ class Event(models.Model):
                 msg = EmailMultiAlternatives(subject, html_content , from_email, [destination,])
                 msg.attach_alternative(html_content,"text/html")
                 msg.send()
-
         #if not self.pk the we are creating a new event    
         else:
-            emailContext = Context({'body':'UPDATING AN EVENT CONTEXT'})
+            emailContext = Context({'event':self, 'update':True})
             #Render templates
             text_content = plaintextTemplate.render(emailContext)
             html_content = htmlTemplate.render(emailContext)
@@ -77,8 +69,9 @@ class Event(models.Model):
         super(Event, self).save(*args, **kwargs) 
 
     def delete(self, *args, **kwargs):
-        email_destination     =  self.getEmailDestination()      
-        if self.pk is not None: 
+        email_destination         =  self.getEmailDestination()      
+        if self.pk: 
+            # Create email
             subject               = 'Event Cancelled'
             from_email            = 'donotreply@BlackMountainScouts.com'      
             htmlTemplate          =  get_template('events/EventEmail.html')
@@ -90,7 +83,7 @@ class Event(models.Model):
             # fall back + implementing it was problematic 
             # Note all emails need context set here
             for destination in email_destination:
-                emailContext = Context({'body':'DELETING AN EVENT CONTEXT'})
+                emailContext = Context({'event':self, 'delete':True})
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
