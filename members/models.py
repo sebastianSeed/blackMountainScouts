@@ -174,8 +174,7 @@ class scoutMember(allScoutUsers):
 
         
 class scoutLeader(allScoutUsers):
-    def save(self, *args, **kwargs):        
-         
+    def save(self, *args, **kwargs):                 
         #updating an existing record
         if self.pk:
             self.userAccount = self.editUserLogin()

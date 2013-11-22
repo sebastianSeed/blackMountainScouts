@@ -44,12 +44,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 
 # Place holder for local DB to keep django happy
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'C:/Users/Paul/Documents/Aptana Studio 3 Workspace/ScoutsProject/blackmountaingirlguides/scouts.db',                      # Or path to database file if using sqlite3.
+        'NAME':    os.path.join(PROJECT_PATH, 'scouts.db'),  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -61,7 +63,7 @@ DATABASES = {
 # If we are on heroku then this url will reflect path to heroku db 
 #Otherwise it will default to local system - will need to change per dev enviroment - path must exist
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='sqlite:///C:/Users/Paul/Documents/Aptana Studio 3 Workspace/ScoutsProject/blackmountaingirlguides/scouts.db')
+DATABASES['default'] =  dj_database_url.config(default='sqlite:///'+os.path.join(PROJECT_PATH, 'scouts.db'))
 
 
 #Redirect to home page / Index page after login
@@ -201,7 +203,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 
 
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
