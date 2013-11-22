@@ -19,7 +19,7 @@
 	 Start Time: {{event.start |time:"TIME_FORMAT"}}
 	 End Date: {{event.end | date:"DATE_FORMAT"}}
 	 End Time: {{event.end |time:"TIME_FORMAT"}} 
-	{{% elif create %}}
+	{% elif create %}
 	 The following event has been cancelled:
 	 Event Name: {{event.title}}
 	 Location: {{event.address}}
