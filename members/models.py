@@ -196,7 +196,7 @@ class guardian(allScoutUsers):
                                                    ], 
                                        verbose_name='Post code',
                                    ) 
-    addressPostal   = models.CharField(max_length=100,verbose_name='Postal Address', blank = True, ) 
+    addressPostal   = models.CharField(max_length=100,verbose_name='Postal Address', blank = True , ) 
     postCodePostal  = models.IntegerField(
                                             validators=[RegexValidator(
                                                                     r'^[0-9]{4}',
@@ -204,7 +204,7 @@ class guardian(allScoutUsers):
                                                                     'Invalid post code'),
                                                        ], 
                                            verbose_name='Post code',
-                                            blank = True,
+                                            blank = True , null = True , 
                                          ) 
     homePhone = models.IntegerField(
                                             validators=[RegexValidator(
@@ -220,7 +220,7 @@ class guardian(allScoutUsers):
                                                                 'Invalid Number'),
                                                    ],
                                                    verbose_name = "Work phone", 
-                                                    blank = True,) 
+                                                    blank = True , null = True,) 
     mobilePhone = models.IntegerField(
                                         validators=[RegexValidator(
                                                                 r'^[0-9]{8,12}',
@@ -228,7 +228,7 @@ class guardian(allScoutUsers):
                                                                 'Invalid Number'),
                                                    ],
                                                    verbose_name = "Mobile", 
-                                                    blank = True,) 
+                                                    blank = True , null = True,) 
     
     
     

@@ -6,21 +6,12 @@ from django.template.loader import get_template
 from members.models import scoutMember, scoutLeader 
 
  
-class Gallery(models.Model):
-    description = models.CharField(max_length=150) 
-    image       = models.ImageField(upload_to = "gallery")
-    public      = models.BooleanField(help_text = "Display this image on home page slideshow")
-    #Function that defines how object shows up in admin ie the name 
-    def __unicode__(self):
-        return u'%s' % (self.description)
-    class Meta:
-        verbose_name ="Image"
-         
+
  
 class Newsletter(models.Model):
-    title            = models.CharField(max_length=150) 
-    date             = models.DateField(auto_now=False)
-    newsletter       = models.FileField(upload_to = "newsletter" )
+    title                      = models.CharField(max_length=150) 
+    date                       = models.DateField(auto_now=False)
+    newsletter                 = models.FileField(upload_to = "newsletter" )
     #Templates for emails - can either write a whole bunch or use if statements to change wording both work -- if statements are cleaner
     newsletterEmailTemplate    =  get_template('newsletter/newsletterEmail.html')
     newsletterTxtTemplate      =  get_template( 'newsletter/newsletterEmail.txt')
@@ -74,10 +65,10 @@ class Newsletter(models.Model):
         
     #Retrieve parent and scout member emails if they one and the event is for them
     #Add all scout leaders to email list            
-    def getEmailDestination(self):
+    def getParentEmailDestination(self):
         scoutMembersList      = scoutMember.objects.all()
         scoutLeaders          = scoutLeader.objects.all()
-        email_destination    = []
+        email_destination     = []
         #Find appropiate scout members to email them and their guardians about event
         for selectedScoutMember in scoutMembersList:             
             parents  = selectedScoutMember.parents.all()

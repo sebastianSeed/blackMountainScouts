@@ -15,12 +15,7 @@ from easy_maps.widgets import AddressWithMapWidget
 class EventAdmin(admin.ModelAdmin):
     #Remove delete selected action 
     actions = None
- #   Show map widget in form
-    class form(forms.ModelForm):
-        class Meta:
-         widgets = {
-                 'address': AddressWithMapWidget({'class': 'vTextField'})
-             }
+
 
 
 

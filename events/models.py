@@ -45,8 +45,9 @@ class Event(models.Model):
             #Note - send mass email is far more efficient but does seem to support html with txt
             # fall back + implementing it was problematic 
             # Note all emails need context set here
+            
             for destination in email_destination:
-                emailContext = Context({'body':'UPDATING AN EVENT CONTEXT'})
+                emailContext = Context({'event':self })
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
@@ -106,7 +107,8 @@ class Event(models.Model):
     def getEmailDestination(self):
         scoutMembersList      = scoutMember.objects.all()
         scoutLeaders          = scoutLeader.objects.all()
-        email_destination    = []
+        email_destination     = []
+        parents               = []
         #Find appropiate scout members to email them and their guardians about event
         for selectedScoutMember in scoutMembersList:             
             eventScoutGroup = self.scoutGroup
@@ -120,6 +122,7 @@ class Event(models.Model):
                 for parent in parents:            
                     if parent.email:
                         email_destination.append(parent.email)
+                        parents.append(parent)
         #Add all scout leaders to event emails
         for leader in scoutLeaders:
             if leader.email:

@@ -17,5 +17,4 @@ class newsLetterAdmin(admin.ModelAdmin):
 
 
 #Register custom models
-admin.site.register(Gallery)
 admin.site.register(Newsletter,newsLetterAdmin)

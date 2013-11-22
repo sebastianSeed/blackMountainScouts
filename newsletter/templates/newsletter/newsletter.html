@@ -1,7 +1,10 @@
 {% extends "main/base.html" %}
+{% load render_table from django_tables2 %}
 
-{% block content %}
-
-			<h1> placeholder - newsletter </h1>
-	   		
-{% endblock content %}
+ {% block content %}
+    {% if not noResults %}
+        {% render_table table %}
+    {% else %}
+        <h1> No current newsletters, please check back soon.</h1>
+    {% endif %}
+ {% endblock %}			

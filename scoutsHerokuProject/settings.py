@@ -3,7 +3,7 @@ import os
 
 
 if 'ONHEROKU' in os.environ:
-    DEBUG = True
+    DEBUG = False
     ##Setup SENDGRID email add on for heroku
     EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
     EMAIL_HOST= 'smtp.sendgrid.net'
@@ -178,6 +178,8 @@ INSTALLED_APPS = (
     's3_folder_storage',
     'envelope',
     'gallery',
+    'django_tables2',
+    #'django_google_maps',
 
  
 )
@@ -192,6 +194,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   'django.core.context_processors.media',
   'django.core.context_processors.static',
   'django.contrib.messages.context_processors.messages',
+
   ) # Optional
 
 
