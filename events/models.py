@@ -38,15 +38,14 @@ class Event(models.Model):
        
         
         #If the obect primary keys is not null then we are updating an existing record
-        if self.pk is not None:                        
-
+        if self.pk:                        
             #Loop through sending email
             #Note - send mass email is far more efficient but does seem to support html with txt
             # fall back + implementing it was problematic 
             # Note all emails need context set here
             
             for destination in email_destination:
-                emailContext = Context({'event':self })
+                emailContext = Context({'event':self, 'update':True})
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
@@ -57,7 +56,7 @@ class Event(models.Model):
 
         #if not self.pk the we are creating a new event    
         else:
-            emailContext = Context({'body':'UPDATING AN EVENT CONTEXT'})
+            emailContext = Context({'event':self, 'create':True})
             #Render templates
             text_content = plaintextTemplate.render(emailContext)
             html_content = htmlTemplate.render(emailContext)
@@ -77,7 +76,7 @@ class Event(models.Model):
 
     def delete(self, *args, **kwargs):
         email_destination     =  self.getEmailDestination()      
-        if self.pk is not None: 
+        if self.pk: 
             subject               = 'Event Cancelled'
             from_email            = 'donotreply@BlackMountainScouts.com'      
             htmlTemplate          =  get_template('events/EventEmail.html')
@@ -89,7 +88,7 @@ class Event(models.Model):
             # fall back + implementing it was problematic 
             # Note all emails need context set here
             for destination in email_destination:
-                emailContext = Context({'body':'DELETING AN EVENT CONTEXT'})
+                emailContext = Context({'event':self, 'delete':True})
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
