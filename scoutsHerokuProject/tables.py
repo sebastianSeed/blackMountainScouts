@@ -3,22 +3,12 @@ from events.models import Event
 from newsletter.models import Newsletter
 
 class EventsTable(tables.Table):
-    Details  = tables.TemplateColumn("<a href='/events/id={{Event.ID}}'>Details</a>")
-    data = [
-            {"Name": "Bradley"},
-            {"Title": "Stevie"},
-            {"Description": "Bradley"},
-            {"Start": "Stevie"},
-            {"End": "Bradley"},
-            {"Location": "Stevie"},
-            {"Scout Group": "Stevie"},
-            {"Details": "Stevie"},
-            
-            
-            ]
+    kd  = tables.URLColumn()
     class Meta:
         model = Event
 
+    def render_details(self, value):
+        return "<a href='/events/id=%s'>Details</a>" % value
 
 class NewsletterTable(tables.Table):
     class Meta:

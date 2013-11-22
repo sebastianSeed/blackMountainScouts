@@ -3,7 +3,7 @@ import os
 
 
 if 'ONHEROKU' in os.environ:
-    DEBUG = False
+    DEBUG = True
     ##Setup SENDGRID email add on for heroku
     EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
     EMAIL_HOST= 'smtp.sendgrid.net'
