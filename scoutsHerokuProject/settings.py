@@ -19,7 +19,6 @@ if 'ONHEROKU' in os.environ:
     DEFAULT_S3_PATH = "media"
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
     STATIC_S3_PATH = "static"
-
     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
     MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
     STATIC_ROOT = "/%s/" % STATIC_S3_PATH
@@ -40,7 +39,7 @@ SUIT_CONFIG = {
 }
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('seb', 'sebas.home1@gmail.com'),
 )
 
 MANAGERS = ADMINS
