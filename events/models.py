@@ -3,7 +3,6 @@ from django.db import models
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
-# Import member and user models to get email for notifications
 from members.models import guardian , scoutMember, scoutGroups, scoutLeader
 from django.contrib.auth.models import User
 from django.utils import formats
