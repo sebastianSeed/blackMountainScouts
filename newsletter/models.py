@@ -15,7 +15,6 @@ class Newsletter(models.Model):
     #Templates for emails - can either write a whole bunch or use if statements to change wording both work -- if statements are cleaner
     newsletterEmailTemplate    =  get_template('newsletter/newsletterEmail.html')
     newsletterTxtTemplate      =  get_template( 'newsletter/newsletterEmail.txt')
-    context                    =  Context({'body':"Hey! You need to go into the allScoutUser model in members/models and make sure each child class overwrites this context variable!"})   
 
     
     
@@ -37,17 +36,21 @@ class Newsletter(models.Model):
     def save(self, *args, **kwargs):  
         from_email              = 'donotreply@BlackMountainScouts.com'      
         subject                 = "New newsletter published"      
-        email_destination       =  self.getEmailDestination()       
-        emailContext = Context({'body':'UPDATING AN EVENT CONTEXT'})
+        email_destination       =  self.getEmailDestination()
+        print 'NEWSLETTER FOUND FOLLOWING EMAILS ' + str(email_destination)       
+        emailContext            =  Context({'body':'UPDATING AN EVENT CONTEXT'})
         #Render templates
         text_content = self.newsletterTxtTemplate.render(emailContext)
         html_content = self.newsletterEmailTemplate.render(emailContext)
         #Create and send msg
         for destination in email_destination:
             msg = EmailMultiAlternatives(subject, html_content , from_email, [destination,])
-            msg.attach_alternative(html_content,"text/html")
+            msg.attach_alternative(text_content,"text/html")
             msg.send()
-        super(Newsletter, self).save(*args, **kwargs) 
+        super(Newsletter, self).save(*args, **kwargs)
+        
+        
+         
     
     # destination must be a tuple or list eg [myDestination@test.com , ]   or   [myDestination2@test.com , ]  
     # Context must be Context object 
