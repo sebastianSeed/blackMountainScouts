@@ -45,7 +45,8 @@ class Newsletter(models.Model):
         for destination in email_destination:
             msg = EmailMultiAlternatives(subject, html_content , from_email, [destination,])
             msg.attach_alternative(text_content,"text/html")
-            msg.attach_file(self.newsletter.path)
+            msg.attach_file(self.newsletter.url)
+            print "URL IS  "+self.newsletter.url
             msg.send()
         super(Newsletter, self).save(*args, **kwargs)
        
