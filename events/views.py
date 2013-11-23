@@ -12,7 +12,7 @@ def eventList(request):
     if Event.objects.all().count() > 0:
         table = EventsTable(Event.objects.all())    
         RequestConfig(request).configure(table)
-        return render(request, 'events/events.html', {'table': table})
+        return render(request, 'events/events.html', {'table': table, 'events':Event.objects.all()})
     else:
         return render(request, 'events/events.html', {'noResults': True})
 

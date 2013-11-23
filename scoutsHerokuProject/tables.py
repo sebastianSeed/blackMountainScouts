@@ -6,7 +6,8 @@ from django_tables2.columns.templatecolumn import TemplateColumn
 
         
 class EventsTable(tables.Table):
-    address = TemplateColumn("<a href='/events/id=" + '{{ record.id }}'  + "'>" + '{{record.address}}' + "</a>")
+    #TODO get modal popup w/ google map working
+    #address = TemplateColumn("<a href='/events/id=" + '{{ record.id }}'  + "'>" + '{{record.address}}' + "</a>")
     class Meta:
         model = Event
 
