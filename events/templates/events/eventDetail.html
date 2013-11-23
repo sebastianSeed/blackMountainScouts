@@ -14,10 +14,8 @@
 {% block content %}
 
 <h2>{{event.title}}</h2>
-<p id='id_address'>{{event.address}}</p><br>
-
-        <p> Address: </p> <input class="vTextField" size=90 id="id_address" maxlength="500" name="address" type="text" value='{{event.address}}' readonly>
-
+        <p> Address: </p> <input class="vTextField" id="id_address" size="100" name="address" type="text" value='{{event.address}}' readonly>
+<br>
 <p>{{event.description}}</p>
 <br />
 Start Date: {{event.start | date:"DATE_FORMAT"}}<br>
