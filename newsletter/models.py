@@ -3,7 +3,7 @@ from django.template import Context
 from django.core.exceptions import ValidationError
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from members.models import scoutMember, scoutLeader 
+from members.models import scoutMember, scoutLeader , guardian
 
  
 
@@ -73,12 +73,11 @@ class Newsletter(models.Model):
         scoutMembersList      = scoutMember.objects.all()
         scoutLeaders          = scoutLeader.objects.all()
         email_destination     = []
+        parents               = guardian.objects.all()
         #Find appropiate scout members to email them and their guardians about event
-        for selectedScoutMember in scoutMembersList:             
-            parents  = selectedScoutMember.parents.all()
-            for parent in parents:            
-                if parent.email:
-                    email_destination.append(parent.email)
+        for parent in parents:            
+            if parent.email:
+                email_destination.append(parent.email)
         #Add all scout leaders to event emails
         for leader in scoutLeaders:
             if leader.email:
