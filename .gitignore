@@ -2,3 +2,6 @@ venv
 *.pyc
 
 /staticfiles
+scoutsHerokuProject/settings.py
+scouts.db
+scoutsHerokuProject/settings.py

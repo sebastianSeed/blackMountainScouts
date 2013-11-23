@@ -71,7 +71,7 @@ class  allScoutUsers(models.Model):
         except  ObjectDoesNotExist:
             user = User.objects.create_user(username, '', password)          
                  
-        if superUserFlag == True:
+        if superUserFlag      == True:
             user.is_superuser = True
             user.is_staff     = True
             user.save()
@@ -174,8 +174,7 @@ class scoutMember(allScoutUsers):
 
         
 class scoutLeader(allScoutUsers):
-    def save(self, *args, **kwargs):        
-         
+    def save(self, *args, **kwargs):                 
         #updating an existing record
         if self.pk:
             self.userAccount = self.editUserLogin()

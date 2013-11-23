@@ -24,7 +24,7 @@ urlpatterns = patterns('',
    url(r'^accounts/logout/$', 'scoutsHerokuProject.views.logoutView'),
    url(r'^contactForm/',    include('envelope.urls')),
    url(r'^events/$',  'events.views.eventList'  ),
-   url(r'^events/id=(?P<id>\d{1,4})$', 'events.views.eventDetail'),
+   url(r'^events/id=(?P<id>\d{1,10})/$', 'events.views.eventDetail', name = 'eventMap'),
    url(r'^newsletters/$',  'newsletter.views.newsletterList'  ),
 #    url(r'^newsletters/id=(?P<id>\d{1,4})$', 'newsletter.views.newsletterDetail'),
 

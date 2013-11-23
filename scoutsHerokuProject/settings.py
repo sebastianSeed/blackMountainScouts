@@ -19,7 +19,6 @@ if 'ONHEROKU' in os.environ:
     DEFAULT_S3_PATH = "media"
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
     STATIC_S3_PATH = "static"
-
     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
     MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
     STATIC_ROOT = "/%s/" % STATIC_S3_PATH
@@ -40,17 +39,19 @@ SUIT_CONFIG = {
 }
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('seb', 'sebas.home1@gmail.com'),
 )
 
 MANAGERS = ADMINS
+
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 # Place holder for local DB to keep django happy
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'C:/Users/Paul/Documents/Aptana Studio 3 Workspace/ScoutsProject/blackmountaingirlguides/scouts.db',                      # Or path to database file if using sqlite3.
+        'NAME':    os.path.join(PROJECT_PATH, 'scouts.db'),  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -62,7 +63,7 @@ DATABASES = {
 # If we are on heroku then this url will reflect path to heroku db 
 #Otherwise it will default to local system - will need to change per dev enviroment - path must exist
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='sqlite:///C:/Users/Paul/Documents/Aptana Studio 3 Workspace/ScoutsProject/blackmountaingirlguides/scouts.db')
+DATABASES['default'] =  dj_database_url.config(default='sqlite:///'+os.path.join(PROJECT_PATH, 'scouts.db'))
 
 
 #Redirect to home page / Index page after login
@@ -202,7 +203,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 
 
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
@@ -261,6 +261,7 @@ ALLOWED_HOSTS = ['*']
 
 #from SettingUtils import getScoutLeaders
 #ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
+<<<<<<< HEAD
   
   
 if DEBUG:
@@ -290,3 +291,34 @@ if DEBUG:
      DEBUG_TOOLBAR_CONFIG = {
          'INTERCEPT_REDIRECTS': False,
      }
+=======
+
+
+if DEBUG:
+    INTERNAL_IPS = ('127.0.0.1',)
+    MIDDLEWARE_CLASSES += (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    )
+ 
+    INSTALLED_APPS += (
+        'debug_toolbar',
+    )
+ 
+    DEBUG_TOOLBAR_PANELS = (
+        'debug_toolbar.panels.version.VersionDebugPanel',
+        'debug_toolbar.panels.timer.TimerDebugPanel',
+        'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+        'debug_toolbar.panels.headers.HeaderDebugPanel',
+        #'debug_toolbar.panels.profiling.ProfilingDebugPanel',
+        'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+        'debug_toolbar.panels.sql.SQLDebugPanel',
+        'debug_toolbar.panels.template.TemplateDebugPanel',
+        'debug_toolbar.panels.cache.CacheDebugPanel',
+        'debug_toolbar.panels.signals.SignalDebugPanel',
+        'debug_toolbar.panels.logger.LoggingPanel',
+    )
+ 
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+    }
+>>>>>>> 3c674d158d58d2c07296fa24a2e32ffcac48ebc3

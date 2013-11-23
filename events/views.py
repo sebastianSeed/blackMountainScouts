@@ -12,18 +12,15 @@ def eventList(request):
     if Event.objects.all().count() > 0:
         table = EventsTable(Event.objects.all())    
         RequestConfig(request).configure(table)
-        return render(request, 'events/events.html', {'table': table})
+        return render(request, 'events/events.html', {'table': table, 'events':Event.objects.all()})
     else:
         return render(request, 'events/events.html', {'noResults': True})
 
 
 @login_required
-def eventDetail(request , id = 1):
+def eventDetail(request , id = 1 ):
+    event        = Event.objects.get(pk = id)
     template     = loader.get_template('events/eventDetail.html') 
-    try:
-        event   = Event.objects.get(id = id)    
-        context = RequestContext(request, {'event':event, })
-    except():
-        context = RequestContext(request,{'noResults':True})
+    context      = RequestContext(request,{'event':event})
         
     return HttpResponse(template.render(context))

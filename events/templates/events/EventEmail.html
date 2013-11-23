@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <body >
-
-<h2> HEY DEVS ! EVENT EMAIL TEMPALTE NEEDS TO BE CUSTOMISED STILL! </h2>
 {% if delete %}
-	 The following event has been cancelled:
-	 Event Name: {{event.title}}
-	 Location: {{event.address}}
-	 Start Date: {{event.start | date:"DATE_FORMAT"}}
-	 Start Time: {{event.start |time:"TIME_FORMAT"}}
-	 End Date: {{event.end | date:"DATE_FORMAT"}}
-	 End Time: {{event.end |time:"TIME_FORMAT"}}
+	 The following event has been cancelled:<br>
+	 Event Name: {{event.title}}<br>
+	 Location: {{event.address}}<br>
+	 Start Date: {{event.start | date:"DATE_FORMAT"}}<br>
+	 Start Time: {{event.start |time:"TIME_FORMAT"}}<br>
+	 End Date: {{event.end | date:"DATE_FORMAT"}}<br>
+	 End Time: {{event.end |time:"TIME_FORMAT"}}<br>
 	{% elif edit %}
-	 The event, {{Event Name}} has been changed:
-	 Details are as follows:
-	 Event Name: {{event.title}}
-	 Location: {{event.address}}
-	 Start Date: {{event.start | date:"DATE_FORMAT"}}
-	 Start Time: {{event.start |time:"TIME_FORMAT"}}
-	 End Date: {{event.end | date:"DATE_FORMAT"}}
-	 End Time: {{event.end |time:"TIME_FORMAT"}} 
-	{{% elif create %}}
-	 The following event has been cancelled:
-	 Event Name: {{event.title}}
-	 Location: {{event.address}}
-	 Start Date: {{event.start | date:"DATE_FORMAT"}}
-	 Start Time: {{event.start |time:"TIME_FORMAT"}}
-	 End Date: {{event.end | date:"DATE_FORMAT"}}
-	 End Time: {{event.end |time:"TIME_FORMAT"}}
+	 The event, {{event.title}} has been changed:<br>
+	 Details are as follows:<br>
+	 Event Name: {{event.title}}<br>
+	 Location: {{event.address}}<br>
+	 Start Date: {{event.start | date:"DATE_FORMAT"}}<br>
+	 Start Time: {{event.start |time:"TIME_FORMAT"}}<br>
+	 End Date: {{event.end | date:"DATE_FORMAT"}}<br>
+	 End Time: {{event.end |time:"TIME_FORMAT"}} <br>
+	{% elif create %}
+	 The following event has been cancelled:<br>
+	 Event Name: {{event.title}}<br>
+	 Location: {{event.address}}<br>
+	 Start Date: {{event.start | date:"DATE_FORMAT"}}<br>
+	 Start Time: {{event.start |time:"TIME_FORMAT"}}<br>
+	 End Date: {{event.end | date:"DATE_FORMAT"}}<br>
+	 End Time: {{event.end |time:"TIME_FORMAT"}}<br>
 {% endif %}
 </body>
 </html>
