@@ -1,3 +1,2 @@
-{{body}} 
- HEY DEVS ! Newsletter email text version need customising
-TXT VERSION
+
+New newsletter placeholder
