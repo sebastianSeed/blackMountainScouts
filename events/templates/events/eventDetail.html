@@ -1,18 +1,23 @@
+{% extends "main/base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-     
-      <title>Black Mountain Girl Guides - Home</title>
-           <script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-     <script src="{%static 'main/js/google-maps-plugin.js' %}"></script>
-   
-    </head>
 
-    <body>
+{% block content %}
+<script src="{%static 'main/js/google-maps-plugin.js' %}"></script>
+<h2>{{event.title}}</h2>
+<div id="id_address">
+	
+</div>
 
-               
-    </body>
-        <p> Address: </p> <input class="vTextField" id="id_address" maxlength="100" name="address" type="text" value='{{event.address}}' readonly>
-</html>
+<p>
+	{{event.description}}
+</p>
+<br />
+Location: {{event.address}}<br />
+Start Date: {{event.start | date:"DATE_FORMAT"}}<br>
+Start Time: {{event.start |time:"TIME_FORMAT"}}<br>
+End Date: {{event.end | date:"DATE_FORMAT"}}<br>
+End Time: {{event.end |time:"TIME_FORMAT"}} <br>
+Affected Groups: {{events.scoutGroup}}
+<br />
+
+{% endblock content %}
