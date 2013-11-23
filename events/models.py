@@ -13,7 +13,7 @@ class Event(models.Model):
     description  = models.CharField(max_length=100)
     start        = models.DateTimeField()
     end          = models.DateTimeField()
-    address      = models.AddressField(max_length=100,verbose_name='Event Address') #TODO OVERWRITE SAVE LIKE IN MEMBERS APP MODELS TO SEND EMAIL 
+    address      = models.CharField(max_length=100,verbose_name='Event Address') #TODO OVERWRITE SAVE LIKE IN MEMBERS APP MODELS TO SEND EMAIL 
     #Specify group so that events just for youngest group for example only get email notifications to parents/members in that group
     scoutGroup   = models.ForeignKey(scoutGroups , verbose_name="Scout group") 
     
