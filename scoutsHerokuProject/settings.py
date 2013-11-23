@@ -261,7 +261,6 @@ ALLOWED_HOSTS = ['*']
 
 #from SettingUtils import getScoutLeaders
 #ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
-<<<<<<< HEAD
   
   
 if DEBUG:
@@ -291,8 +290,6 @@ if DEBUG:
      DEBUG_TOOLBAR_CONFIG = {
          'INTERCEPT_REDIRECTS': False,
      }
-=======
-
 
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
@@ -321,4 +318,3 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
     }
->>>>>>> 3c674d158d58d2c07296fa24a2e32ffcac48ebc3
