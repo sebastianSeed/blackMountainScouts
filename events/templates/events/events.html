@@ -19,11 +19,5 @@
         <h1> No current events,please check back soon.</h1>
     {% endif %}
     
-{% for event in events %}
-    <div id = {{event.id} class ='map'}
-    <p> Address: </p> <input class="vTextField" id="id_address" maxlength="100" name="address" type="text" value='{{event.address}}' readonly>
-    </div>
-{% endfor %}
-    
     
  {% endblock %}			
