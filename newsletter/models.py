@@ -46,10 +46,11 @@ class Newsletter(models.Model):
         for destination in email_destination:
             msg = EmailMultiAlternatives(subject, html_content , from_email, [destination,])
             msg.attach_alternative(text_content,"text/html")
+            msg.attach(self.title, self.newsletter, "application/pdf")
             msg.send()
         super(Newsletter, self).save(*args, **kwargs)
-        
-        
+       
+
          
     
     # destination must be a tuple or list eg [myDestination@test.com , ]   or   [myDestination2@test.com , ]  
