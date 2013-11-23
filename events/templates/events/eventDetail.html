@@ -4,7 +4,7 @@
 
 {% block head %}
 <script src="{%static 'main/js/google-maps-plugin.js' %}"></script>
-   		script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
+   		<script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
       <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
      <script src="{%static 'main/js/google-maps-plugin.js' %}"></script>
    
@@ -14,7 +14,10 @@
 {% block content %}
 
 <h2>{{event.title}}</h2>
-<p id='id_address'>Location: {{event.address}}</p><br>
+<p id='id_address'>{{event.address}}</p><br>
+
+        <p> Address: </p> <input class="vTextField" size=90 id="id_address" maxlength="500" name="address" type="text" value='{{event.address}}' readonly>
+
 <p>{{event.description}}</p>
 <br />
 Start Date: {{event.start | date:"DATE_FORMAT"}}<br>
