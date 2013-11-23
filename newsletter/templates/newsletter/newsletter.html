@@ -3,7 +3,9 @@
 
  {% block content %}
     {% if not noResults %}
+    <div id="table" class="grid_13">
         {% render_table table %}
+    </div>    
     {% else %}
         <h1> No current newsletters, please check back soon.</h1>
     {% endif %}

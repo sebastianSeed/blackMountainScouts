@@ -1,4 +1,23 @@
-body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px; } 
+/*Style Reset*/
+body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px;} 
+
+#logo {
+	padding:10px 0px 10px 0px;
+	height:125px;
+}
+
+#header {
+	height:150px;
+}
+
+#login {
+	float:right;
+	margin-bottom:2px;
+}
+
+h1 {
+	padding: 25px 0px 0px 0px;
+}
 
 #siteBody {
 	margin: 0 auto;
@@ -8,15 +27,8 @@ body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px; }
 	background-color: #ffffff;
 }
 
-.logout {
-	
-}
-
-h1 {
-	padding: 25px 25px 25px 5px;
-}
-
 #navbar { 
+	margin 0 auto;
 	height: 50px;
 	list-style-type: none; 
 	text-align: center; 
@@ -36,7 +48,7 @@ h1 {
  
 #navbar ul li {  
 	display: inline; 
-	margin: 15px 15px;
+	margin: auto 5px auto 5px;
 	color: #fff; 
 	} 
  
@@ -53,51 +65,51 @@ h1 {
 	} 
 	
 #sidebar {
-	padding: 2px 2px 2px 2px;
 	padding-bottom: 100%;
-	margin-top: 5px;
-	margin-right: 5px;
-	width:200px;
+	background-color: #f9c618;
 }	
 
-#sidebar form {
-	padding-top: 10px;
-	text-align: center;
-	height: 200px;
-	width: 200px;
-	background-color: #f9c618;
-}
-
-#logo {
-	width:150px;
-	height:100px;
-	background-color:#FFFFFF;
-}
-
-#header {
-	margin-top:5px;
-	height:150px;
-}
-
 #footer {
-	margin-top:10px;
 	height:50px;
 	text-align: center;
 	font-size: 12px;
 }
-/*#firstBlock{
-	margin-left:200px;
-	float:left;
-	position:relative;
+#firstBlock {
+	margin-top: 20px;
+	padding: 5px 0px 5px 0px;
+	background-color: #f96896;
 }
 
 #secondBlock {
-	margin-left:50px;
-	position:relative;
+	margin-top: 25px;
+	padding: 5px 0px 5px 0px;
+	background-color: #f96896;
 }
 
-#thirdBlock {
-	margin-left:50px;
-	position:relative;
+#table {
+	border-style: solid;
+	padding: 5px 5px 5px 5px;
+	background-color: #ffdf72;
 }
-*/
+
+#table table {
+	margin: 0 auto;
+	width:100%;
+	border-collapse: collapse;
+	background-color: #ffdf72;
+	text-align: center;
+}
+
+#table th {
+	font-size: 14px;
+}
+
+#table td {
+	border-style:solid;
+	border-color: #FFFFFF;
+	border-width: 1px;
+	font-size: 12px;
+	padding: 2px;
+	text-align: center;
+	margin: 0 auto;
+}
