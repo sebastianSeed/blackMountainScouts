@@ -1,29 +1,19 @@
-{% extends "main/base.html" %}
-{% load easy_maps_tags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       
+        <title>Black Mountain Girl Guides - Home</title>
+   
+        <script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+     <script src="{%static 'main/js/google-maps-plugin.js' %}"></script>
+   
+    </head>
 
-<!-- Google Map to go here -->
-{% block content %}
+    <body>
+    <p> Address: </p> <input class="vTextField" id="id_address" maxlength="100" name="address" type="text" value='{{event.address}}' readonly>
 
-{% if event %}
-
-<h1> {{event.address}} </h1>
-{% easy_map "{{ event.address }}" 300 400 %}
-<br />
-    <h2> Name:        {{event.title}}</h2>
-    <h2> Location:    {{event.address}} </h2>
-    <p>
-		{{event.description}}
-	</p>
-	<br />
-    {{event.start | date:"DATE_FORMAT"}}
-    {{event.start |time:"TIME_FORMAT"}}
-    {{event.end | date:"DATE_FORMAT"}}
-    {{event.end |time:"TIME_FORMAT"}}	
-	<br />
-	Affected Groups:
-	{{ event.scoutGroup}}
-{% endif %}
-{% endblock content %}
-
-
-                <td>{{event.title}}</td>
+               
+    </body>
+</html>

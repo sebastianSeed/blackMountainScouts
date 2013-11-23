@@ -18,8 +18,9 @@ def eventList(request):
 
 
 @login_required
-def eventDetail(request , address ):
+def eventDetail(request , id = 1 ):
+    event        = Event.objects.get(pk = id)
     template     = loader.get_template('events/eventDetail.html') 
-    context = RequestContext(request,{})
+    context      = RequestContext(request,{'event':event})
         
     return HttpResponse(template.render(context))
