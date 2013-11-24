@@ -120,7 +120,6 @@ class Event(models.Model):
                 for parent in parents:            
                     if parent.email:
                         email_destination.append(parent.email)
-                        parents.append(parent)
         #Add all scout leaders to event emails
         for leader in scoutLeaders:
             if leader.email:
