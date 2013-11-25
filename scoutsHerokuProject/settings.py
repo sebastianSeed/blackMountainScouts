@@ -21,7 +21,7 @@ if 'ONHEROKU' in os.environ:
     STATIC_S3_PATH = "static"
     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
    # MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
-    MEDIA_URL = '//blackmountainstorage.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+    MEDIA_URL = '//blackmountainstorage.s3.amazonaws.com/media/'
     STATIC_ROOT = "/%s/" % STATIC_S3_PATH
     STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
