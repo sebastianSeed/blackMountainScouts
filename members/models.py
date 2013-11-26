@@ -136,6 +136,7 @@ class  allScoutUsers(models.Model):
         
 
 class scoutMember(allScoutUsers):
+    DEFAULT_SCOUT_GROUP_ID = 1
     preferredName = models.CharField(max_length=15)    
     dob           = models.DateField(verbose_name='Date of Birth')
     birthCountry  = models.CharField(max_length=15,verbose_name='Country of Birth')   
@@ -160,7 +161,7 @@ class scoutMember(allScoutUsers):
     
     
     parents       = models.ManyToManyField('guardian', related_name = 'scoutmember_guardians')
-    scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group") 
+    scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group" ,default=DEFAULT_SCOUT_GROUP_ID,  on_delete=models.SET_DEFAULT) 
     
      
     def save(self, *args, **kwargs):                
