@@ -47,7 +47,7 @@ class scoutLeaderAdmin(ModelAdmin):
     #Hide user account field as this is set by system   
     search_fields = ('firstname',)
     exclude = ('userAccount' ,) 
-    list_display = ('lastname','firstname',)
+    list_display = ('lastname','firstname','scoutGroup')
     sortable ='order'
 
 
