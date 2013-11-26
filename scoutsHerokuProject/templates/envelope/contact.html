@@ -35,6 +35,17 @@
 
 {% block content %}
 
+            {% block messages %}
+              {% if messages %}
+
+                {% for message in messages %}
+                  <div class="alert alert-{% firstof message.tags 'info' %}">
+                    <button class="close" data-dismiss="alert">×</button>
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endblock messages %}
 	<div id="contactcontent" class="grid_8">
 		<h3> Contact Us </h3>
 		<p>To contact the Black Mountain Girl Guide leaders
