@@ -47,7 +47,7 @@ class scoutLeaderAdmin(ModelAdmin):
     #Hide user account field as this is set by system   
     search_fields = ('firstname',)
     exclude = ('userAccount' ,) 
-    list_display = ('lastname','firstname','scoutGroup')
+    list_display = ('lastname','firstname')
     sortable ='order'
 
 
@@ -74,7 +74,7 @@ class scoutMemberAdmin(admin.ModelAdmin):
     #Set filter horizontal for searchable list of parents in admin 
     filter_horizontal = ('parents' ,)
     exclude = ('userAccount' ,) 
-    list_display = ('lastname','firstname',)
+    list_display = ('lastname','firstname','scoutGroup')
 
 
     

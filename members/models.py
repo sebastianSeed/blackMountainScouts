@@ -17,7 +17,7 @@ from django.core.urlresolvers import reverse
 
 #Scout groups class and db table to allow users to set events per scout group
 class scoutGroups(models.Model):
-    name        = models.CharField(max_length=15,unique = True)
+    name        = models.CharField(max_length=50,unique = True)
     description = models.CharField(max_length=150)
    
    #Function that defines how object shows up in admin ie the name 
