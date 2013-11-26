@@ -24,7 +24,7 @@
 				
 				<h5 id="login" class="grid_3">
 					{% if user.is_authenticated %}
-  						Welcome {{request.user}}! <a href="/accounts/logout/">Log out </a> <a href="/admin/password_change/">Log out</a>
+  						Welcome {{request.user}}! <a href="/accounts/logout/">Log out </a> <a href="/admin/password_change/">Change Password</a>
 					{% else %}
     					<a href='accounts/login/'>User Login</a>
 					{% endif %}
