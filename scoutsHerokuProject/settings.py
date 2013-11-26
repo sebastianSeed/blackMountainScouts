@@ -262,7 +262,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 #from SettingUtils import getScoutLeaders
-#ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
+ENVELOPE_EMAIL_RECIPIENTS = 'stephy123123@gmail.com'
+
   
   
 if DEBUG:
