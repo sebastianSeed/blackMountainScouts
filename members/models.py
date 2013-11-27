@@ -70,23 +70,19 @@ class  allScoutUsers(models.Model):
             user = User.objects.get(username = username )
         except  ObjectDoesNotExist:
             user = User.objects.create_user(username, '', password)          
-                 
-        if superUserFlag      == True:
-            user.is_superuser = True
-            user.is_staff     = True
-            user.save()
-
-        # If account is disabled then don't send an email.
-        if accountActive   == False:
-            user.is_active = False
-            user.save()
-            return user
+          
+        user.is_active     = accountActive
+        user.is_superuser  = superUserFlag
+        #All users are considered staff to allow admin priviledges to change their own passwords
+        user.is_staff      = True
+        user.save()
 
 
-        #If we have an email send update
+        #If we have an email address and account is active then send update
         if self.email and accountActive:
             msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
             msg.send()
+        
         return user                  
 
     def editUserLogin(self):
@@ -105,7 +101,8 @@ class  allScoutUsers(models.Model):
             if self.email:
                 msg = self.createEmailMsg("User Account Updated", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
                 msg.send()
-            return user
+        
+        return user
 
     # destination must be a tuple or list eg [myDestination@test.com , ]   or   [myDestination2@test.com , ]  
     def createEmailMsg(self,subject,txtTemplate,htmlTemplate,destination,context):
