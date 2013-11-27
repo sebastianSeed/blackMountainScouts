@@ -35,16 +35,17 @@
 
 {% block content %}
 
-            {% block messages %}
-              {% if messages %}
 
-                {% for message in messages %}
-                    {{ message }}
-
-                {% endfor %}
-              {% endif %}
-            {% endblock messages %}
 	<div id="contactcontent" class="grid_8">
+				{% block messages %}
+			  {% if messages %}
+
+				{% for message in messages %}
+				<p class="formMessage">{{ message }}</p>
+
+				{% endfor %}
+			  {% endif %}
+			{% endblock messages %}<br/><br/>
 		<h3> Contact Us </h3>
 		<p>To contact the Black Mountain Girl Guide leaders
 		with inquires or question, please fill the form
