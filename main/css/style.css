@@ -113,3 +113,13 @@ h1 {
 	text-align: center;
 	margin: 0 auto;
 }
+
+#siteBody {
+	opacity:0.8;
+	
+}
+
+body {
+	background-color: red;
+	background-image:url('main/img/bg.gif')
+}

@@ -1,8 +1,6 @@
- 
-  
 $(document).ready(function() {
 
-    $('.map').parent().append("<div id='{{event.id}}' style='width:380px; height:200px; margin: 20px; margin-left: 105px;' ></div>");
+    $('#id_address').parent().append("<div id='map_canvas' style='width:380px; height:200px; margin: 20px; margin-left: 105px;' ></div>");
 
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var myOptions = {
@@ -39,7 +37,7 @@ function updateMapPosition(map) {
         }
       }
       else {
-        alert("Address invalid for google maps please check the address os correct eg suburb and state.");
+        alert("Adresse inconnue par google map, rajoutez le code postal et le pays.");
       }
     }
   );
