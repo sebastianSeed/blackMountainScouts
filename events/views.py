@@ -12,7 +12,7 @@ def eventList(request):
     if Event.objects.all().count() > 0:
         table = EventsTable(Event.objects.all())    
         RequestConfig(request).configure(table)
-        curEvents = Event.objects.filter(end__lte= date.today())
+        curEvents = Event.objects.filter(end__gte= date.today())
         return render(request, 'events/events.html', {'table': table, 'events':curEvents})
     else:
         return render(request, 'events/events.html', {'noResults': True})
