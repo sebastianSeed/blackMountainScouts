@@ -24,9 +24,10 @@
 				
 				<h5 id="login" class="grid_3">
 					{% if user.is_authenticated %}
-  						Welcome {{request.user}}! <a href="/accounts/logout/">Log out </a> <a href="/admin/password_change/">Change Password</a>
+  						Welcome {{request.user}}! <a href="/accounts/logout/">Log out </a> <br/> 
+  						<a href="/admin/password_change/">Change Password</a>
 					{% else %}
-    					<a href='accounts/login/'>User Login</a>
+    					<a href='/accounts/login/'>User Login</a>
 					{% endif %}
 				</h5>
 				<div id = 'navbar' class="grid_13">
@@ -40,7 +41,7 @@
 						<li>|</li>
 						<li><a href='/contactForm/'><b>Contact Us</b></a></li>
 						<li>|</li>
-					{% if user.is_staff %}
+					{% if user.is_superuser %}
 					    <li><a href="/admin/"><b>Admin</b></a></li>
 					    <li>|</li>
 					{% endif %}

@@ -262,9 +262,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 #from SettingUtils import getScoutLeaders
-ENVELOPE_EMAIL_RECIPIENTS = 'stephy123123@gmail.com'
+ENVELOPE_EMAIL_RECIPIENTS = ['stephy123123@gmail.com',]
+# ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly , a scout leader will be in contact with you shortly.'
+# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please try again later' 
 
-  
+LOGOUT_URL ='/'  
   
 if DEBUG:
      INTERNAL_IPS = ('127.0.0.1',)

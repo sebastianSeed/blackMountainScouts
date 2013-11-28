@@ -1,2 +1,3 @@
-
-New newsletter placeholder
+ A new newsletter has been sent out , you can download it here:
+ {{newsletterUrl}}
+Thank you

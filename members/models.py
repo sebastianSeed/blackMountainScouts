@@ -17,7 +17,7 @@ from django.core.urlresolvers import reverse
 
 #Scout groups class and db table to allow users to set events per scout group
 class scoutGroups(models.Model):
-    name        = models.CharField(max_length=15,unique = True)
+    name        = models.CharField(max_length=50,unique = True)
     description = models.CharField(max_length=150)
    
    #Function that defines how object shows up in admin ie the name 
@@ -50,7 +50,6 @@ class  allScoutUsers(models.Model):
     #Templates for emails - can either write a whole bunch or use if statements to change wording both work -- if statements are cleaner
     addHtmlTemplate    =  'members/AddMemberEmail.html'
     addTxtTemplate     =  'members/addMemberEmail.txt'
-    context         =  Context({'body':"Hey! You need to go into the allScoutUser model in members/models and make sure each child class overwrites this context variable!"})   
 
     class Meta:
         abstract = True
@@ -63,6 +62,8 @@ class  allScoutUsers(models.Model):
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
+        context         =  Context({'account':self , 'create':True})   
+
         ''' If user account already exists assume it's the same person and relink the account
         to guardian/ scout members/ scout leaders  account. We can safely assume this as database forces
         all firstname and lastname combination to be unique together'''
@@ -70,23 +71,19 @@ class  allScoutUsers(models.Model):
             user = User.objects.get(username = username )
         except  ObjectDoesNotExist:
             user = User.objects.create_user(username, '', password)          
-                 
-        if superUserFlag      == True:
-            user.is_superuser = True
-            user.is_staff     = True
-            user.save()
-
-        # If account is disabled then don't send an email.
-        if accountActive   == False:
-            user.is_active = False
-            user.save()
-            return user
+          
+        user.is_active     = accountActive
+        user.is_superuser  = superUserFlag
+        #All users are considered staff to allow admin priviledges to change their own passwords
+        user.is_staff      = True
+        user.save()
 
 
-        #If we have an email send update
+        #If we have an email address and account is active then send update
         if self.email and accountActive:
-            msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
+            msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], context)
             msg.send()
+        
         return user                  
 
     def editUserLogin(self):
@@ -97,15 +94,18 @@ class  allScoutUsers(models.Model):
             username = self.firstname +'_'+self.lastname
             username = username.lower()
             password = username.lower()
+            context  =  Context({'account':self , 'edit':True})   
+
             #Update user details and save
             user.username    = username.lower()
             user.set_password (password)
             user.save()
             #If we have an email send update
             if self.email:
-                msg = self.createEmailMsg("User Account Updated", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
+                msg = self.createEmailMsg("User Account Updated", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], context)
                 msg.send()
-            return user
+        
+        return user
 
     # destination must be a tuple or list eg [myDestination@test.com , ]   or   [myDestination2@test.com , ]  
     def createEmailMsg(self,subject,txtTemplate,htmlTemplate,destination,context):
