@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>	
-	
 		<link rel="stylesheet" type="text/css" href="{% static 'main/css/960_16_col.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
 		<script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
@@ -20,12 +19,10 @@
 			
 			<div id = 'header' class="grid_13">
 								
-				<h1 class="grid_10">Black Mountain Girl Guides</h1>
-				
-				<h5 id="login" class="grid_3">
+				<h1 class="grid_13">Black Mountain Girl Guides</h1>
+				<h5 id="login" class="grid_13">
 					{% if user.is_authenticated %}
-  						Welcome {{request.user}}! <a href="/accounts/logout/">Log out </a> <br/> 
-  						<a href="/admin/password_change/">Change Password</a>
+	  					Welcome {{request.user}}! ( <a href="/accounts/logout/">Log out </a> | <a href="/admin/password_change/">Change Password</a> )
 					{% else %}
     					<a href='/accounts/login/'>User Login</a>
 					{% endif %}
@@ -52,6 +49,26 @@
 			<div style="clear:both"></div>
 			
 			<div id = 'sidebar' class="grid_3">
+				<div id='sideBlurb'>
+					<h4 id="sideHead">The Black Mountain Girl Guides</h4>
+					<br />
+				<p id="sideText"> The Black Mountain Girl Guides is part of the Girl guides Australia organisation  
+				to help encourage and development young girls to become confident, learn and to have
+				fun. ACTUAL TEXT AWAITING FROM CLIENT</p>
+				</div>
+				<br />
+				<div id="sideLinks">
+					<h4>Useful Links</h4>
+						<a href="http://www.girlguides.org.au/public/attach/UniformBooklet.pdf">Girl Guides Uniform Booklet</a>
+						<br />
+						<a href="http://www.girlguides-nswact.org.au/index.php">Girl Guides Association</a>
+						<br />
+						<a href="http://www.girlguides.org.au">Girl Guides NSW & ACT</a>
+						<br />
+						<a href="http://www.wagggsworld.org/en/home">WAGGGS</a>
+						<br />
+						<a href="http://www.wagggsworld.org/en/world/centres">World Centres</a>
+				</div>
 			</div>
 			
 			<div id = 'mainContent' class="grid_13">
@@ -61,7 +78,7 @@
 			</div>
 			    
 			<div id = 'footer' class="grid_16">
-				<a href='contactForm'>Contact us</a>
+				<a href='/contactForm/'>Contact us</a>
 				<p>Black Mountain Girl Guides</p>
 			</div>
 		</div>               
