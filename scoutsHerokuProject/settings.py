@@ -34,6 +34,12 @@ else:
     MEDIA_URL = '/media/'
 
 
+#Choices for contact form
+ENVELOPE_CONTACT_CHOICES = (
+    ('',    u"Choose"),
+    (10,    u"General question"),
+    (None,   u"Other"),
+)
 
 #DJANGO Suit Admin theme configuration
 SUIT_CONFIG = {

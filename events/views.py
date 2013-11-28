@@ -5,14 +5,15 @@ from django.contrib.auth.decorators import login_required
 from scoutsHerokuProject.tables import EventsTable
 from django_tables2   import RequestConfig
 from django.shortcuts import render
-
+from datetime import date
 
 @login_required
 def eventList(request):
     if Event.objects.all().count() > 0:
         table = EventsTable(Event.objects.all())    
         RequestConfig(request).configure(table)
-        return render(request, 'events/events.html', {'table': table, 'events':Event.objects.all()})
+        curEvents = Event.objects.filter(end__gte= date.today())
+        return render(request, 'events/events.html', {'table': table, 'events':curEvents})
     else:
         return render(request, 'events/events.html', {'noResults': True})
 
