@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <body >
 
-{{body}}
-<h2> HTML VERSION </h2>
+    {% if edit %}
+    Hello {{account.firstname|title}} {{account.lastname|title}},<br>
+    <p>
+        Your account at the Black Mountain Girl Guides <a href=http://blackmountaingirlguides.herokuapp.com/> website </a> has been updated <br>
+        as your name has been updated in our records. <br>
+        Your new login details are as follows:<br>
+        Username : {{account.firstname}}_{{account.lastname}}<br>
+        Password : {{account.firstname}}_{{account.lastname}}<br>
+        If you wish to change your password please visit the site and use the "change password" link in the top right after logging in.<br>
+        Thank you
+    </p>
+    
+    {% elif create %}
+    Hello {{account.firstname|title}} {{account.lastname|title}},<br>
+    <p>
+        A new user account has been created for you at the Black Mountain Girl Guides <a href=http://blackmountaingirlguides.herokuapp.com/> website </a>. <br>
+        Your new login details are as follows:<br>
+        Username : {{account.firstname}}_{{account.lastname}}<br>
+        Password : {{account.firstname}}_{{account.lastname}}<br>
+        If you wish to change your password please visit the site and use the "change password" link in the top right after logging in.<br>
+        Thank you
+    </p>{% endif %}
 </body>
 </html>

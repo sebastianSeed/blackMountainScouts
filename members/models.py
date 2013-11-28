@@ -50,7 +50,6 @@ class  allScoutUsers(models.Model):
     #Templates for emails - can either write a whole bunch or use if statements to change wording both work -- if statements are cleaner
     addHtmlTemplate    =  'members/AddMemberEmail.html'
     addTxtTemplate     =  'members/addMemberEmail.txt'
-    context         =  Context({'body':"Hey! You need to go into the allScoutUser model in members/models and make sure each child class overwrites this context variable!"})   
 
     class Meta:
         abstract = True
@@ -63,6 +62,8 @@ class  allScoutUsers(models.Model):
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
+        context         =  Context({'account':self , 'create':True})   
+
         ''' If user account already exists assume it's the same person and relink the account
         to guardian/ scout members/ scout leaders  account. We can safely assume this as database forces
         all firstname and lastname combination to be unique together'''
@@ -80,7 +81,7 @@ class  allScoutUsers(models.Model):
 
         #If we have an email address and account is active then send update
         if self.email and accountActive:
-            msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
+            msg = self.createEmailMsg("User Account Created", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], context)
             msg.send()
         
         return user                  
@@ -93,13 +94,15 @@ class  allScoutUsers(models.Model):
             username = self.firstname +'_'+self.lastname
             username = username.lower()
             password = username.lower()
+            context  =  Context({'account':self , 'edit':True})   
+
             #Update user details and save
             user.username    = username.lower()
             user.set_password (password)
             user.save()
             #If we have an email send update
             if self.email:
-                msg = self.createEmailMsg("User Account Updated", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], self.context)
+                msg = self.createEmailMsg("User Account Updated", self.addTxtTemplate, self.addHtmlTemplate, [ self.email], context)
                 msg.send()
         
         return user
