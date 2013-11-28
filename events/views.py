@@ -10,7 +10,7 @@ from datetime import datetime
 @login_required
 def eventList(request):
     if Event.objects.all().count() > 0:
-        curEvents = Event.objects.filter(end__gte=datetime.date.today())
+        curEvents = Event.objects.filter(end__gte=datetime.today())
         table = EventsTable(curEvents)    
         RequestConfig(request).configure(table)
         return render(request, 'events/events.html', {'table': table, 'events':curEvents})
