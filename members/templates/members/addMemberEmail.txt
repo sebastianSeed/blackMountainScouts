@@ -1,2 +1,23 @@
-{{body}} 
-TXT VERSION
+
+    {% if edit %}
+    Hello {{account.firstname|title}} {{account.lastname|title}},<br>
+    
+        Your account at the Black Mountain Girl Guides http://blackmountaingirlguides.herokuapp.com has been updated 
+        as your name has been updated in our records. 
+        Your new login details are as follows:
+        Username : {{account.firstname}}_{{account.lastname}}<br>
+        Password : {{account.firstname}}_{{account.lastname}}<br>
+        If you wish to change your password please visit the site and use the "change password" link in the top right after logging in.<br>
+        Thank you
+    
+    
+    {% elif create %}
+    Hello {{account.firstname|title}} {{account.lastname|title}},<br>
+
+        A new user account has been created for you at the Black Mountain Girl Guides <a href=http://blackmountaingirlguides.herokuapp.com/> website </a>. <br>
+        Your new login details are as follows:<br>
+        Username : {{account.firstname}}_{{account.lastname}}<br>
+        Password : {{account.firstname}}_{{account.lastname}}<br>
+        If you wish to change your password please visit the site and use the "change password" link in the top right after logging in.<br>
+        Thank you
+    {% endif %}
