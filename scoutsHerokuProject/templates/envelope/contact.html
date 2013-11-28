@@ -1,13 +1,70 @@
-{% extends "admin/base_site.html" %}
-{% load i18n %}
-{% load url from future %}
+<!DOCTYPE html>
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% load envelope_tags %}
+{% block head %}
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+    	function initialize() {
+        	var map_canvas = document.getElementById('map_canvas');
+        	var map_options = {
+          	center: new google.maps.LatLng(-35.251874,149.118173),
+          	zoom: 18,
+          	mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+        	var map = new google.maps.Map(map_canvas, map_options)
+      	}
+		google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 
-{% block breadcrumbs %}
-    <div class="breadcrumbs"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></div>{% endblock %}
+	<style>
+		#contactcontent {
+				
+		}
+			
+		#contactcontent h3 {
+			color: #3e9cbf;
+			text-decoration:underline;
+		}
+			
+		#contactcontent p {
+			color:#686868;
+		}	
+		
+		.formMessage {color:blue;}
+		
+	</style>
+{% endblock %}
 
 {% block content %}
-    <h3 class="italic-title">{% trans "Thanks for spending some quality time with the Web site today." %}</h3>
 
-    <br>
-    <div class="f14">&nbsp; <a href="/accounts/login/?next=/admin/">{% trans 'Log in again' %}</a></div>
+
+	<div id="contactcontent" class="grid_8">
+				{% block messages %}
+			  {% if messages %}
+
+				{% for message in messages %}
+				<p class="formMessage">{{ message }}</p>
+
+				{% endfor %}
+			  {% endif %}
+			{% endblock messages %}<br/><br/>
+		<h3> Contact Us </h3>
+		<p>To contact the Black Mountain Girl Guide leaders
+		with inquires or question, please fill the form
+		below and one of the leaders will respond as soon
+		as possible.</p>
+		
+		{% render_contact_form %}		
+	</div>
+	
+	<div id="address" class="grid_5">
+		<h3>Address</h3>
+		<p>Black Mountain Girl Guide Hall, located
+		in Clianthus Street O'Connor</p>
+		<img src="{% static 'main/img/hall.jpg' %}"/>
+	</div>
+	
+	<div id="map_canvas" class=" grid_13"></div>
+
 {% endblock %}
