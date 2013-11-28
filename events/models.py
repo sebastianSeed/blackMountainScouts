@@ -45,7 +45,7 @@ class Event(models.Model):
             # Note all emails need context set here
             
             for destination in email_destination:
-                emailContext = Context({'event':self, 'update':True})
+                emailContext = Context({'event':self, 'edit':True})
                 #Render templates
                 text_content = plaintextTemplate.render(emailContext)
                 html_content = htmlTemplate.render(emailContext)
