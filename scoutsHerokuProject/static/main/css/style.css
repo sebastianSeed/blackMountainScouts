@@ -11,7 +11,6 @@ body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px;}
 }
 
 #login {
-	float:right;
 	margin-bottom:2px;
 }
 
@@ -62,15 +61,18 @@ h1 {
 	color: #000; 
 	background-color: #fff;
 	border-radius: 8px; 
+	width:160px;
 	} 
 	
 #sidebar {
 	width:160px;
 	padding-bottom: 100%;
 	background-color: #f9c618;
+	color:#191970;
 }
 
 #sideBlurb {
+	background-color: #f9c618;
 	margin: 0 auto;
 	width:150px;
 }
@@ -79,6 +81,10 @@ h1 {
 	font-size: 16px;
 	margin-top:5px;
 	text-align:center;
+	/*-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: purple;*/
 }	
 
 #sideText {
@@ -86,10 +92,48 @@ h1 {
 	text-align:center;
 }
 
+#sideLinks h4 {
+	text-align:center;
+	font-size:16px;
+}
+
+#sideLinks ul {
+	list-style:none;
+
+}
+
+#sideLinks a {
+	margin-left:3px;
+	background-color: #87CEEB;
+	border-radius: 8px; 
+} 
+
+#sideLinks a:hover { 
+	color: #000; 
+	background-color: #87CEEB;
+	border-radius: 8px; 
+} 
+
+#sideLinks {
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top:5px;
+	margin:0 auto;
+	width:140px;
+	background-color: #87CEEB; 
+	border:2px solid;
+	border-color:  #87CEEB;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	z-index: 10px;
+	font-size: 12px;		
+}
+
 #footer {
 	height:50px;
 	text-align: center;
-	font-size: 12px;
+	font-size: 10px;
 }
 #firstBlock {
 	margin-top: 20px;
