@@ -94,7 +94,8 @@
 
         <div class="box save-box">
 
-          {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+          {% block submit_buttons_bottom %}{% submit_row %}<br><button onclick="  window.history.back(); return false;"  class="btn btn-danger">Cancel</button>
+{% endblock %}
 
         </div>
 
@@ -135,7 +136,7 @@
             <ul id="suit_form_tabs" class="nav nav-tabs nav-tabs-suit" data-tab-prefix="suit-tab">
               {% for tab in adminform.model_admin.suit_form_tabs %}
                 <li><a href="#{{ tab.0 }}">{{ tab.1 }}</a></li>{% endfor %}
-            </ul>
+            </
           {% endif %}
         {% endblock %}
         <div class="tab-content tab-content-main">
