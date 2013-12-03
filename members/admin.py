@@ -4,7 +4,7 @@ Created on 07/09/2013
 @author: sebastian
 '''
 from django.contrib import admin
-from members.models import  scoutMember,guardian,scoutLeader,scoutGroups, scoutSubgroup
+from members.models import  scoutMember,guardian,scoutLeader,scoutGroups
 from django.utils.safestring import mark_safe
 from django.contrib.admin import ModelAdmin, SimpleListFilter
 from django.contrib import messages
