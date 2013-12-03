@@ -85,8 +85,6 @@ class scoutMemberAdmin(admin.ModelAdmin):
 admin.site.register(scoutMember,scoutMemberAdmin)
 admin.site.register(guardian,GuardianAdmin) 
 admin.site.register(scoutLeader,scoutLeaderAdmin)
-admin.site.register(scoutSubgroup) 
-
 admin.site.register(scoutGroups,scoutGroupAdmin) 
 
 
