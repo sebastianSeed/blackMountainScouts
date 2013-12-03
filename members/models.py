@@ -19,12 +19,18 @@ from django.core.urlresolvers import reverse
 class scoutGroups(models.Model):
     name        = models.CharField(max_length=50,unique = True)
     description = models.CharField(max_length=150)
-   
+
    #Function that defines how object shows up in admin ie the name 
     def __unicode__(self):
         return u'%s' % (self.name)
     class Meta:
         verbose_name ="Scout Group"
+
+class scoutSubgroup(scoutGroups):
+    parentGroup    = models.ManyToManyField(scoutGroups, default = None , null = True , blank = True ,verbose_name="Subgroups",related_name = 'parentGroup') 
+   #Function that defines how object shows up in admin ie the name 
+    def __unicode__(self):
+        return u'%s' % (self.name)
 
         
 
@@ -50,6 +56,12 @@ class  allScoutUsers(models.Model):
     #Templates for emails - can either write a whole bunch or use if statements to change wording both work -- if statements are cleaner
     addHtmlTemplate    =  'members/AddMemberEmail.html'
     addTxtTemplate     =  'members/addMemberEmail.txt'
+    #Title case all names before saving them  this prevents two users with same name
+    #but different case being saved
+    def clean(self):
+        self.firstname = self.firstname.title()
+        self.lastname  = self.lastname.title()
+
 
     class Meta:
         abstract = True
@@ -68,7 +80,7 @@ class  allScoutUsers(models.Model):
         to guardian/ scout members/ scout leaders  account. We can safely assume this as database forces
         all firstname and lastname combination to be unique together'''
         try:
-            user = User.objects.get(username = username )
+            user = User.objects.get(username__iexact = username )
         except  ObjectDoesNotExist:
             user = User.objects.create_user(username, '', password)          
           

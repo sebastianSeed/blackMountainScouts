@@ -4,7 +4,7 @@ Created on 07/09/2013
 @author: sebastian
 '''
 from django.contrib import admin
-from members.models import  scoutMember,guardian,scoutLeader,scoutGroups
+from members.models import  scoutMember,guardian,scoutLeader,scoutGroups, scoutSubgroup
 from django.utils.safestring import mark_safe
 from django.contrib.admin import ModelAdmin, SimpleListFilter
 from django.contrib import messages
@@ -57,6 +57,7 @@ class scoutLeaderAdmin(ModelAdmin):
 # 2) Removing the 'All" scouts group which system uses to send notifications for events
 #to all memebers 
 class scoutGroupAdmin(admin.ModelAdmin):
+
     #Protect scout group 'All' being deleted by system (always id 1 as generated with database )
     def save_model(self, request, obj, form, change):
         if obj.id == 1:
@@ -70,12 +71,13 @@ class scoutGroupAdmin(admin.ModelAdmin):
             return
         super(scoutGroupAdmin,self).delete_model(request, obj)
 
+
+
 class scoutMemberAdmin(admin.ModelAdmin):
     #Set filter horizontal for searchable list of parents in admin 
     filter_horizontal = ('parents' ,)
     exclude = ('userAccount' ,) 
     list_display = ('lastname','firstname','scoutGroup')
-
 
     
 
@@ -83,6 +85,8 @@ class scoutMemberAdmin(admin.ModelAdmin):
 admin.site.register(scoutMember,scoutMemberAdmin)
 admin.site.register(guardian,GuardianAdmin) 
 admin.site.register(scoutLeader,scoutLeaderAdmin)
+admin.site.register(scoutSubgroup) 
+
 admin.site.register(scoutGroups,scoutGroupAdmin) 
 
 
