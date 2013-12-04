@@ -24,7 +24,7 @@ class scoutGroups(models.Model):
     def __unicode__(self):
         return u'%s' % (self.name)
     class Meta:
-        verbose_name ="Guide Groups"
+        verbose_name ="Guide Group"
        
 
 ## Abstract base clase for scouts - holds utility functions for logins and email creation
