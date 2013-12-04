@@ -19,9 +19,9 @@ class GuardianAdmin(admin.ModelAdmin):
     #Hide user account field as this is set by system   
     exclude = ('userAccount' ,)
     list_display = ('lastname','firstname',)
-    readonly_fields = ('enrolled_scouts',)
+    readonly_fields = ('enrolled_guides',)
     #Read only field with names of enrolled scouts for a parent 
-    def enrolled_scouts(self,instance):
+    def enrolled_guides(self,instance):
         linkedScoutMembers = instance.scoutmember_guardians.all()  
         displayString      = ''
         for scout in linkedScoutMembers:
@@ -29,7 +29,7 @@ class GuardianAdmin(admin.ModelAdmin):
             displayString +=  "<a href= " + scout.getAdminUrl() + ">" + fullname + "</a> ,"
         mark_safe (displayString)    
         return displayString
-    enrolled_scouts.allow_tags = True
+    enrolled_guides.allow_tags = True
     
     def delete_view(self, request, object_id,extra_context=None):
         extra_context       = extra_context or {}
