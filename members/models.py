@@ -166,7 +166,7 @@ class scoutMember(allScoutUsers):
     
     
     parents       = models.ManyToManyField('guardian', related_name = 'scoutmember_guardians')
-    scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Scout group" ,default=DEFAULT_SCOUT_GROUP_ID,  on_delete=models.SET_DEFAULT) 
+    scoutGroup    = models.ForeignKey(scoutGroups , verbose_name="Guide group" ,default=DEFAULT_SCOUT_GROUP_ID,  on_delete=models.SET_DEFAULT) 
     
      
     def save(self, *args, **kwargs):                
