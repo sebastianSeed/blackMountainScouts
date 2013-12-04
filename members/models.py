@@ -42,7 +42,7 @@ class  allScoutUsers(models.Model):
     lastname  = models.CharField(max_length=15)
     email     = models.CharField(max_length=100, validators = [validate_email], blank = True)
     #TODO should phone be mandatory? I think so - users can also just enter 00000000
-    phone = models.IntegerField(
+    phone = models.BigIntegerField(
                                     validators=[RegexValidator(
                                                             r'^[0-9]{8,12}',
                                                             'Phone numbers must be 8-12 digits.',
@@ -221,14 +221,14 @@ class guardian(allScoutUsers):
                                            verbose_name='Post code',
                                             blank = True , null = True , 
                                          ) 
-    homePhone = models.IntegerField(
+    homePhone = models.BigIntegerField(
                                             validators=[RegexValidator(
                                                                     r'^[0-9]{8,12}',
                                                                     'Phone numbers must be 8-12 digits.',
                                                                     'Invalid Number'),
                                                        ],
                                                        verbose_name = "Home phone", ) 
-    workPhone = models.IntegerField(
+    workPhone = models.BigIntegerField(
                                         validators=[RegexValidator(
                                                                 r'^[0-9]{8,12}',
                                                                 'Phone numbers must be 8-12 digits.',
@@ -236,7 +236,7 @@ class guardian(allScoutUsers):
                                                    ],
                                                    verbose_name = "Work phone", 
                                                     blank = True , null = True,) 
-    mobilePhone = models.IntegerField(
+    mobilePhone = models.BigIntegerField(
                                         validators=[RegexValidator(
                                                                 r'^[0-9]{8,12}',
                                                                 'Phone numbers must be 8-12 digits.',
