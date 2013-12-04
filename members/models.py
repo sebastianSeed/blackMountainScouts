@@ -24,15 +24,8 @@ class scoutGroups(models.Model):
     def __unicode__(self):
         return u'%s' % (self.name)
     class Meta:
-        verbose_name ="Scout Group"
-
-class scoutSubgroup(scoutGroups):
-    parentGroup    = models.ManyToManyField(scoutGroups, default = None , null = True , blank = True ,verbose_name="Subgroups",related_name = 'parentGroup') 
-   #Function that defines how object shows up in admin ie the name 
-    def __unicode__(self):
-        return u'%s' % (self.name)
-
-        
+        verbose_name ="Guide Groups"
+       
 
 ## Abstract base clase for scouts - holds utility functions for logins and email creation
 ## Also holds common fields - DO NOT REMOVE fields as functions depend on these
@@ -67,7 +60,7 @@ class  allScoutUsers(models.Model):
         abstract = True
         #Records must have unique firstname and last name combo so we get unique usernames
         unique_together = ("firstname", "lastname")
-    
+
         #Generate username and password from firstname_lastname
         # combination
     def createUserLogin(self,superUserFlag = False , accountActive = True):
@@ -182,7 +175,11 @@ class scoutMember(allScoutUsers):
             self.userAccount = self.editUserLogin()
         else:
             self.userAccount = self.createUserLogin()
-        super(scoutMember, self).save(*args, **kwargs) 
+        super(scoutMember, self).save(*args, **kwargs)
+        
+        
+    class Meta:
+        verbose_name ="Guide Member"  
         
 
         
@@ -196,7 +193,10 @@ class scoutLeader(allScoutUsers):
             self.userAccount = self.createUserLogin(True)
                              
         # Call original save() method to do DB updates/inserts
-        super(scoutLeader, self).save(*args, **kwargs) 
+        super(scoutLeader, self).save(*args, **kwargs)
+        
+    class Meta:
+        verbose_name ="Guide Leader" 
         
         
 
@@ -245,8 +245,7 @@ class guardian(allScoutUsers):
                                                    verbose_name = "Mobile", 
                                                     blank = True , null = True,) 
     
-    
-    
+
 
 
     #Function to determine if deleting parent would result in scout member on system without any parent     
