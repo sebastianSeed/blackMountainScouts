@@ -2,6 +2,7 @@ BeautifulSoup==3.2.1
 Django==1.5.1
 Pillow==2.1.0
 Pillow-PIL==0.1dev
+South==0.8.4
 argparse==1.2.1
 boto==2.17.0
 dj-database-url==0.2.2
@@ -11,6 +12,7 @@ django-easy-maps==0.8.4
 django-envelope==0.7
 django-jsonfield==0.9.10
 django-mptt==0.5.5
+django-photologue==2.7
 django-s3-folder-storage==0.1
 django-storages==1.1.8
 django-suit==0.2.5
