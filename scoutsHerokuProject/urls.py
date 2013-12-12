@@ -12,10 +12,11 @@ whitelisted_apps = (
         'scoutsHerokuProject',
         'newsletter',
         'gallery',
+        'guideForms',
+        'photologue',
     )
 # #Custom discovery function registers only selected apps in admin 
 custom_discover (whitelisted_apps)
-
 
 urlpatterns = patterns('',
    url(r'^$', 'scoutsHerokuProject.views.home'),                   
@@ -26,6 +27,9 @@ urlpatterns = patterns('',
    url(r'^events/$',  'events.views.eventList'  ),
    url(r'^events/id=(?P<id>\d{1,10})/$', 'events.views.eventDetail', name = 'eventMap'),
    url(r'^newsletters/$',  'newsletter.views.newsletterList'  ),
+   url(r'^forms/$',  'guideForms.views.formList'  ),
+   url(r'^photologue/', include('photologue.urls')),
+
 #    url(r'^newsletters/id=(?P<id>\d{1,4})$', 'newsletter.views.newsletterDetail'),
 
    url(r'^about/$',  'scoutsHerokuProject.views.aboutView' ),

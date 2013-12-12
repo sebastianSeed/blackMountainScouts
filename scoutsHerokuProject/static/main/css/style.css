@@ -42,12 +42,12 @@ h1 {
 	background: -ms-linear-gradient(top, #12a0ed, #0043be);
 	/* Opera 11.10+ */
 	background: -o-linear-gradient(top, #12a0ed, #0043be);
-	font-size: 16px;
+	font-size: 14px;
 	} 
  
 #navbar ul li {  
 	display: inline; 
-	margin: auto 5px auto 5px;
+	margin: auto 2px auto 2px;
 	color: #fff; 
 	} 
  

@@ -111,11 +111,6 @@ class Event(models.Model):
         for selectedScoutMember in scoutMembersList:             
             eventScoutGroup = self.scoutGroup
             if   eventScoutGroup.name == selectedScoutMember.scoutGroup.name or eventScoutGroup.name == 'All':
-                # scout member emails and accounts disabled until client confirmation
-#                 if selectedScoutMember.email:
-#                     email_destination.append(selectedScoutMember.email) 
-#                     print email_destination
-       #Get all parents for selected scout member and append to email list
                 parents  = selectedScoutMember.parents.all()
                 for parent in parents:            
                     if parent.email:

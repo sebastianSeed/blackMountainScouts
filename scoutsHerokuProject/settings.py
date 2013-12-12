@@ -25,7 +25,7 @@ if 'ONHEROKU' in os.environ:
     STATIC_ROOT = "/%s/" % STATIC_S3_PATH
     STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
+    AWS_QUERYSTRING_AUTH = False
 #Local development settings  
 else:
     DEBUG = True
@@ -188,7 +188,10 @@ INSTALLED_APPS = (
     'envelope',
     'gallery',
     'django_tables2',
-    #'django_google_maps',
+    'guideForms',
+    #Gallery add on
+    'photologue',
+     'south',
 
  
 )
