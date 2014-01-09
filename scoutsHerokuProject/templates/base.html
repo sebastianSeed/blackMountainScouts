@@ -1,0 +1,92 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<link rel="stylesheet" type="text/css" href="{% static 'main/css/960_16_col.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+		<script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
+		<script src="{%static 'main/js/jquery.slides.min.js' %}"></script>
+		{% block head %}
+			<title>Black Mountain Girl Guides - Home</title>
+		{% endblock head %}
+	</head>
+	<body>
+		<div id="siteBody" class="container_16">
+			
+			<img src="{% static 'main/img/logo.gif' %}" id = 'logo' class="grid_3"/>
+			
+			<div id = 'header' class="grid_13">
+								
+				<h1 class="grid_13">Black Mountain Girl Guides</h1>
+				<h5 id="login" class="grid_13">
+					{% if user.is_authenticated %}
+	  					Welcome {{request.user}}! ( <a href="/accounts/logout/">Log out </a> | <a href="/admin/password_change/">Change Password</a> )
+					{% else %}
+    					<a href='/accounts/login/'>User Login</a>
+					{% endif %}
+				</h5>
+				<div id = 'navbar' class="grid_13">
+					<ul>
+						<li><a href="/"><b>Home</b></a></li>
+						<li>|</li>
+						<li><a href="/events/"><b>Events</b></a></li>
+						<li>|</li>
+						<li><a href="/newsletters/"><b>Newsletter</b></a></li>
+						<li>|</li>
+						<li><a href='/contactForm/'><b>Contact Us</b></a></li>
+						<li>|</li>
+					    <li><a href='/forms/'><b>Forms</b></a></li>
+						<li>|</li>
+						<li><a href='/about/'><b>About</b></a></li>
+						<li>|</li>
+						<li><a href='/photologue/'><b>Gallery</b></a></li>
+						<li>|</li>
+					{% if user.is_superuser %}
+					    <li><a href="/admin/"><b>Admin</b></a></li>
+					    <li>|</li>
+					{% endif %}
+	
+					</ul>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			
+			<div id = 'sidebar' class="grid_3">
+				<div id='sideBlurb'>
+					<h4 id="sideHead">The Black Mountain Girl Guides</h4>
+					<br />
+				<p id="sideText"> The Black Mountain Girl Guides is part of the Girl guides Australia organisation  
+				to help encourage and development young girls to become confident, learn and to have
+				fun. ACTUAL TEXT AWAITING FROM CLIENT</p>
+				</div>
+				<br />
+				<div id="sideLinks">
+					<h4>Useful Links</h4>
+						<a href="http://www.girlguides.org.au/public/attach/UniformBooklet.pdf">Girl Guides Uniform Booklet</a>
+						<br />
+						<a href="http://www.girlguides-nswact.org.au/index.php">Girl Guides Association</a>
+						<br />
+						<a href="http://www.girlguides.org.au">Girl Guides NSW & ACT</a>
+						<br />
+						<a href="http://www.wagggsworld.org/en/home">WAGGGS</a>
+						<br />
+						<a href="http://www.wagggsworld.org/en/world/centres">World Centres</a>
+				</div>
+			</div>
+			
+			<div id = 'mainContent' class="grid_13">
+				{% block content %}
+			    
+			    {% endblock content %}
+			</div>
+			    
+			<div id = 'footer' class="grid_16">
+				<a href='/contactForm/'>Contact us</a>
+				<p>Black Mountain Girl Guides</p>
+			</div>
+		</div>               
+    </body>
+    {% block outsideBody %}
+    
+    {% endblock outsideBody %}
+</html>
