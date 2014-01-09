@@ -30,6 +30,8 @@ urlpatterns = patterns('',
    url(r'^forms/$',  'guideForms.views.formList'  ),
    url(r'^photologue/', include('photologue.urls')),
 
+   url(r'^photologue/', include('photologue.urls')),
+
 #    url(r'^newsletters/id=(?P<id>\d{1,4})$', 'newsletter.views.newsletterDetail'),
 
    url(r'^about/$',  'scoutsHerokuProject.views.aboutView' ),

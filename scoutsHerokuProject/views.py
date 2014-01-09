@@ -34,5 +34,9 @@ def aboutView(request):
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
 
-
+@login_required
+def checkLogon(request):
+    return redirect('/photologue/')
+    
+    
 

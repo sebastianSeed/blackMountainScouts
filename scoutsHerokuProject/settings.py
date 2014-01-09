@@ -144,10 +144,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'scoutsHerokuProject.middleware.LoginRequiredMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+LOGIN_EXEMPT_URLS = (    '^$',           
+   '^accounts/login/',
+   '^contactForm/',
+   '^forms/',
+   '^about/',
+   )
 
 
 ROOT_URLCONF = 'scoutsHerokuProject.urls'
