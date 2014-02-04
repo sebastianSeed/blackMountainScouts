@@ -25,29 +25,23 @@
     					<a href='/accounts/login/'>User Login</a>
 					{% endif %}
 				</h5>
-				<div id = 'navbar' class="grid_13">
-					<ul>
-						<li><a href="/"><b>Home</b></a></li>
-						<li>|</li>
-						<li><a href="/events/"><b>Events</b></a></li>
-						<li>|</li>
-						<li><a href="/newsletters/"><b>Newsletter</b></a></li>
-						<li>|</li>
-						<li><a href='/contactForm/'><b>Contact Us</b></a></li>
-						<li>|</li>
-					    <li><a href='/forms/'><b>Forms</b></a></li>
-						<li>|</li>
-						<li><a href='/about/'><b>About</b></a></li>
-						<li>|</li>
-						<li><a href='/photologue/'><b>Gallery</b></a></li>
-						<li>|</li>
-					{% if user.is_superuser %}
-					    <li><a href="/admin/"><b>Admin</b></a></li>
-					    <li>|</li>
-					{% endif %}
-	
+				<nav>
+					<ul class="grid_13">
+						<li> <b><a href="/">Home</a></b> </li>
+						<li> <b><a href="/events/">Events</a></b> </li>
+						<li> <b><a href="/newsletters/">Newsletter</a></b> </li>						
+						<li> <b><a href='/photologue/'>Gallery</a></b> </li>
+						<li> <b><a href='/about/'>About</a></b>
+							<ul>
+								<li> <b><a href='/contactForm/'>Contact Us</a></b> </li>
+								<li> <b><a href='/forms/'>Forms</a></b> </li>
+							</ul>
+						</li>
+						{% if user.is_superuser %}
+						    <li><b><a href="/admin/">Admin</a></b></li>
+						{% endif %}
 					</ul>
-				</div>
+				</nav>
 			</div>
 			<div style="clear:both"></div>
 			

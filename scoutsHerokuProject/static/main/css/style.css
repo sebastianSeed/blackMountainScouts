@@ -1,5 +1,5 @@
 /*Style Reset*/
-body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px;} 
+body, div, h1, h2, h3, h4, h5, h6, p, img {margin:0px; padding:0px; border:0px} 
 
 #logo {
 	padding:10px 0px 10px 0px;
@@ -20,18 +20,18 @@ h1 {
 
 #siteBody {
 	margin: 0 auto;
-/*	margin-left: auto;
-	margin-right: auto;*/
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: #ffffff;
 }
 
-#navbar { 
-	margin 0 auto;
-	height: 50px;
-	list-style-type: none; 
-	text-align: center; 
-	background-color: #12a0ed; 
+nav {
+	margin: 0 auto; 
+	text-align: center;
+}
+
+nav ul {
+	/*padding: 15px;*/
+	background: #12a0ed;
 	/* Safari 4-5, Chrome 1-9 */
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#12a0ed), to(#0043be));
 	/* Safari 5.1, Chrome 10+ */
@@ -42,28 +42,68 @@ h1 {
 	background: -ms-linear-gradient(top, #12a0ed, #0043be);
 	/* Opera 11.10+ */
 	background: -o-linear-gradient(top, #12a0ed, #0043be);
+	position: relative;
+	display: inline-table;
+	list-style: none;
+}
+ 
+nav ul li {  
+	text-align: center;
+	list-style: none;
+	float:left;
+} 
+
+nav ul li: hover {
+	color: #000;
+}
+
+nav ul li:hover > ul {
+	display:block;
+}
+
+nav ul li a { 
+	display: block;
 	font-size: 14px;
-	} 
- 
-#navbar ul li {  
-	display: inline; 
-	margin: auto 2px auto 2px;
-	color: #fff; 
-	} 
- 
-#navbar ul li a { 
-	text-decoration: none; 
-	padding: .2em 1em; 
-	color: #fff; 
-	} 
- 
-#navbar ul li a:hover { 
-	color: #000; 
-	background-color: #fff;
-	border-radius: 8px; 
-	width:160px;
-	} 
-	
+	text-decoration: none;
+	padding: 15px 25px;
+	color: #fff;
+}
+
+nav ul li:hover a {
+	color: #fff;
+	background-color: #0e79b3;
+}
+
+nav ul:after {
+	content: ""; clear: both; display: block;
+}
+
+nav ul ul {
+	display:none;
+}
+
+nav ul ul {
+	background: #12a0ed; 
+	border-radius: 0px;
+	padding:0;
+	position: absolute; 
+	top: 100%;
+}
+
+	nav ul ul li {
+		float:none;
+		border-top: 1px solid #06496b;
+		border-bottom: 1px solid #06496b;
+		position: relative;
+	}
+		#nav ul ul li a {
+			padding: 15px 25px;
+			color: #0e79b3;
+		}	
+			nav ul ul li a:hover {
+				background: #06496b;
+			}
+
 #sidebar {
 	width:160px;
 	padding-bottom: 100%;
