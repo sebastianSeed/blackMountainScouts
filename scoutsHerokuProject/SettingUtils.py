@@ -6,6 +6,8 @@ Created on 17/09/2013
 
 from members.models import scoutLeader
 
+# Function to only display whitelisted apps in the admin page , this 
+# was created to prevent third party apps showing in user facing AdminSite
 def custom_discover(whitelist):
     import copy
     from django.conf import settings

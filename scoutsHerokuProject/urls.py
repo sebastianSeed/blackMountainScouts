@@ -10,8 +10,8 @@ whitelisted_apps = (
         'members',
         'easy_maps',
         'scoutsHerokuProject',
+        'slideShow',
         'newsletter',
-        'gallery',
         'guideForms',
         'photologue',
     )

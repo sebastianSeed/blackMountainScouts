@@ -11,14 +11,14 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from events.models import Event
-from gallery.models import Gallery 
+from slideShow.models import slideShow
 
 
 
 def home(request):
     template     = loader.get_template('main/home.html') 
     #empty context placeholder
-    images = Gallery.objects.filter(public=True)
+    images = slideShow.objects.all()
     events = Event.objects.all()    
     context = RequestContext(request, {'events':events , 'publicImages':images})
     return HttpResponse(template.render(context))
