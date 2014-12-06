@@ -14,8 +14,8 @@ DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
 
 #New AMAZON S3 Settings -- Harcoded for 1st test
 AWS_STORAGE_BUCKET_NAME = 'blackmountainstorage'
-AWS_ACCESS_KEY_ID =  os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY_ID']
+AWS_ACCESS_KEY_ID =  os.environ['AWS_SECRET_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
