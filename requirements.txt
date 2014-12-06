@@ -12,7 +12,8 @@ django-easy-maps==0.8.4
 django-envelope==0.7
 django-jsonfield==0.9.10
 django-mptt==0.5.5
-django-photologue==2.7
+#django-photologue==2.7
+git+git://github.com/petry/django-photologue.git
 django-s3-folder-storage==0.1
 django-storages==1.1.8
 django-suit==0.2.5
