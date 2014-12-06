@@ -33,7 +33,6 @@ MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'scoutsHerokuProject.customStorages.MediaStorage'
 
 
-
 #Contact form categories for message
 ENVELOPE_CONTACT_CHOICES = (
     ('',    u"Choose"),
@@ -246,10 +245,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-from SettingUtils import getScoutLeaders
-ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
-ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly.'
-ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please try again later' 
+# from SettingUtils import getScoutLeaders
+# ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
+# ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly.'
+# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please try again later' 
 
 LOGOUT_URL ='/'  
   
