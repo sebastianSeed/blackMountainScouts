@@ -63,7 +63,7 @@ class  allScoutUsers(models.Model):
 
         #Generate username and password from firstname_lastname
         # combination
-    def createUserLogin(self,superUserFlag = False , accountActive = True):
+    def createUserLogin(self,superUserFlag = False , accountActive = False):
         username = self.firstname +'_'+self.lastname
         username = username.lower()
         password = username.lower()
@@ -174,7 +174,7 @@ class scoutMember(allScoutUsers):
         if self.pk:
             self.userAccount = self.editUserLogin()
         else:
-            self.userAccount = self.createUserLogin()
+            self.userAccount = self.createUserLogin(superUserFlag = False , accountActive = False)
         super(scoutMember, self).save(*args, **kwargs)
         
         
@@ -190,7 +190,7 @@ class scoutLeader(allScoutUsers):
             self.userAccount = self.editUserLogin()
         #creating new record
         else:
-            self.userAccount = self.createUserLogin(True)
+            self.userAccount = self.createUserLogin(superUserFlag = True , accountActive = True)
                              
         # Call original save() method to do DB updates/inserts
         super(scoutLeader, self).save(*args, **kwargs)
@@ -268,7 +268,7 @@ class guardian(allScoutUsers):
             self.userAccount = self.editUserLogin()
         #creating new entry
         else:
-            self.userAccount = self.createUserLogin(False)
+            self.userAccount = self.createUserLogin(superUserFlag = False,  accountActive = True)
                    
         # Call original save() method to do DB updates/inserts
         super(guardian, self).save(*args, **kwargs) 
