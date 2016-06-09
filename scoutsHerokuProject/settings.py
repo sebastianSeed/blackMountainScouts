@@ -1,6 +1,6 @@
 # Django settings for scoutsHerokuProject project.
-import os 
-
+import os
+import dj_database_url
 
 
 #Production settings for email and file storages
@@ -70,7 +70,7 @@ DATABASES = {
 
 # If we are on heroku then this url will reflect path to heroku db 
 #Otherwise it will default to local system - will need to change per dev enviroment - path must exist
-import dj_database_url
+
 DATABASES['default'] =  dj_database_url.config(default='sqlite:///'+os.path.join(PROJECT_PATH, 'scouts.db'))
 
 
