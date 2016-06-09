@@ -5,17 +5,17 @@ import dj_database_url
 
 #Production settings for email and file storages
 # Depends on being run in heroku with environment variables set correctly
-EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
 EMAIL_HOST= 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
 DEFAULT_FROM_EMAIL = 'donotreply@BlackMountainScouts.com'
 
 #New AMAZON S3 Settings -- Harcoded for 1st test
 AWS_STORAGE_BUCKET_NAME = 'blackmountainstorage'
-AWS_ACCESS_KEY_ID =  os.environ['AWS_SECRET_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_ACCESS_KEY_ID =  os.environ.get('AWS_SECRET_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
@@ -47,37 +47,16 @@ SUIT_CONFIG = {
 }
 
 ADMINS = (
-     ('seb', 'sebas.home1@gmail.com'),
+    ('seb', 'sebas.home1@gmail.com'),
+    ('Paul', 'mrpaultruong@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-
-# Place holder for local DB to keep django happy
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME':    os.path.join(PROJECT_PATH, 'guides.db'),  # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
-
-# If we are on heroku then this url will reflect path to heroku db 
-#Otherwise it will default to local system - will need to change per dev enviroment - path must exist
-
-DATABASES['default'] =  dj_database_url.config(default='sqlite:///'+os.path.join(PROJECT_PATH, 'scouts.db'))
-
-
-#Redirect to home page / Index page after login
 LOGIN_REDIRECT_URL = '/'
 #Note you can't use reverse url lookup here as settings is loaded before URLs
-
 
 TIME_ZONE = 'Australia/Sydney'
 LANGUAGE_CODE = 'en-us'
@@ -247,14 +226,10 @@ ALLOWED_HOSTS = ['*']
 # from SettingUtils import getScoutLeaders
 # ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
 # ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly.'
-# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please try again later' 
+# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please 
+# try again later' 
 
 LOGOUT_URL ='/'  
-  
-######################
-#####   SETTINGS THAT MAY NOT BE REQUIRED  - requires test
-####
-##########################
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
@@ -263,7 +238,6 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
                  os.path.join(PROJECT_PATH, 'templates')
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
  )
