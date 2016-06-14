@@ -108,7 +108,7 @@ MIDDLEWARE_CLASSES = (
 
 
 # Pages that are viewable by public / do not require login
-LOGIN_EXEMPT_URLS = (    '^$',           
+LOGIN_EXEMPT_URLS = (    '^$',
    '^accounts/login/',
    '^contactForm/',
    '^forms/',
@@ -226,10 +226,10 @@ ALLOWED_HOSTS = ['*']
 # from SettingUtils import getScoutLeaders
 # ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
 # ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly.'
-# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please 
-# try again later' 
+# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please
+# try again later'
 
-LOGOUT_URL ='/'  
+LOGOUT_URL ='/'
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
@@ -237,7 +237,7 @@ STATICFILES_DIRS = (
 
 
 TEMPLATE_DIRS = (
-                 os.path.join(PROJECT_PATH, 'templates')
+    os.path.join(PROJECT_PATH, '../templates/')
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
- )
+)

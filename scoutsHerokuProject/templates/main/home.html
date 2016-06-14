@@ -2,72 +2,28 @@
 {% load staticfiles %}
 
 {% block head %} <!-- Head -->
-<script>
-		$(function(){
-			$("#slides").slidesjs({
-		    	width: 600,
-		        height: 300
-		    });
-		});
-</script> 
-	<style>
-		.slidesjs-pagination {
-				margin: 5px 5px 5px 5px;
-			    float: right;
-			    list-style: none;
-			    display:none;
-			}
-			#slides .slidesjs-navigation {
-				margin-top:3px;
-			}
-			
-			#slides .slidesjs-previous {
-				margin-right: 5px;
-				float: left;
-			}
-			
-			#slides .slidesjs-next {
-				margin-right: 5px;
-				float: left;
-			}
-  			#slides {
-				margin-top: 5px;
-			}
-	</style>
 	<title>Black Mountain Girl Guides - Home</title>
 {% endblock head %} <!-- Head -->
 
 {% block content %}
-	<div id="slides" class="grid_13">
-		{% for image in publicImages %}
-	    	<img src = "{{MEDIA_URL}}{{image.image}}" height="400px" width="600px">
-	    {% empty %}
-	    	Please, Add images through Admin Page
-		{% endfor %}
-		<!--<a href="#" class="slidesjs-previous slidesjs-navigation">Back</a>
-		<a href="#" class="slidesjs-next slidesjs-navigation">Next</a> -->
-	</div>
 
-	<div id="firstBlock" class="grid_13">
-		<h4>Girl Guides NSW & ACT information</h4>
-		<p> Girl Guides Australia is part of a world-wide voluntary organisation which promotes and 
-			encourages the development of girls and women. Our Mission is to enable girls and young 
-			women to grow into confident, self respecting, responsible community members. Girls and 
-			women over the age of 5 are invited to join us. The Promise is a personal commitment 
-			you make to become a Guide. It is about yourself, personal development, your own spiritual 
-			journey and developing your value system. It is about what you do for others - the 
-			commitment to help others and a responsibility to country. The Guide Law gives you guidance 
-			and a code to live by as you strive to put your Promise into action.The Promise and Law underpins 
-			everything you do as a Guide: no matter what activity or challenge. It will enable you to 
-			grow into a confident, self-respecting, responsible community member.
-			<br />
-			For more information <a href="http://www.girlguides-nswact.org.au/about/?sid=6da09f4e303712a3325d574df553d774">Click here</a></p>
-		</div>
-
-<!--	{% if request.user.is_superuser %}
-		<a href='admin'> Admin Link </a><br>
-	{% else %}
-		<p> You are not logged in as superuser so hiding admin link - go to user login and login as admin to see it</p>
-	{% endif %} -->
-	
+	<section class="">
+		<h2>Our Mission</h2>
+        	<p> Part of Girl Guides Australia, the Black Mountain Girl Guides mission is to encourage growth and development in girls and young women to into confident,responsible and self respecting members of the community.
+        	</p>
+	</section>
+	<section>
+		<h2>What's On</h2>
+        <h3>National and State Events</h3>
+        <ul>
+            <li>Girl Guides biscuit Competitions 2016</li>
+            <li>Centenary of Service 1915- 2015</li>
+        </ul>
+        <h3>International Events</h3>
+        <ul>
+            <li>Spring 2016 Volunteers</li>
+            <li>Poacher 2017</li>
+            <li>WS 2017 Scout and Guide Internation Camp</li>
+        </ul>
+	</section>
 {% endblock %}
