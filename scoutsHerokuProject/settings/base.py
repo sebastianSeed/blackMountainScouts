@@ -1,7 +1,5 @@
 # Django settings for scoutsHerokuProject project.
 import os
-import dj_database_url
-
 
 #Production settings for email and file storages
 # Depends on being run in heroku with environment variables set correctly
@@ -22,11 +20,6 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
 # We also use it in the next setting.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-STATICFILES_LOCATION = 'static'
-STATICFILES_STORAGE = 'scoutsHerokuProject.customStorages.StaticStorage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-
 
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
@@ -90,7 +83,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 # Middleware for various tasks including forcing user logon
@@ -108,25 +101,21 @@ MIDDLEWARE_CLASSES = (
 
 
 # Pages that are viewable by public / do not require login
-LOGIN_EXEMPT_URLS = (    '^$',
-   '^accounts/login/',
-   '^contactForm/',
-   '^forms/',
-   '^about/',
-   )
-
+LOGIN_EXEMPT_URLS = ('^$',
+                     '^accounts/login/',
+                     '^contactForm/',
+                     '^forms/',
+                     '^about/',
+                    )
 
 ROOT_URLCONF = 'scoutsHerokuProject.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'scoutsHerokuProject.wsgi.application'
 
-
-# Settings for map application starting location , this is used when recording events 
+# Settings for map application starting location , this is used when recording events
 # and on the about us page
 EASY_MAPS_CENTER = (-41.3, 32)
-
-
 
 INSTALLED_APPS = (
 #Suit is modern admin theme
@@ -159,26 +148,21 @@ INSTALLED_APPS = (
     'django_tables2',
     #Gallery add on
     'photologue',
-     'south',
+    'south',
 )
 
 
 # 1st entry is Suit admin theme config
 TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.core.context_processors.request',
-  'django.contrib.auth.context_processors.auth',
-  'django.core.context_processors.i18n',
-  'django.core.context_processors.request',
-  'django.core.context_processors.media',
-  'django.core.context_processors.static',
-  'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
 
-  ) # Optional
-
-
-
-# 
-
+) # Optional
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -209,12 +193,6 @@ LOGGING = {
     }
 }
 
-
-
-
-
-
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -229,15 +207,15 @@ ALLOWED_HOSTS = ['*']
 # ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please
 # try again later'
 
-LOGOUT_URL ='/'
+LOGOUT_URL = '/'
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static'),
+    os.path.join(PROJECT_PATH, '../static'),
 )
 
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH, '../templates/')
+    os.path.join(PROJECT_PATH, '../templates/'),
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )

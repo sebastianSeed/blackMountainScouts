@@ -12,3 +12,6 @@ DATABASES = {
 }
 
 DEBUG = 'TRUE'
+
+STATICFILES_LOCATION = 'static'
+STATIC_URL = '/static/'
