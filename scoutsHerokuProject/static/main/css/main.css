@@ -2,7 +2,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   margin: 0 auto;
-  min-width: 940px; }
+  /*     min-width: 940px; */ }
 
 header {
   height: 90px;
@@ -44,11 +44,15 @@ h1 {
 
 nav {
   display: block; }
-  nav ul {
+  nav ul.topnav {
     list-style: none;
     float: right;
     margin-top: 20px;
-    background-color: #2466af; }
+    background-color: #2466af;
+    padding: 0;
+    overflow: hidden; }
+    nav ul.topnav li.icon {
+      display: none; }
   nav li {
     float: left;
     font-weight: 600; }
@@ -102,5 +106,27 @@ footer {
   footer .siteMap {
     padding-bottom: 5px;
     font-size: 1.3em; }
+
+@media screen and (max-width: 930px) {
+  ul.topnav li {
+    display: none; }
+
+  nav ul.topnav li.icon {
+    float: right;
+    display: inline-block; }
+
+  ul.topnav.responsive {
+    position: relative; }
+
+  ul.topnav.responsive li.icon a {
+    text-align: right; }
+
+  ul.topnav.responsive li {
+    float: none;
+    display: inline; }
+
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left; } }
 
 /*# sourceMappingURL=main.css.map */
