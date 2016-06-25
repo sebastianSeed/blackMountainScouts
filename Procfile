@@ -1,3 +1,3 @@
-web: gunicorn scoutsHerokuProject.wsgi
+web: gunicorn girlGuidesProject.wsgi
 
 
