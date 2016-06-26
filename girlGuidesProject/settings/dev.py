@@ -10,7 +10,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-
-DEBUG = True
+DEBUG = 'TRUE'
+STATICFILES_LOCATION = 'static'
 STATIC_URL = '/static/'
-#add debug toolbar for dev

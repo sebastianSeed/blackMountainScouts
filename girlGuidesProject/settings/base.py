@@ -3,7 +3,6 @@ import os
 import dj_database_url
 
 #Settings path is the current settings folder e.g. /mnt/project/girlGuidesProject/settings
-#Project path is the application directory above this eg /mnt/project/girlGuidesProject
 SETTINGS_PATH = os.path.dirname(os.path.abspath(__file__))
 PROJECT_PATH = (os.path.split(SETTINGS_PATH))[0]
 
@@ -99,8 +98,7 @@ WSGI_APPLICATION = 'girlGuidesProject.wsgi.application'
 
 ROOT_URLCONF = 'girlGuidesProject.urls'
 
-# Settings for map application starting location , this is used when recording events
-# and on the about us page
+# Settings for map application starting location , this is used when recording events and on the about us page
 EASY_MAPS_CENTER = (-41.3, 32)
 
 INSTALLED_APPS = (
@@ -190,5 +188,20 @@ ALLOWED_HOSTS = ['*']
 # ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly.'
 # ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please
 # try again later'
+<<<<<<< HEAD
 
 LOGOUT_URL = '/'
+=======
+
+LOGOUT_URL = '/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, '../static'),
+)
+
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH, '../templates/'),
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)

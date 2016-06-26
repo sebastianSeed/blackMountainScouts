@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="{% static 'main/css/main.css/' %}" type="text/css" >
 		<script src="{%static 'main/js/jquery-2.0.3.min.js' %}"></script>
 		<script src="{%static 'main/js/jquery.slides.min.js' %}"></script>
+        <script src="{%static 'main/js/main.js' %}"></script>
 		{% block head %}
 			<title>Black Mountain Girl Guides Australia</title>
 		{% endblock head %}
@@ -28,7 +29,10 @@
                     {% endif %}
                 </h5>
                 <nav>
-                    <ul class="grid_13">
+                    <ul class="topnav">
+                        <li class="icon">
+        					<a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+                        </li>
                         <li><a href="/">HOME</a></li>
                         <li><a href="/events/">WHAT'S ON</a></li>
                         <li><a href="/photologue/">GALLERY</a></li>

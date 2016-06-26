@@ -1,0 +1,132 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin: 0 auto;
+  /*     min-width: 940px; */ }
+
+header {
+  height: 90px;
+  padding: 0 28px;
+  font-size: 0.7em; }
+  header .nav_login_container {
+    padding: 0;
+    float: right; }
+
+h1 {
+  color: #2466af;
+  font-size: 1.02em;
+  margin-left: 15px;
+  float: left; }
+  h1 p {
+    padding: 0px;
+    margin: 0px;
+    letter-spacing: 3px; }
+  h1 .ausHText {
+    letter-spacing: 5px;
+    margin: 10px 0px 10px 0px; }
+
+.logo {
+  height: inherit;
+  width: 25%;
+  float: left;
+  background-image: url(../../img/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.logo_title {
+  width: 260px;
+  float: left;
+  height: inherit; }
+
+.login {
+  float: right; }
+
+nav {
+  display: block; }
+  nav ul.topnav {
+    list-style: none;
+    float: right;
+    margin-top: 20px;
+    background-color: #2466af;
+    padding: 0;
+    overflow: hidden; }
+    nav ul.topnav li.icon {
+      display: none; }
+  nav li {
+    float: left;
+    font-weight: 600; }
+  nav a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #fff; }
+
+.photos {
+  height: 445px;
+  background-image: url(https://www.girlguides-nswact.org.au/images/Slides/2.jpg);
+  background-size: cover; }
+
+.column1, .column2 {
+  width: 48%;
+  margin: 1%;
+  float: left; }
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  height: 565px;
+  padding-top: 25px; }
+
+.mainContent {
+  background-image: url(../../img/footer.svg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain; }
+
+footer {
+  margin: 0 auto;
+  width: 80%; }
+  footer .column1 {
+    float: none;
+    font-size: 0.9em;
+    padding-bottom: 25px; }
+  footer p {
+    text-align: center;
+    font-size: 0.5em;
+    color: #fff;
+    padding: 0px; }
+  footer h4 {
+    color: #15365a;
+    margin: 0px;
+    font-weight: 500; }
+  footer a {
+    color: #fbaa30;
+    font-size: 0.8em; }
+  footer .siteMap {
+    padding-bottom: 5px;
+    font-size: 1.3em; }
+
+@media screen and (max-width: 930px) {
+  ul.topnav li {
+    display: none; }
+
+  nav ul.topnav li.icon {
+    float: right;
+    display: inline-block; }
+
+  ul.topnav.responsive {
+    position: relative; }
+
+  ul.topnav.responsive li.icon a {
+    text-align: right; }
+
+  ul.topnav.responsive li {
+    float: none;
+    display: inline; }
+
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left; } }
+
+/*# sourceMappingURL=main.css.map */
