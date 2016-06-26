@@ -1,0 +1,132 @@
+$main-blue: #2466af; $main-yellow: #fbaa30; $dark-blue: #15365a;
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:20px;
+    margin:0 auto;
+    min-width: 940px;
+}
+
+header {
+    height:90px;
+    padding:0 28px;
+    font-size:0.7em;
+    
+    .nav_login_container {
+        padding:0;
+        float:right;
+    }
+}
+
+h1 {
+    color: $main-blue;
+    font-size:1.02em;
+    margin-left: 15px;
+    float: left;
+    p {
+        padding: 0px;
+        margin: 0px;
+        letter-spacing: 3px;
+    }
+    .ausHText {
+        letter-spacing: 5px;
+        margin: 10px 0px 10px 0px;
+    }
+}
+.logo {
+    height: inherit;
+    width:25%;
+    float: left;
+    background-image: url(../../img/logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logo_title {
+    width:260px;
+    float: left;
+    height: inherit;
+}
+
+.login {
+    float:right;
+}
+nav {
+    display: block;
+
+    ul {
+        list-style: none;
+        float:right;
+        margin-top: 20px;
+        background-color:$main-blue;
+    }
+
+    li {
+        float:left;
+        font-weight: 600;
+    }
+
+    a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+        color:#fff;
+    }
+}
+
+.photos {
+    height:445px;
+    background-image:url(https://www.girlguides-nswact.org.au/images/Slides/2.jpg);
+    background-size: cover;
+}
+
+.column1, .column2 {
+    width:48%;
+    margin:1%;
+    float:left;
+}
+
+.container {
+    width:80%;
+    margin:0 auto;
+    height:565px;
+    padding-top: 25px;
+}
+
+
+.mainContent {
+        background-image: url(../../img/footer.svg);
+        background-repeat:no-repeat;
+        background-position: bottom;
+        background-size: contain;
+}
+
+footer {
+    margin:0 auto;
+    width: 80%;
+    .column1 {
+        float:none;
+        font-size: 0.9em;
+        padding-bottom: 25px;
+    }
+    p {
+        text-align:center;
+        font-size:0.5em;
+        color:#fff;
+        padding:0px; 
+    }
+    h4 {
+        color:$dark-blue;
+        margin: 0px;
+        font-weight: 500;
+    }
+    a {
+        color:$main-yellow;
+        font-size: 0.8em;
+    }
+    .siteMap {
+        padding-bottom: 5px;
+        font-size: 1.4em;
+    }
+}

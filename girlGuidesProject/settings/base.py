@@ -2,11 +2,10 @@
 import os
 import dj_database_url
 
-
 #Settings path is the current settings folder e.g. /mnt/project/girlGuidesProject/settings
 #Project path is the application directory above this eg /mnt/project/girlGuidesProject
 SETTINGS_PATH = os.path.dirname(os.path.abspath(__file__))
-PROJECT_PATH  = (os.path.split(SETTINGS_PATH ))[0]
+PROJECT_PATH = (os.path.split(SETTINGS_PATH))[0]
 
 STATICFILES_LOCATION = 'static'
 STATIC_URL = '/static/'
@@ -15,7 +14,7 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)   
+)
 
 MEDIAFILES_LOCATION = 'media'
 STATICFILES_DIRS = (
@@ -24,23 +23,23 @@ STATICFILES_DIRS = (
 
 
 TEMPLATE_DIRS = (
-                 os.path.join(PROJECT_PATH, 'templates')
+    os.path.join(PROJECT_PATH, 'templates')
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
- )
+)
 
 
 #Contact form categories for message
 ENVELOPE_CONTACT_CHOICES = (
-    ('',    u"Choose"),
-    (10,    u"General question"),
-    (None,   u"Other"),
+    ('', u"Choose"),
+    (10, u"General question"),
+    (None, u"Other"),
 )
 
 #DJANGO Suit Admin theme configuration
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Black Mountain Girl Guides',
-       'SEARCH_URL': ''
+    'SEARCH_URL': ''
 }
 
 ADMINS = (
@@ -49,9 +48,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-
-
 
 LOGIN_REDIRECT_URL = '/'
 #Note you can't use reverse url lookup here as settings is loaded before URLs
@@ -64,9 +60,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'gmn#gg)y!&u_je&$e#@sp&+ik!+v@+hwnv%wkoga^5^jw*&vlf'
 
@@ -76,13 +69,13 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 # Middleware for various tasks including forcing user logon
 
 MIDDLEWARE_CLASSES = (
-     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,30 +86,25 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-
 # Pages that are viewable by public / do not require login
-LOGIN_EXEMPT_URLS = (    '^$',
-   '^accounts/login/',
-   '^contactForm/',
-   '^forms/',
-   '^about/',
-   )
-
-
+LOGIN_EXEMPT_URLS = ('^$',
+                     '^accounts/login/',
+                     '^contactForm/',
+                     '^forms/',
+                     '^about/',
+                    )
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'girlGuidesProject.wsgi.application'
 
 ROOT_URLCONF = 'girlGuidesProject.urls'
 
-# Settings for map application starting location , this is used when recording events 
+# Settings for map application starting location , this is used when recording events
 # and on the about us page
 EASY_MAPS_CENTER = (-41.3, 32)
 
-
-
 INSTALLED_APPS = (
-#Suit is modern admin theme
+    #Suit is modern admin theme
     'suit',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,26 +134,20 @@ INSTALLED_APPS = (
     'django_tables2',
     #Gallery add on
     'photologue',
-     'south',
+    'south',
 )
 
 
 # 1st entry is Suit admin theme config
 TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.core.context_processors.request',
-  'django.contrib.auth.context_processors.auth',
-  'django.core.context_processors.i18n',
-  'django.core.context_processors.request',
-  'django.core.context_processors.media',
-  'django.core.context_processors.static',
-  'django.contrib.messages.context_processors.messages',
-
-  ) # Optional
-
-
-
-# 
-
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -196,15 +178,8 @@ LOGGING = {
     }
 }
 
-
-
-
-
-
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # Allow all host headers
@@ -213,12 +188,7 @@ ALLOWED_HOSTS = ['*']
 # from SettingUtils import getScoutLeaders
 # ENVELOPE_EMAIL_RECIPIENTS = getScoutLeaders()
 # ENVELOPE_MESSAGE_THANKS   = 'Message has been sent successfuly.'
-# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please 
-# try again later' 
+# ENVELOPE_MESSAGE_ERROR    = 'Error - Form has not been submitted please
+# try again later'
 
-LOGOUT_URL ='/'  
-
-
-
-
-
+LOGOUT_URL = '/'

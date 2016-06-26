@@ -11,14 +11,6 @@ DATABASES = {
     }
 }
 
-
-
-DEBUG =  True
-
-
+DEBUG = True
 STATIC_URL = '/static/'
 #add debug toolbar for dev
-
-
-
-

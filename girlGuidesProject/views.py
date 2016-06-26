@@ -16,11 +16,11 @@ from slideShow.models import slideShow
 
 
 def home(request):
-    template     = loader.get_template('main/home.html') 
+    template = loader.get_template('main/home.html')
     #empty context placeholder
     images = slideShow.objects.all()
-    events = Event.objects.all()    
-    context = RequestContext(request, {'events':events , 'publicImages':images})
+    events = Event.objects.all()
+    context = RequestContext(request, {'events':events, 'publicImages':images})
     return HttpResponse(template.render(context))
 
 #when user logs out redirect them to home page
@@ -29,7 +29,7 @@ def logoutView(request):
     return redirect('girlGuidesProject.views.home')
 
 def aboutView(request):
-    template     = loader.get_template('main/about.html') 
+    template = loader.get_template('main/about.html')
     #empty context placeholder
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
@@ -37,6 +37,3 @@ def aboutView(request):
 @login_required
 def checkLogon(request):
     return redirect('/photologue/')
-    
-    
-
