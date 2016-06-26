@@ -13,8 +13,6 @@ from django.shortcuts import redirect
 from girlGuidesProject.events.models import Event
 from slideShow.models import slideShow
 
-
-
 def home(request):
     template = loader.get_template('main/home.html')
     #empty context placeholder
